@@ -39,9 +39,7 @@
 	while($row = $stmt->fetch()) {
        $group_rows[] = $row;
     }
-	echo "<pre>";
-	print_r($group_rows);
-	
+ 
 	$con = ConnectionFactory::getConnection();
 		
 	// COMIENZO DEL CAMBIO
@@ -80,10 +78,8 @@
 			echo $row['nombre'].'</td>';
 			 
 			echo '<td>';
-			
-			echo '<a href="#" data-type="view" data-page="'.$row['row_id'].'" data-reveal-id="buttons">View</a>'; 
-			echo ' | <a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>';
-		    echo ' | <a href="#" data-type="delete" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Delete</a> ';
+		
+			echo '<a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">View / Edit</a>';
 
 			echo '</td>';
 			
