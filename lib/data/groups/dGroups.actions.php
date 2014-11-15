@@ -79,8 +79,7 @@
 		
 		//populate json
 		$obj_permission = json_decode($vRow['group_permission']);
-		print_r($obj_permission);
-		
+
 		echo $antes;
 		echo "<label>Group Permission</label>";
 		
