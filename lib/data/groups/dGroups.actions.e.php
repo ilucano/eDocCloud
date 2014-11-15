@@ -100,13 +100,16 @@
 				
 		
 				
-				$json_group_permission = json_encode($arr['group_permission']);
+				$json_group_permission = json_encode($_GET['group_permission']);
 				print_r($arr);
 				
 				print_r($json_group_permission);
 				$int = 0;
 				
-				foreach ($arr as $arrItem) {
+				foreach ($_GET as $request_key =>  $arrItem) {
+					if($request_key != 'nombre') {
+						continue;
+					}
 					$inArr = split("=",$arrItem);
 					if ($inArr[0]!='action' && $inArr[0]!='id') {
 						$qry2 = $qry2."  ".$inArr[0]." = :".$inArr[0]." ,";
@@ -122,25 +125,30 @@
 				try {
 					
 					//var_dump($meta);
-					
-					$stmt = $con->prepare($qry1.$qry2.$qry3.$id.$qry5);
-					//echo $qry1.$qry2.$qry3.$id.$qry5;
-					//echo var_dump($arrValues);
-					
-					foreach ($arrValues as $valor) {
-						$strQry = "SHOW COLUMNS FROM ".$table." WHERE Field = '".$valor[0]."';";
-						//echo $strQry;
-						foreach ($con2->query($strQry) as $row) {
-							//echo $valor[1];
-							if (substr($row['Type'],0,3)=="int") {
-								$stmt->bindValue(':'.$valor[0], urldecode($valor[1]), PDO::PARAM_INT);
-							} else {
-								$stmt->bindValue(':'.$valor[0], urldecode($valor[1]), PDO::PARAM_STR);
-							}
-						}
-					}
-									
-					$stmt->execute();
+					$update_query = "UPDATE groups ";
+					$update_query .= "SET nombre = '" . addslashes($_GET['nombre']) . " '";
+					$update_query .= ", group_persmission = '" . addslashes($json_group_permission) . " '";
+					$update_query .= " WHERE row_id = '".addslashes($_GET['id']) ."'";
+					echo $update_query;
+					//
+					//$stmt = $con->prepare($qry1.$qry2.$qry3.$id.$qry5);
+					////echo $qry1.$qry2.$qry3.$id.$qry5;
+					////echo var_dump($arrValues);
+					//
+					//foreach ($arrValues as $valor) {
+					//	$strQry = "SHOW COLUMNS FROM ".$table." WHERE Field = '".$valor[0]."';";
+					//	//echo $strQry;
+					//	foreach ($con2->query($strQry) as $row) {
+					//		//echo $valor[1];
+					//		if (substr($row['Type'],0,3)=="int") {
+					//			$stmt->bindValue(':'.$valor[0], urldecode($valor[1]), PDO::PARAM_INT);
+					//		} else {
+					//			$stmt->bindValue(':'.$valor[0], urldecode($valor[1]), PDO::PARAM_STR);
+					//		}
+					//	}
+					//}
+					//				
+					//$stmt->execute();
 					echo "Record updated...";
 				} catch(PDOException $ex) {
 					echo "An Error occured!"; //user friendly message
