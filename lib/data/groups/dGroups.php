@@ -31,15 +31,16 @@
 	echo $btnSearch.$btnLast;
 	
 	$pdocon = NConnectionFactory::getConnection();
-	var_dump($pdocon);
-	
 	
 	$stmt = $pdocon->prepare('SELECT * FROM groups order by row_id');
     $stmt->execute();
     
+	$group_rows = array();
 	while($row = $stmt->fetch()) {
-        print_r($row);
+       $group_rows[] = $row;
     }
+	echo "<pre>";
+	print_r($group_rows);
 	
 	$con = ConnectionFactory::getConnection();
 		
