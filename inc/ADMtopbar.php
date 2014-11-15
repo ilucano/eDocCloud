@@ -51,6 +51,7 @@ if ($_SESSION['VisAdmin']!='X') {
           <li<?php if ($page=="main") { echo ' class="active"'; } ?>><a href="main.php">Home</a></li>
           <li<?php if ($page=="company") { echo ' class="active"'; } ?>><a href="company.php">Company</a></li>
           <li<?php if ($page=="users") { echo ' class="active"'; } ?>><a href="users.php">Users</a></li>
+		  <li<?php if ($page=="groups") { echo ' class="active"'; } ?>><a href="groups.php">Groups</a></li>
           <li<?php if ($page=="orders") { echo ' class="active"'; } ?>><a href="orders.php">Orders</a></li>
           <li<?php if ($page=="pickup") { echo ' class="active"'; } ?>><a href="pickup.php">Pickup</a></li>
           <li<?php if ($page=="box") { echo ' class="active"'; } ?>><a href="box.php">Box</a></li>
