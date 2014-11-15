@@ -25,6 +25,7 @@ if ($txtSearch=="") {
 	echo $antes;
 	
 	$con = ConnectionFactory::getConnection();
+    var_dump($con);
 	
 	$qryCnt = "SELECT COUNT(*) as num, MATCH(texto) AGAINST('".$txtSearch."' IN BOOLEAN MODE) AS Score FROM files WHERE MATCH(texto) AGAINST ('".$txtSearch."' IN BOOLEAN MODE)";
 	//echo $qryCnt;
