@@ -27,8 +27,8 @@ if ($txtSearch=="") {
 	$con = ConnectionFactory::getConnection();
     var_dump($con);
 	
-	$qryCnt = "SELECT COUNT(*) as num, MATCH(texto) AGAINST('".$txtSearch."' IN BOOLEAN MODE) AS Score FROM files WHERE MATCH(texto) AGAINST ('".$txtSearch."' IN BOOLEAN MODE)";
-	//echo $qryCnt;
+	$qryCnt = "SELECT COUNT(*) as num, MATCH(texto) AGAINST('".addslashes($txtSearch)."' IN BOOLEAN MODE) AS Score FROM files WHERE MATCH(texto) AGAINST ('".addslashes($txtSearch)."' IN BOOLEAN MODE)";
+	 echo $qryCnt;
 	$total_pages = mysql_fetch_array(mysql_query($qryCnt));
 	$total_pages = $total_pages['num'];
 	
