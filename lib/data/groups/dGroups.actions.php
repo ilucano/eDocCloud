@@ -103,13 +103,13 @@
 	function ShowPermissionCheckboxes()
 	{
 		
-		echo "<table>";
+		echo "<table id='permission_box'>";
 		echo "<tr>";
 		echo "<th colspan=2>Application</th>";
 		echo "</tr>";
 		echo "<tr>";
 		echo "<td width='20%' style='padding-left: 25px;'>";
-		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Main</label></li>";
+		echo "<ul><li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Main</label></li></ul>";
 		echo "</td>";
 		echo "</tr>";
 		
@@ -117,9 +117,9 @@
 		echo "<th colspan=2>Workflow</th>";
 		echo "</tr>";
 		echo "<tr>";
-		echo "<td width='20%' style='padding-left: 25px;'>Pickup</td>";
-		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Pickup</label></li>";
-		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Preparation</label></li>";
+		echo "<td width='20%' style='padding-left: 25px;'>";
+		echo "<ul><li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Pickup</label></li>";
+		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Preparation</label></li></ul>";
 		echo "</td>";
 		echo "</tr>";
 		

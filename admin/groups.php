@@ -27,6 +27,12 @@ require_once $arrIni['base'].'inc/general.php';
 
 	// End Hiding -->
 	</script>
+  
+  <style>
+  #permission_box li {
+	list-style-type: none;
+  }
+  </style>
   </head>
 <body>
 <?php
