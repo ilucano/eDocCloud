@@ -92,44 +92,45 @@
 				break;
 				
 			case "edit":
-				$qry1 = "UPDATE ".$table." SET ";
-				$qry3 = " WHERE row_id = ";
-				$qry5 = ";";
-				
-				$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
-				
-		
-				
-				$json_group_permission = json_encode($_GET['group_permission']);
-				print_r($arr);
-				
-				print_r($json_group_permission);
-				$int = 0;
-				
-				foreach ($_GET as $request_key =>  $arrItem) {
-					if($request_key != 'nombre') {
-						continue;
-					}
-					$inArr = split("=",$arrItem);
-					if ($inArr[0]!='action' && $inArr[0]!='id') {
-						$qry2 = $qry2."  ".$inArr[0]." = :".$inArr[0]." ,";
-						$arrValues[$int][0] = $inArr[0];
-						$arrValues[$int][1] = urldecode($inArr[1]);
-					}
-					$int = $int + 1;
-				}
-				
-				$qry2 = substr($qry2,0,(strlen($qry2)-1));
+				//$qry1 = "UPDATE ".$table." SET ";
+				//$qry3 = " WHERE row_id = ";
+				//$qry5 = ";";
+				//
+				//$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
+				//
+				//
+				//
+				//
+				// 
+				//$int = 0;
+				//
+				//foreach ($_GET as $request_key =>  $arrItem) {
+				//	if($request_key != 'nombre') {
+				//		continue;
+				//	}
+				//	$inArr = split("=",$arrItem);
+				//	if ($inArr[0]!='action' && $inArr[0]!='id') {
+				//		$qry2 = $qry2."  ".$inArr[0]." = :".$inArr[0]." ,";
+				//		$arrValues[$int][0] = $inArr[0];
+				//		$arrValues[$int][1] = urldecode($inArr[1]);
+				//	}
+				//	$int = $int + 1;
+				//}
+				//
+				//$qry2 = substr($qry2,0,(strlen($qry2)-1));
 				//$qry4 = substr($qry4,0,(strlen($qry4)-1));
 				
 				try {
 					
 					//var_dump($meta);
+					$json_group_permission = json_encode($_GET['group_permission']);
+					
+					
 					$update_query = "UPDATE groups ";
 					$update_query .= "SET nombre = '" . addslashes($_GET['nombre']) . " '";
 					$update_query .= ", group_persmission = '" . addslashes($json_group_permission) . " '";
 					$update_query .= " WHERE row_id = '".addslashes($_GET['id']) ."'";
-					echo $update_query;
+				    $stmt = $con->prepare($update_query);
 					//
 					//$stmt = $con->prepare($qry1.$qry2.$qry3.$id.$qry5);
 					////echo $qry1.$qry2.$qry3.$id.$qry5;
@@ -148,7 +149,7 @@
 					//	}
 					//}
 					//				
-					//$stmt->execute();
+					 $stmt->execute();
 					echo "Record updated...";
 				} catch(PDOException $ex) {
 					echo "An Error occured!"; //user friendly message
