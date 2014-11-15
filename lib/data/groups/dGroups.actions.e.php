@@ -92,34 +92,7 @@
 				break;
 				
 			case "edit":
-				//$qry1 = "UPDATE ".$table." SET ";
-				//$qry3 = " WHERE row_id = ";
-				//$qry5 = ";";
-				//
-				//$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
-				//
-				//
-				//
-				//
-				// 
-				//$int = 0;
-				//
-				//foreach ($_GET as $request_key =>  $arrItem) {
-				//	if($request_key != 'nombre') {
-				//		continue;
-				//	}
-				//	$inArr = split("=",$arrItem);
-				//	if ($inArr[0]!='action' && $inArr[0]!='id') {
-				//		$qry2 = $qry2."  ".$inArr[0]." = :".$inArr[0]." ,";
-				//		$arrValues[$int][0] = $inArr[0];
-				//		$arrValues[$int][1] = urldecode($inArr[1]);
-				//	}
-				//	$int = $int + 1;
-				//}
-				//
-				//$qry2 = substr($qry2,0,(strlen($qry2)-1));
-				//$qry4 = substr($qry4,0,(strlen($qry4)-1));
-				
+			 
 				try {
 					
 					//var_dump($meta)
@@ -138,24 +111,7 @@
 					$update_query .= ", group_permission = '" . addslashes($json_group_permission) . "' ";
 					$update_query .= " WHERE row_id = '".addslashes($_GET['id']) ."'";
 				    $stmt = $con->prepare($update_query);
-					//
-					//$stmt = $con->prepare($qry1.$qry2.$qry3.$id.$qry5);
-					////echo $qry1.$qry2.$qry3.$id.$qry5;
-					////echo var_dump($arrValues);
-					//
-					//foreach ($arrValues as $valor) {
-					//	$strQry = "SHOW COLUMNS FROM ".$table." WHERE Field = '".$valor[0]."';";
-					//	//echo $strQry;
-					//	foreach ($con2->query($strQry) as $row) {
-					//		//echo $valor[1];
-					//		if (substr($row['Type'],0,3)=="int") {
-					//			$stmt->bindValue(':'.$valor[0], urldecode($valor[1]), PDO::PARAM_INT);
-					//		} else {
-					//			$stmt->bindValue(':'.$valor[0], urldecode($valor[1]), PDO::PARAM_STR);
-					//		}
-					//	}
-					//}
-					//				
+							
 					 $stmt->execute();
 					echo "Record updated...";
 				} catch(PDOException $ex) {
