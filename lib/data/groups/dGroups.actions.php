@@ -77,6 +77,10 @@
 		echo $despues;
 		
 		
+		//populate json
+		$obj_permission = json_decode($vRow['group_permission']);
+		print_r($obj_permission);
+		
 		// Boton
 		echo $antes;
 		if ($vAction=='edit' || $vAction=='create') {
