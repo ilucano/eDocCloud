@@ -151,7 +151,8 @@
 			echo "<tr>";
 			echo "<td width='20%' style='padding-left: 25px;'><ul>";
 			
-			foreach($list['code'] as $codeKey => $code)
+			$codes = $list['code'];
+			foreach($codes as $codeKey => $code)
 			{
 			    
 				$checkbox_name = $key . '[]';
