@@ -71,28 +71,23 @@
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qryFT);
 	
-	if (mysql_num_rows($res)) {
+	if (count($group_rows) > 0 ) {
 		// COMIENZO DEL CAMBIO
-		echo "<table><tbody><thead><tr><th width=\"20%\">Name</th><th width=\"20%\">Company</th><th width=\"20%\">Email</th><th width=\"7%\">Admin</th><th width=\"7%\">Active</th><th width=\"6%\">Comp. Adm.</th><th width=\"20%\">Actions</th></tr></thead>";
+		echo "<table><tbody><thead><tr><th width=\"40%\">Group Name</th><th width=\"60%\">Group Permission</th></tr></thead>";
 		
-		while ($row = mysql_fetch_array($res)) {
-			echo "<tr><td width=20%>";
-			echo $row['first_name'].' '.$row['last_name'].' ('.$row['username'].')'.'</td>';
-			echo '<td width="20%">'.$row['empresa'].'</td>';
-			echo '<td width="20%">'.$row['email'].'</td>';
-			echo '<td width="7%">'.ConvertToYesNo($row['is_admin']).'</td>';
-			echo '<td width="7%">'.ConvertToYesNo($row['status']).'</td>';
-			echo '<td width="6%">'.ConvertToYesNo($row['company_admin']).'</td>';
-			// FIN DEL CAMBIO
-			echo '<td width="10%">';
+		foreach ($group_rows as $row) {
+			echo "<tr><td>";
+			echo $row['nombre'].'</td>';
+			 
+			echo '<td>';
 			
-			if ($arrPerm['view']=='X') { echo '<a href="#" data-type="view" data-page="'.$row['row_id'].'" data-reveal-id="buttons">View</a>'; }
-			if ($arrPerm['edit']=='X') { echo ' | <a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>'; }
-			if ($arrPerm['delete']=='X') { echo ' | <a href="#" data-type="delete" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Delete</a> '; }
+			echo '<a href="#" data-type="view" data-page="'.$row['row_id'].'" data-reveal-id="buttons">View</a>'; 
+			echo ' | <a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>';
+		    echo ' | <a href="#" data-type="delete" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Delete</a> ';
 
 			echo '</td>';
 			
-			echo "</tr></td>";
+			echo "</tr>";
 		}
 		echo "</tbody></table>";
 		if ($total_pages>$limit || $pagAct > 0) {
