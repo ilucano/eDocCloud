@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	$table = 'users';
+	$table = 'groups';
 	
 	require_once '/var/www/html/config.php';
 	
@@ -53,56 +53,7 @@
 				ConnectionFactory::close();
 
 				break;
-			case "view":
-				//require_once $arrIni['base'].'lib/db/dbConn.php' ;
-				ConnectionFactory::getConnection();
-				
-				$qry = "SELECT * FROM ".$table." WHERE row_id = ".$id.";";
-				//echo $qry;
-				
-				//mysql_query("SET NAMES UTF8");
-				mysql_query("SET NAMES UTF8");
-				$res = mysql_query($qry);
-//echo $res;
-				while ($row = mysql_fetch_array($res)) {
-					//echo 'ENTRA';
-					echo '<form name="formulario" id="formulario"><div class="panel callout">';
-
-					CreateForm($action,$row);
-
-					echo '</div></form>';
-
-				}
-
-				ConnectionFactory::close();
-
-				break;
-				
-			case "delete":
-				//require_once $arrIni['base'].'lib/db/dbConn.php' ;
-				ConnectionFactory::getConnection();
-				
-				$qry = "SELECT * FROM companies WHERE fk_admin = ".$id.";";
-	
-				$res = mysql_query($qry);
-				while ($row = mysql_fetch_array($res)) {
-					$vRet = "NO";
-				}
-				
-				if ($vRet!="NO") {
-					$qry = "DELETE FROM ".$table." WHERE row_id = ".$id.";";
-					
-					$res=mysql_query($qry)
-						or die("-1");
-					
-					echo "Record updated...";
-				} else {
-					echo "Record cannot be deleted...";	
-				}
-
-				ConnectionFactory::close();
-
-				break;
+			
 			}
 		//echo "OK";
 	}
@@ -114,95 +65,17 @@
 		
 		if ($vAction=='view') { $disabled = " disabled "; }
 		
-		// Nombre de Usuario
-		echo $antes;
-		$_fName = 'username';
-		$_fDesc = 'Username';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; $disabledO = "disabled"; }
-		//echo $value;
-		echo "<label>".$_fDesc."<input ".$disabled.$disabledO." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Direccion 1
-		echo $antes;
-		$_fName = 'password';
-		$_fDesc = 'Password';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
 		
 		// Nombre
 		echo $antes;
-		$_fName = 'first_name';
-		$_fDesc = 'First Name';
+		$_fName = 'nombre';
+		$_fDesc = 'Group Name';
 		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
 		//echo $value;
 		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
 		$value = "";
 		echo $despues;
 		
-		// Apellido
-		echo $antes;
-		$_fName = 'last_name';
-		$_fDesc = 'Last Name 1';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Email
-		echo $antes;
-		$_fName = 'email';
-		$_fDesc = 'Email';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Telefono
-		echo $antes;
-		$_fName = 'phone';
-		$_fDesc = 'Phone';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Combo de Empresas
-		echo $antes;
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['fk_empresa']; }
-		echo ComboCompanies('fk_empresa',$value,$disabled);
-		$value = "";
-		echo $despues;
-		
-		// Is Admin
-		echo $antes;
-		$_fName = 'is_admin';
-		$_fDesc = 'Admin';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
-		
-		// Status A:Active I:Inactive
-		echo $antes;
-		$_fName = 'status';
-		$_fDesc = 'Active';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
-		
-		// Company Admin
-		echo $antes;
-		$_fName = 'company_admin';
-		$_fDesc = 'Company Admin';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
 		
 		// Boton
 		echo $antes;

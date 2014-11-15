@@ -1,7 +1,7 @@
 <?php
 	
 	// Solo hay que cambiar esto!
-	$table = 'users';
+	$table = 'groups';
 
 	session_start();
 	

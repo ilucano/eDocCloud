@@ -71,7 +71,7 @@
 	
 	if (count($group_rows) > 0 ) {
 		// COMIENZO DEL CAMBIO
-		echo "<table><tbody><thead><tr><th width=\"40%\">Group Name</th><th width=\"60%\">Group Permission</th></tr></thead>";
+		echo "<table><tbody><thead><tr><th width=\"30%\">Group Name</th><th width=\"30%\">Group Permission</th></tr></thead>";
 		
 		foreach ($group_rows as $row) {
 			echo "<tr><td>";
