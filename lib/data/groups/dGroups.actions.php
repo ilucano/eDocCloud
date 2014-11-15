@@ -103,6 +103,17 @@
 	function ShowPermissionCheckboxes()
 	{
 		
+		echo "<table>";
+		echo "<tr>";
+		echo "<th colspan=2>Application</th>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td width='50%'>&raquo; Main</td>";
+		echo "<td width='50%'><label for='checkbox1'><input type='checkbox' id='checkbox1'> Allowed</label></td>";
+		echo "</tr>";
+		echo "</table>";
+		
+		
 		echo "<div class=\"container\">";
 			echo "<div class=\"row\">";
 				echo "<div class=\"four columns\">";
