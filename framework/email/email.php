@@ -26,7 +26,7 @@ $message = '
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width : 700px; table-layout: fixed;">
   <tr>
     <td width="10%" nowrap="nowrap">&nbsp;</td>
-    <td width="80%" nowrap="nowrap" class="Centerbo"><img src="http://www.edoccloud.com/images/banerMail.jpg" width="600" height="75" /></td>
+    <td width="80%" nowrap="nowrap" class="Centerbo"><img src="http://<?php echo $_SERVER['SERVER_NAME'];?>/images/banerMail.jpg" width="600" height="75" /></td>
     <td width="10%" nowrap="nowrap">&nbsp;</td>
   </tr>
   <tr>
@@ -43,7 +43,7 @@ $message = '
         to access your records anytime, anywhere, and from any device. The very essence of <span class="Bold">eDocCloud</span> is to make documents available in seconds in a secure and responsive environment.</p>
       <p>Start using <span class="Bold">eDocCloud</span> now! Below you\'ll find your login and password informatiom. We strongly
         recommend to change it the first time you use it.</p>
-      <p><span class="Bold">URL:</span> <a href="http://www.edoccloud.com">www.eDocCloud.com</a></p>
+      <p><span class="Bold">URL:</span> <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>"><?php echo $_SERVER['SERVER_NAME'];?></a></p>
       <p><span class="Bold">Username:</span> '.$vUser.'</p>
       <p><span class="Bold">Password:</span> '.$vPass.'</p>
       <p>We are constantly improving our services and we would love to hear from you!</p>

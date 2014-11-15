@@ -92,7 +92,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 				if (vVar=="pagina") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://www.edoccloud.com/lib/data/dOCR.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/dOCR.php",
 					   data: "pagAct="+vPag,
 					   success: function(html){
 						$('#myModal').foundation('reveal', 'close');
@@ -115,7 +115,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://www.edoccloud.com/lib/data/wf.ocr.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/wf.ocr.php",
 				   data: "wfid="+vPag+"&status="+vVar,
 				   success: function(html){
 					$('#myModal').foundation('reveal', 'close');

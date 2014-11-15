@@ -116,7 +116,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 				if (vVar=="pagina") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://www.edoccloud.com/lib/data/users/dUsers.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
 					   data: "pagAct="+vPag+"&txtsearch="+vStr,
 					   success: function(html){
 						if(html!="")
@@ -138,7 +138,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://www.edoccloud.com/lib/data/users/dUsers.actions.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.actions.php",
 				   data: "action="+vVar+"&id="+vPag,
 				   success: function(html){
 					if(html!="")
@@ -148,7 +148,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://www.edoccloud.com/lib/data/users/dUsers.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")
@@ -181,7 +181,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://www.edoccloud.com/lib/data/users/dUsers.actions.e.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.actions.e.php",
 				   data: "action="+vVar+"&id="+vPag+"&"+$("#formulario").serialize(),
 				   success: function(html){
 					if(html!="")
@@ -191,7 +191,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://www.edoccloud.com/lib/data/users/dUsers.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")

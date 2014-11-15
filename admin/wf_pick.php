@@ -186,12 +186,12 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 				if (vVar=="create") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://www.edoccloud.com/lib/data/wf.pickup.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/wf.pickup.php",
 					   data: "action="+vVar+"&id="+vPag+"&"+$("#formulario").serialize(),
 					   success: function(html){
 						if(html!="")
 						{
-							window.location.assign("http://www.edoccloud.com/admin/wf_pick.php?orden="+html);
+							window.location.assign("http://<?php echo $_SERVER['SERVER_NAME'];?>/admin/wf_pick.php?orden="+html);
 						}
 						else
 						{
