@@ -78,13 +78,13 @@
 		
 		
 		//populate json
-		$obj_permission = json_decode($vRow['group_permission']);
+		$array_permission = json_decode($vRow['group_permission'], true);
 
 		echo $antes;
 		echo "<label>Group Permission</label>";
 		
 	    	
-		ShowPermissionCheckboxes($obj_permission);
+		ShowPermissionCheckboxes($array_permission);
 		
 		echo $despues;
  
@@ -99,8 +99,10 @@
 	}
 	
 	
-	function ShowPermissionCheckboxes()
+	function ShowPermissionCheckboxes($array_permission)
 	{
+		
+		
 	
 		$permissionList = array('application' 	=> array('label' => 'Application',
 													   'code' => array('main' => 'Main')
@@ -156,7 +158,10 @@
 				$checkbox_id = $key . "_" . $codekey;
 				$checkbox_value = $codekey;
 				$checkbox_label = $code;
-				echo "<li><label for='checkbox1'><input type='checkbox' value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
+				
+				$checkedString = ($array_permission[$key][$codeKey] == '1') ? " checked" : "";
+								
+				echo "<li><label for='checkbox1'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 				
 			}
 			
