@@ -101,7 +101,7 @@
 	
 	function ShowPermissionCheckboxes($array_permission)
 	{
- 
+        print_r($array_permission);
 		$permissionList = array('application' 	=> array('label' => 'Application',
 													   'code' => array('main' => 'Main')
 													  ),
