@@ -156,7 +156,7 @@
 				$checkbox_id = $key . "_" . $codekey;
 				$checkbox_value = $codekey;
 				$checkbox_label = $code;
-				echo "<ul><li><label for='checkbox1'><input type='checkbox' value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li></ul>";
+				echo "<li><label for='checkbox1'><input type='checkbox' value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 				
 			}
 			
