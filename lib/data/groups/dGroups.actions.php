@@ -108,8 +108,8 @@
 		echo "<th colspan=2>Application</th>";
 		echo "</tr>";
 		echo "<tr>";
-		echo "<td width='50%'>&raquo; Main</td>";
-		echo "<td width='50%'><label for='checkbox1'><input type='checkbox' id='checkbox1'> Allowed</label></td>";
+		echo "<td width='20%' style='padding-left: 25px;'>Main</td>";
+		echo "<td width='20%'><label for='checkbox1'><input type='checkbox' id='checkbox1'> Allowed</label></td>";
 		echo "</tr>";
 		echo "</table>";
 		
