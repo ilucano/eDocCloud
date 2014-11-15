@@ -125,10 +125,11 @@
 					//var_dump($meta);
 					print_r($_GET['group_permission']);
 					
-					foreach($_GET['group_permission'] as $key => $code)
+					foreach($_GET['group_permission'] as $key => $arrCode)
 					{
-						$array_permission[$key][$code] = 1;
-			
+						foreach($arrCode as  $code) {
+							$array_permission[$key][$code] = 1;
+						}
 					}
 					$json_group_permission = json_encode($array_permission);
 					
