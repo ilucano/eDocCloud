@@ -153,11 +153,12 @@
 			
 			foreach($list['code'] as $codeKey => $code)
 			{
-				
+			    
 				$checkbox_name = $key . '[]';
 				$checkbox_id = $key . "_" . $codekey;
 				$checkbox_value = $codekey;
 				$checkbox_label = $code;
+				echo $checkbox_name . "..." . $checkbox_value . ' .... ' . $checkbox_id;
 				
 				$checkedString = ($array_permission[$key][$codeKey] == '1') ? " checked" : "";
 								
