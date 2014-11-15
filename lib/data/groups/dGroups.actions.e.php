@@ -123,6 +123,8 @@
 				try {
 					
 					//var_dump($meta);
+					print_r($_GET['group_permission']);
+					
 					foreach($_GET['group_permission'] as $key => $code)
 					{
 						$array_permission[$key][$code] = 1;

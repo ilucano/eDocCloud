@@ -101,7 +101,7 @@
 	
 	function ShowPermissionCheckboxes($array_permission)
 	{
-        print_r($array_permission);
+		
 		$permissionList = array('application' 	=> array('label' => 'Application',
 													   'code' => array('main' => 'Main')
 													  ),
@@ -159,7 +159,7 @@
 				$checkbox_value = $codeKey;
 				$checkbox_label = $code;
  
-				$checkedString = (isset($array_permission[$key][$codeKey])) ? " checked" : "";
+				$checkedString = ($array_permission[$key][$codeKey] == '1') ? " checked" : "";
 								
 				echo "<li><label for='checkbox1'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 				
