@@ -108,34 +108,23 @@
 		echo "<th colspan=2>Application</th>";
 		echo "</tr>";
 		echo "<tr>";
-		echo "<td width='20%' style='padding-left: 25px;'>Main</td>";
-		echo "<td width='20%'><label for='checkbox1'><input type='checkbox' id='checkbox1'> Allowed</label></td>";
+		echo "<td width='20%' style='padding-left: 25px;'>";
+		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Main</label></li>";
+		echo "</td>";
 		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<th colspan=2>Workflow</th>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td width='20%' style='padding-left: 25px;'>Pickup</td>";
+		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Pickup</label></li>";
+		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Preparation</label></li>";
+		echo "</td>";
+		echo "</tr>";
+		
 		echo "</table>";
-		
-		
-		echo "<div class=\"container\">";
-			echo "<div class=\"row\">";
-				echo "<div class=\"four columns\">";
-				echo " Application / Main ";
-				echo "</div>";
-				echo "<div class=\"four columns\">";
-				echo " <label for=\"checkbox1\"><input type=\"checkbox\" id=\"checkbox1\"> Active</label>";
-				echo "</div>";
-			echo "</div>";
-			
-			echo "<div class=\"row\">";
-				echo "<div class=\"four columns\">";
-				echo " Workflow / Pickup ";
-				echo "</div>";
-				echo "<div class=\"four columns\">";
-				echo " <label for=\"checkbox1\"><input type=\"checkbox\" id=\"checkbox1\"> Active</label>";
-				echo "</div>";
-			echo "</div>";
-			
-			
-		echo "</div>";
-		
+
 	}
 	
 	
