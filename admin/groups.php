@@ -32,6 +32,11 @@ require_once $arrIni['base'].'inc/general.php';
   #permission_box li {
 	list-style-type: none;
   }
+  
+  #permission_box  tr, #permission_box td {
+	padding: 0px;
+  }
+  
   </style>
   </head>
 <body>
