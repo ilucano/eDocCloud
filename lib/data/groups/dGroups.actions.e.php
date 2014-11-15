@@ -123,7 +123,12 @@
 				try {
 					
 					//var_dump($meta);
-					$json_group_permission = json_encode($_GET['group_permission']);
+					foreach($_GET['group_permission'] as $key => $code)
+					{
+						$array_permission[$key][$code] = 1;
+			
+					}
+					$json_group_permission = json_encode($array_permission);
 					
 					
 					$update_query = "UPDATE groups ";
