@@ -81,6 +81,15 @@
 		$obj_permission = json_decode($vRow['group_permission']);
 		print_r($obj_permission);
 		
+		echo $antes;
+		echo "<label>Group Permission</label>";
+		
+	    	
+		ShowPermissionCheckboxes();
+		
+		echo $despues;
+ 
+		
 		// Boton
 		echo $antes;
 		if ($vAction=='edit' || $vAction=='create') {
@@ -88,7 +97,35 @@
 		}
 		echo $despues;
 		
-		}
+	}
+	
+	
+	function ShowPermissionCheckboxes()
+	{
+		
+		echo "<div class=\"container\">";
+			echo "<div class=\"row\">";
+				echo "<div class=\"four columns\">";
+				echo " Application / Main ";
+				echo "</div>";
+				echo "<div class=\"four columns\">";
+				echo " <label for=\"checkbox1\"><input type=\"checkbox\" id=\"checkbox1\"> Active</label>";
+				echo "</div>";
+			echo "</div>";
+			
+			echo "<div class=\"row\">";
+				echo "<div class=\"four columns\">";
+				echo " Workflow / Pickup ";
+				echo "</div>";
+				echo "<div class=\"four columns\">";
+				echo " <label for=\"checkbox1\"><input type=\"checkbox\" id=\"checkbox1\"> Active</label>";
+				echo "</div>";
+			echo "</div>";
+			
+			
+		echo "</div>";
+		
+	}
 	
 	
 	
