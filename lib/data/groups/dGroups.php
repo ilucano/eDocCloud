@@ -33,6 +33,14 @@
 	$pdocon = NConnectionFactory::getConnection();
 	var_dump($pdocon);
 	
+	
+	$stmt = $pdocon->prepare('SELECT * FROM groups order by row_id');
+    $stmt->execute();
+    
+	while($row = $stmt->fetch()) {
+        print_r($row);
+    }
+	
 	$con = ConnectionFactory::getConnection();
 		
 	// COMIENZO DEL CAMBIO
