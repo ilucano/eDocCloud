@@ -159,7 +159,7 @@
 				$checkbox_value = $codeKey;
 				$checkbox_label = $code;
  
-				$checkedString = ($array_permission[$key][$codeKey] == '1') ? " checked" : "";
+				$checkedString = (isset($array_permission[$key][$codeKey])) ? " checked" : "";
 								
 				echo "<li><label for='checkbox1'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 				
