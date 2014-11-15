@@ -134,8 +134,8 @@
 					
 					
 					$update_query = "UPDATE groups ";
-					$update_query .= "SET nombre = '" . addslashes($_GET['nombre']) . " '";
-					$update_query .= ", group_permission = '" . addslashes($json_group_permission) . " '";
+					$update_query .= "SET nombre = '" . addslashes($_GET['nombre']) . "' ";
+					$update_query .= ", group_permission = '" . addslashes($json_group_permission) . "' ";
 					$update_query .= " WHERE row_id = '".addslashes($_GET['id']) ."'";
 				    $stmt = $con->prepare($update_query);
 					//
