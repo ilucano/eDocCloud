@@ -84,7 +84,7 @@
 		echo "<label>Group Permission</label>";
 		
 	    	
-		ShowPermissionCheckboxes();
+		ShowPermissionCheckboxes($obj_permission);
 		
 		echo $despues;
  
@@ -101,26 +101,86 @@
 	
 	function ShowPermissionCheckboxes()
 	{
+	
+		$permissionList = array('application' 	=> array('label' => 'Application',
+													   'code' => array('main' => 'Main')
+													  ),
+								'workflow' 		=> array('label' => 'Workflow',
+													'code' => array('pickup' => 'Pickup',
+																	'preparation' => 'Preparation',
+																	'scan' => 'Scan',
+																	'qa' => 'QA',
+																	'ocr' => 'OCR')
+												   ),
+								'reports' 		=> array('label' => 'Reports',
+														 'code' => array('all_boxes'  => 'All Boxes',
+																		 'group_by_status' => 'Group By Status')
+														),
+								'admin_menu'	=> array('label' => 'Admin Menu',
+														 'code' => array('home' => 'Home',
+																		 'company' => 'Company',
+																		 'users' => 'Users',
+																		 'groups' => 'Groups',
+																		 'orders' => 'Orders',
+																		 'pickup' => 'Pickup',
+																		 'box'	=> 'Box',
+																		 'chart' => 'Chart',
+																		 'file' => 'File',
+																		 'barcode' => 'Barcode')
+														 
+														 ),
+								'user_menu'		=> array('label' => 'User Menu',
+														 'code' => array('home' => 'Home',
+																		 'orders' => 'Orders',
+																		 'search' => 'Search',
+																		 'change_password' => 'Change Password')
+														 )
+								
+								
+								);
 		
 		echo "<table id='permission_box'>";
-		echo "<tr>";
-		echo "<th colspan=2>Application</th>";
-		echo "</tr>";
-		echo "<tr>";
-		echo "<td width='20%' style='padding-left: 25px;'>";
-		echo "<ul><li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Main</label></li></ul>";
-		echo "</td>";
-		echo "</tr>";
+	
 		
-		echo "<tr>";
-		echo "<th colspan=2>Workflow</th>";
-		echo "</tr>";
-		echo "<tr>";
-		echo "<td width='20%' style='padding-left: 25px;'>";
-		echo "<ul><li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Pickup</label></li>";
-		echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Preparation</label></li></ul>";
-		echo "</td>";
-		echo "</tr>";
+		foreach($permissionList as $key =>  $list) {
+			echo "<tr>";
+			echo "<th colspan=2>" .$list['label'] . "</th>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td width='20%' style='padding-left: 25px;'><ul>";
+			
+			foreach($list['code'] as $codeKey => $code)
+			{
+				
+				$checkbox_name = $key . '[]';
+				$checkbox_id = $key . "_" . $codekey;
+				$checkbox_value = $codekey;
+				$checkbox_label = $code;
+				echo "<ul><li><label for='checkbox1'><input type='checkbox' value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li></ul>";
+				
+			}
+			
+			echo "</ul></td>";
+			echo "</tr>";
+
+		}
+		//echo "<th colspan=2>Application</th>";
+		//echo "</tr>";
+		//echo "<tr>";
+		//echo "<td width='20%' style='padding-left: 25px;'>";
+		//echo "<ul><li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Main</label></li></ul>";
+		//echo "</td>";
+		//echo "</tr>";
+		//
+		//echo "<tr>";
+		//echo "<th colspan=2>Workflow</th>";
+		//echo "</tr>";
+		//echo "<tr>";
+		//echo "<td width='20%' style='padding-left: 25px;'>";
+		//echo "<ul><li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Pickup</label></li>";
+		//echo "<li><label for='checkbox1'><input type='checkbox' id='checkbox1'> Preparation</label></li></ul>";
+		//echo "</td>";
+		//echo "</tr>";
 		
 		echo "</table>";
 
