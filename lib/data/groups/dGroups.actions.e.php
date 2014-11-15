@@ -122,8 +122,7 @@
 				
 				try {
 					
-					//var_dump($meta);
-					print_r($_GET['group_permission']);
+					//var_dump($meta)
 					
 					foreach($_GET['group_permission'] as $key => $arrCode)
 					{
