@@ -25,12 +25,12 @@ if ($txtSearch=="") {
 	echo $antes;
 	
 	$con = ConnectionFactory::getConnection();
-    var_dump($con);
 	
 	$qryCnt = "SELECT COUNT(*) as num, MATCH(texto) AGAINST('".addslashes($txtSearch)."' IN BOOLEAN MODE) AS Score FROM files WHERE MATCH(texto) AGAINST ('".addslashes($txtSearch)."' IN BOOLEAN MODE)";
-	 echo $qryCnt;
+	 
 	$total_pages = mysql_fetch_array(mysql_query($qryCnt));
 	$total_pages = $total_pages['num'];
+	
 	
 	if ($total_pages>$limit || $pagAct > 0) {
 		if ($pagAct==0) {
@@ -47,7 +47,7 @@ if ($txtSearch=="") {
 		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, texto FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND  filename LIKE '%".$txtSearch."%';";
 	}
 	
-	//echo $qryFT;
+	 echo $qryFT;
 	
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qryFT);
