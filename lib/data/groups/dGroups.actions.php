@@ -154,7 +154,7 @@
 			foreach($codes as $codeKey => $code)
 			{
 			    
-				$checkbox_name = $key . '[]';
+				$checkbox_name = 'group_permission' . '[' . $key .  '][]';
 				$checkbox_id = $key . "_" . $codeKey;
 				$checkbox_value = $codeKey;
 				$checkbox_label = $code;

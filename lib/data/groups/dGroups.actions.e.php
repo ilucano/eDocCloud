@@ -98,6 +98,8 @@
 				
 				$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
 				
+				print_r($_REQUEST);
+				
 				$int = 0;
 				
 				foreach ($arr as $arrItem) {
