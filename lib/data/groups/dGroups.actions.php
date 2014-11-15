@@ -103,7 +103,8 @@
 	{
 		
 		
-	
+	    print_r($array_permission);
+		
 		$permissionList = array('application' 	=> array('label' => 'Application',
 													   'code' => array('main' => 'Main')
 													  ),
@@ -152,6 +153,8 @@
 			echo "<td width='20%' style='padding-left: 25px;'><ul>";
 			
 			$codes = $list['code'];
+			print_r($codes);
+			
 			foreach($codes as $codeKey => $code)
 			{
 			    
