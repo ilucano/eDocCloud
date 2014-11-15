@@ -10,6 +10,7 @@
 	
 	require_once $arrIni['base'].'inc/general.php';
 	require_once $arrIni['base'].'lib/db/db.php' ;
+	require_once $arrIni['base'].'lib/db/dbConn.php' ;
 	
 	$pagAct =  $_GET['pagAct'] ;
 	$txtSearch = $_GET['txtsearch'] ;
@@ -28,7 +29,10 @@
 	echo $antes.$btnFirst;
 	if ($arrPerm['create']=='X') { echo $btnCreate; }
 	echo $btnSearch.$btnLast;
-		
+	
+	$pdocon = NConnectionFactory::getConnection();
+	var_dump($pdocon);
+	
 	$con = ConnectionFactory::getConnection();
 		
 	// COMIENZO DEL CAMBIO
