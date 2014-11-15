@@ -34,7 +34,7 @@ require_once $arrIni['base'].'inc/general.php';
   }
   
   #permission_box  tr, #permission_box td, #permission_box th {
-	padding: 0px;
+	padding: 3px;
   }
   
   </style>
