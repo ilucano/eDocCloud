@@ -98,8 +98,12 @@
 				
 				$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
 				
-				print_r($_REQUEST);
+		
 				
+				$json_group_permission = json_encode($arr['group_permission']);
+				print_r($arr);
+				
+				print_r($json_group_permission);
 				$int = 0;
 				
 				foreach ($arr as $arrItem) {
