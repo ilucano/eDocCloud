@@ -101,10 +101,7 @@
 	
 	function ShowPermissionCheckboxes($array_permission)
 	{
-		
-		
-	    print_r($array_permission);
-		
+ 
 		$permissionList = array('application' 	=> array('label' => 'Application',
 													   'code' => array('main' => 'Main')
 													  ),
@@ -153,14 +150,13 @@
 			echo "<td width='20%' style='padding-left: 25px;'><ul>";
 			
 			$codes = $list['code'];
-			print_r($codes);
-			
+			 
 			foreach($codes as $codeKey => $code)
 			{
 			    
 				$checkbox_name = $key . '[]';
-				$checkbox_id = $key . "_" . $codekey;
-				$checkbox_value = $codekey;
+				$checkbox_id = $key . "_" . $codeKey;
+				$checkbox_value = $codeKey;
 				$checkbox_label = $code;
 				echo $checkbox_name . "..." . $checkbox_value . ' .... ' . $checkbox_id;
 				
