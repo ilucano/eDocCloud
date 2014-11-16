@@ -378,7 +378,7 @@ function CheckPagePermission()
 	 
 	while($row = $stmt->fetch()) {
 		
-       $group_permission = $row['group_permission'];
+       $group_permission = json_decode($row['group_permission'], true);
     }
     
 	print_r($group_permission);
