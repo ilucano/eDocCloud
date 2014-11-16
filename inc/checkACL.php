@@ -381,12 +381,14 @@ function CheckPagePermission()
        $group_permission = $row['group_permission'];
     }
     
+	print_r($group_permission);
 	
 	foreach($permissionList as $key => $option)
 	{
 		foreach($option['script'] as $code => $scriptname)
 		{
 			if($scriptname == $_SERVER['script_name']) {
+				echo "$key $code found";
 				if($group_permission[$key][$code] == '1')
 			    {
 					return true;
