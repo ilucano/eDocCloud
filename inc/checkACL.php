@@ -116,7 +116,8 @@ function CheckPagePermission()
 	
 	
 	$pdocon = NConnectionFactory::getConnection();
-	
+	echo 'SELECT group_permission FROM users WHERE username = :username LIMIT 1';
+	echo  $_SESSION['Vusername'] ;
 	$stmt = $pdocon->prepare('SELECT group_permission FROM users WHERE username = :username LIMIT 1');
 	$bind_array = array(':username' => $_SESSION['Vusername']);
     $stmt->execute($bind_array);
