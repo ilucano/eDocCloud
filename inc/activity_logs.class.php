@@ -93,7 +93,7 @@ class Activity_Logs {
     
     public function MapScriptToAction($key)
     {
-        return $this->array_log_pages['$key'];
+        return $this->array_log_pages[$key];
         
     }
     
