@@ -417,7 +417,7 @@ function CheckPagePermission()
 
 }
 
-
+require_once $arrIni['base'].'inc/activity_logs.class.php';
 
 
 ?>
