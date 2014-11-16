@@ -378,7 +378,7 @@ function CheckPagePermission()
     }
     
 	
-	foreach($permissoinList as $key => $option)
+	foreach($permissionList as $key => $option)
 	{
 		foreach($option['script'] as $code => $scriptname)
 		{
