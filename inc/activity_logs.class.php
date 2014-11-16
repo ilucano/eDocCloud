@@ -102,6 +102,7 @@ class Activity_Logs {
         $columnStr = '';
         $valueStr = '';
         
+        print_r($data);
         foreach($data as $column => $value)
         {
             $array_column[] = "`".$column."`";
