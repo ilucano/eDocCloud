@@ -108,7 +108,7 @@ class Activity_Logs {
         foreach($data as $column => $value)
         {
             $array_column[] = "`".$column."`";
-            $array_value_bind = ":".$column;
+            $array_value_bind[] = ":".$column;
             $array_bind[$array_value_bind] = $value;
         }
         
