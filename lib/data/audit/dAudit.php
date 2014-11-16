@@ -71,12 +71,12 @@
 			echo '<td valign=top>';
 			
 			$arr_params = json_decode($row['parameters']);
-			echo "<ul>";
+			echo "<ul style='list-style-type: none;'>";
 			foreach ($arr_params as $param_key => $param_value)
 			{
 				echo "<li>";
 				echo "<span style='padding: 2px;' class=\"[secondary round radius] label\">".$param_key."</span> : ";
-				echo "<span style='padding: 2px; class=\"[success round radius] label\">".$param_value."</span>";
+				echo "<span style='padding: 2px;' class=\"[success round radius] label\">".$param_value."</span>";
 				echo "</li>";
 			}
 			echo "</ul>";
