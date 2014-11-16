@@ -111,10 +111,6 @@
 	
 	function CreateForm($vAction,$vRow) {
 		
-		
-		$pdocon = NConnectionFactory::getConnection();
- 
- 
 		$antes = "<div class=\"row\"><div class=\"large-6 columns\">";
 		$despues = "</div><div class=\"large-6 columns\">&nbsp;</div></div>";
 		
