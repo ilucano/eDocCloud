@@ -119,10 +119,6 @@ class Activity_Logs {
                          $columnStr 
                          $valueStr ";
         
-        echo $insert_query;
-        
-        print_r($array_bind);
-                  
         $stmt = $this->pdocon->prepare($insert_query);
         $stmt->execute($array_bind);
         
