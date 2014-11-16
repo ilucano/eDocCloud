@@ -69,6 +69,8 @@ class Activity_Logs {
         
         $data['parameters'] =  json_encode($log_details);
         $data['ip_address'] = $_SERVER['REMOTE_ADDR'];
+        $data['create_date'] = date("Y-m-d H:i:s");
+        
         $this->insertLog($data);
         
     }
