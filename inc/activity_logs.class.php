@@ -11,7 +11,7 @@ class Activity_Logs {
     {
         $this->pdocon = NConnectionFactory::getConnection();
         
-        $this->array_log_pages = array( '/chgpwd.php' => 'Change Password',
+        $this->array_log_pages = array( '/chgpwd.php' => 'Change Password Complete',
                                         '/login.php'  => 'Login',
                                         '/orders.php'  => 'List Order',
                                         '/lib/data/dBoxes.php' => 'View Order Boxes',
@@ -34,17 +34,17 @@ class Activity_Logs {
                                         '/lib/data/users/dUsers.actions.php' => 'Admin User Action',
                                         '/lib/data/users/dUsers.actions.e.php' => 'Admin User Action Complete',
                                         '/admin/groups.php' => 'Admin View Groups',
-                                        '/lib/data/users/dGroups.actions.php' => 'Admin Group Action',
-                                        '/lib/data/users/dGroups.actions.e.php' => 'Admin Group Action Complete',
+                                        '/lib/data/groups/dGroups.actions.php' => 'Admin Group Action',
+                                        '/lib/data/groups/dGroups.actions.e.php' => 'Admin Group Action Complete',
                                         '/admin/orders.php' => 'Admin View Orders',
-                                        '/lib/data/users/dOrders.actions.php' => 'Admin Order Action',
-                                        '/lib/data/users/dOrders.actions.e.php' => 'Admin Order Action Complete',
+                                        '/lib/data/orders/dOrders.actions.php' => 'Admin Order Action',
+                                        '/lib/data/orders/dOrders.actions.e.php' => 'Admin Order Action Complete',
                                         '/admin/pickup.php' => 'Admin View Pickups',
-                                        '/lib/data/users/dPickup.actions.php' => 'Admin Pickup Action',
-                                        '/lib/data/users/dPickup.actions.e.php' => 'Admin Pickup Action Complete',
+                                        '/lib/data/pickup/dPickup.actions.php' => 'Admin Pickup Action',
+                                        '/lib/data/pickup/dPickup.actions.e.php' => 'Admin Pickup Action Complete',
                                         '/admin/box.php' => 'Admin View Boxes',
-                                        '/lib/data/users/dBox.actions.php' => 'Admin Box Action',
-                                        '/lib/data/users/dBox.actions.e.php' => 'Admin Box Action Complete',
+                                        '/lib/data/box/dBox.actions.php' => 'Admin Box Action',
+                                        '/lib/data/box/dBox.actions.e.php' => 'Admin Box Action Complete',
                                        );
     }
     
