@@ -13,7 +13,7 @@
 	
 	$pagAct =  $_GET['pagAct'] ;
 	$txtSearch = $_GET['txtsearch'] ;
-	$limit = 10;
+	$limit = 50;
 	$adj = 2;
 	
 	if ($pagAct=="") { $pagAct=0; }
