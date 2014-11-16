@@ -51,8 +51,49 @@ class Activity_Logs {
     
     public function log()
     {
-        $data = $_REQUEST;
+        $module = $this->MapScriptToAction($_SERVER['SCRIPT_NAME']);
+        
+        if($module == '')
+            return;
+        
+        if($module == 'Change Password' && $_POST['password'] == '')
+            return;
+        
+        $username = $_SESSION['Vusername']  ? $_SESSION['Vusername'] : $_POST['username'];
+        
+        
+        $data['module'] =  $module;
+        $data['username'] = $username;
+        
+        $log_details  = $this->FilterLogDetails($_REQUEST, $module);
+        
+        $data['parameters'] =  json_encode($log_details);
+        $data['ip_address'] = $_SERVER['REMOTE_ADDR'];
         $this->insertLog($data);
+        
+    }
+    
+    public function FilterLogDetails($_REQUEST, $module)
+    {
+        $array_fields = array('action', 'id', 'wfid', 'status', 'fk_company', 'texto', 'ordid');
+        
+        $array_result = array();
+        
+        foreach($array_fields as $key)
+        {
+            if($_REQUEST[$key]) {
+                $array_result[$key] = $_REQUEST[$key];
+            }
+            
+        }
+        return $array_result;
+        
+    }
+    
+    
+    public function MapScriptToAction($key)
+    {
+        return $this->array_log_pages['$key'];
         
     }
     
