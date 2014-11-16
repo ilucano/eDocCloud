@@ -4,6 +4,8 @@ require_once '/var/www/html/config.php';
 
 require $arrIni['base'].'inc/check.php'; 
 
+require_once $arrIni['base'].'inc/checkACL.php'; 
+require_once $arrIni['base'].'inc/general.php'; 
 
 ?>
 <!doctype html>
