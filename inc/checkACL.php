@@ -355,16 +355,12 @@ function ComboGroups($vName,$vId,$vDis) {
 	return $strRet;
 }
 
-
-
-function CheckPagePermission()
+function GetUserPermission()
 {
-	global $permissionList;
 	
-	
-	
+		
 	if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
-		return false;
+		return array();
 	}
 	
 	
@@ -384,6 +380,19 @@ function CheckPagePermission()
        $group_permission = json_decode($row['group_permission'], true);
     }
     
+	return $group_permission;
+	
+}
+
+
+
+function CheckPagePermission()
+{
+	global $permissionList;
+	
+	
+    $group_permission = GetUserPermission();
+	
  
 	foreach($permissionList as $key => $option)
 	{
