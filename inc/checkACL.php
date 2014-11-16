@@ -45,18 +45,25 @@ if ($_SESSION['VisAdmin']=='X') {
 
 $permissionList = array('application' 	=> array('label' => 'Application',
 											   'code' => array('main' => 'Main'),
-											   'script' => array('main' => 'Main')
+											   'script' => array('main' => '/main.php')
 											  ),
 						'workflow' 		=> array('label' => 'Workflow',
-											'code' => array('pickup' => 'Pickup',
-															'preparation' => 'Preparation',
-															'scan' => 'Scan',
-															'qa' => 'QA',
-															'ocr' => 'OCR')
+												'code' => array('pickup' => 'Pickup',
+																'preparation' => 'Preparation',
+																'scan' => 'Scan',
+																'qa' => 'QA',
+																'ocr' => 'OCR'),
+												'script' => array('pickup' => '/admin/wf_pick.php',
+																'preparation' => '/admin/prep.php',
+																'scan' => '/admin/scan.php',
+																'qa' => '/admin/qa.php',
+																'ocr' => '/admin/ocr.php')
 										   ),
 						'reports' 		=> array('label' => 'Reports',
 												 'code' => array('all_boxes'  => 'All Boxes',
-																 'group_by_status' => 'Group By Status')
+																 'group_by_status' => 'Group By Status'),
+												 'script' => array('all_boxes'  => '/admin/inproc.php',
+																 'group_by_status' => '/admin/report01.php')
 												),
 						'admin_menu'	=> array('label' => 'Admin Menu',
 												 'code' => array('home' => 'Home',
@@ -68,18 +75,60 @@ $permissionList = array('application' 	=> array('label' => 'Application',
 																 'box'	=> 'Box',
 																 'chart' => 'Chart',
 																 'file' => 'File',
-																 'barcode' => 'Barcode')
+																 'barcode' => 'Barcode'),
+												 'script' => array('home' => '/admin/main.php',
+																 'company' => '/admin/company.php',
+																 'users' => '/admin/users.php',
+																 'groups' => '/admin/groups.php',
+																 'orders' => '/admin/orders.php',
+																 'pickup' => '/admin/pickup.php',
+																 'box'	=> '/admin/box.php',
+																 'chart' => '/admin/chart.php',
+																 'file' => '/admin/file.php',
+																 'barcode' => '/admin/barcode.php'),
 												 
 												 ),
 						'user_menu'		=> array('label' => 'User Menu',
 												 'code' => array('home' => 'Home',
 																 'orders' => 'Orders',
 																 'search' => 'Search',
-																 'change_password' => 'Change Password')
+																 'change_password' => 'Change Password'),
+												  'script' => array('home' => '/main.php',
+																'orders' => '/orders.php',
+																'search' => '/search.php',
+																'change_password' => '/chgpwd.php')
+																										
 												 )
 						
-						
 						);
+
+
+CheckPagePermission();
+
+
+function CheckPagePermission()
+{
+	
+	if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
+		return false;
+	}
+	
+	
+	$pdocon = NConnectionFactory::getConnection();
+	
+	$stmt = $pdocon->prepare('SELECT group_permission FROM users WHERE username = :username LIMIT 1');
+	$bind_array = array(':username' => $_SESSION['Vusername']);
+    $stmt->execute($bind_array);
+    
+	 
+	while($row = $stmt->fetch()) {
+		
+       $group_permisson = $row;
+    }
+    
+	print_r($group_permisson);
+	
+}
 
 
 function ComboEmpresa() {
