@@ -103,37 +103,10 @@ $permissionList = array('application' 	=> array('label' => 'Application',
 						
 						);
 
+						
 
-CheckPagePermission();
+$allowed = CheckPagePermission();
 
-
-function CheckPagePermission()
-{
-	
-	if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
-		return false;
-	}
-	
-	
-	$pdocon = NConnectionFactory::getConnection();
-	 
-	$stmt = $pdocon->prepare('SELECT group_permission FROM users  JOIN groups
-ON users.group_id = groups.row_id
-WHERE username = :username
-LIMIT 1');
-	
-	$bind_array = array(':username' => $_SESSION['Vusername']);
-    $stmt->execute($bind_array);
-    
-	 
-	while($row = $stmt->fetch()) {
-		
-       $group_permisson = $row;
-    }
-    
-	print_r($group_permisson);
-	
-}
 
 
 function ComboEmpresa() {
@@ -377,6 +350,46 @@ function ComboGroups($vName,$vId,$vDis) {
 	
 	return $strRet;
 }
+
+
+
+function CheckPagePermission()
+{
+	global $permissionList;
+	if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
+		return false;
+	}
+	
+	
+	$pdocon = NConnectionFactory::getConnection();
+	 
+	$stmt = $pdocon->prepare('SELECT group_permission FROM users  JOIN groups
+								ON users.group_id = groups.row_id
+								WHERE username = :username
+								LIMIT 1');
+	
+	$bind_array = array(':username' => $_SESSION['Vusername']);
+    $stmt->execute($bind_array);
+    
+	 
+	while($row = $stmt->fetch()) {
+		
+       $group_permisson = $row['group_permission'];
+    }
+    
+	
+	foreach($permissoinList as $key => $option)
+	{
+		foreach($option['script'] as $code => $scriptname)
+		{
+			echo "$key .. $code .. $scriptname <br>";
+			
+		}
+	}
+	
+}
+
+
 
 
 ?>
