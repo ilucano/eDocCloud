@@ -107,6 +107,7 @@ $permissionList = array('application' 	=> array('label' => 'Application',
 
 $allowed = CheckPagePermission();
 
+echo "<P><p><p>**** ".$allowed;
 
 
 function ComboEmpresa() {
@@ -356,6 +357,9 @@ function ComboGroups($vName,$vId,$vDis) {
 function CheckPagePermission()
 {
 	global $permissionList;
+	
+	
+	
 	if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
 		return false;
 	}
@@ -374,7 +378,7 @@ function CheckPagePermission()
 	 
 	while($row = $stmt->fetch()) {
 		
-       $group_permisson = $row['group_permission'];
+       $group_permission = $row['group_permission'];
     }
     
 	
@@ -382,11 +386,22 @@ function CheckPagePermission()
 	{
 		foreach($option['script'] as $code => $scriptname)
 		{
-			echo "$key .. $code .. $scriptname <br>";
-			
+			if($scriptname == $_SERVER['script_name']) {
+				if($group_permission[$key][$code] == '1')
+			    {
+					return true;
+				}
+				else {
+					return false;
+				}
+				 
+			}
 		}
 	}
 	
+	//by default allow if page not defined in permission list
+	return true;
+
 }
 
 
