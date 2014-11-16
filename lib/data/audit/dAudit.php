@@ -13,7 +13,7 @@
 	
 	$pagAct =  $_GET['pagAct'] ;
 	$txtSearch = $_GET['txtsearch'] ;
-	$limit = 50;
+	$limit = 10;
 	$adj = 2;
 	
 	if ($pagAct=="") { $pagAct=0; }
@@ -63,12 +63,22 @@
 		echo "<table><tbody><thead><tr><th width=\"7%\">Id</th><th width=\"15%\">Username</th><th width=\"20%\">Event</th><th width=\"30%\">Parameters</th><th width=\"15%\">IP Address</th><th width=\"15%\">Date</th></tr></thead>";
 		
 		while ($row = mysql_fetch_array($res)) {
-			print_r($row);
+			 
 			echo "<tr><td>";
 			echo $row['row_id'].'</td>';
 			echo '<td>'.$row['username'].'</td>';
 			echo '<td>'.$row['module'].'</td>';
-			echo '<td>'.$row['parameters'].'</td>';
+			echo '<td>';
+			
+			$arr_params = json_decode($row['parameters']);
+			foreach ($arr_params as $param_key => $param_value)
+			{
+				echo "<span class=\"[round radius] label\">".$param_key."</span> : ";
+				echo "<span class=\"[secondary round radius] label\">".$param_key."</span>";
+				echo "<br>";
+			}
+			
+			echo '</td>';
 			echo '<td>'.$row['ip_address'].'</td>';
 			// FIN DEL CAMBIO
 			echo '<td>';
