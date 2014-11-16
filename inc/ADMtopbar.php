@@ -35,11 +35,24 @@ $group_permission = GetUserPermission();
 	  <li class="has-dropdown"> 
         <a href="#">Workflow</a>
         <ul class="dropdown">
-          <li<?php if ($page=="pick") { echo ' class="active"'; } ?>><a href="wf_pick.php">Pickup</a></li>
-          <li<?php if ($page=="prep") { echo ' class="active"'; } ?>><a href="prep.php">Preparation</a></li>
-          <li<?php if ($page=="scan") { echo ' class="active"'; } ?>><a href="scan.php">Scan</a></li>
-          <li<?php if ($page=="qa") { echo ' class="active"'; } ?>><a href="qa.php">QA</a></li>
-          <li<?php if ($page=="ocr") { echo ' class="active"'; } ?>><a href="ocr.php">OCR</a></li>
+			<?php if($group_permission['workflow']['pickup'] == 1 ): ?>
+			   <li<?php if ($page=="pick") { echo ' class="active"'; } ?>><a href="wf_pick.php">Pickup</a></li>
+			<?php endif ?>
+		  
+			<?php if($group_permission['workflow']['preparation'] == 1 ): ?>
+				<li<?php if ($page=="prep") { echo ' class="active"'; } ?>><a href="prep.php">Preparation</a></li>
+			 <?php endif ?>
+		   
+			<?php if($group_permission['workflow']['scan'] == 1 ): ?>
+				<li<?php if ($page=="scan") { echo ' class="active"'; } ?>><a href="scan.php">Scan</a></li>
+			<?php endif ?>
+			 
+			<?php if($group_permission['workflow']['qa'] == 1 ): ?>
+				<li<?php if ($page=="qa") { echo ' class="active"'; } ?>><a href="qa.php">QA</a></li>
+			<?php endif ?>
+			<?php if($group_permission['workflow']['ocr'] == 1 ): ?>
+				 <li<?php if ($page=="ocr") { echo ' class="active"'; } ?>><a href="ocr.php">OCR</a></li>
+			<?php endif ?>
         </ul>
       </li>
 	  
