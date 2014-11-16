@@ -30,6 +30,8 @@ $group_permission = GetUserPermission();
 	  echo '</ul></li>';
 	  }
 ?>
+    <?php print_r($grou_permission) ;?>
+	
 	<?php if( is_array($group_permission['workflow']) && count($group_permission['workflow']) > 0): ?>
        <!-- work flow -->
 	  <li class="has-dropdown"> 
