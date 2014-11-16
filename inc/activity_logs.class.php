@@ -109,7 +109,7 @@ class Activity_Logs {
         {
             $array_column[] = "`".$column."`";
             $array_value_bind[] = ":".$column;
-            $array_bind[$array_value_bind] = $value;
+            $array_bind[":".$column] = $value;
         }
         
         $columnStr = "(" . implode(",", $array_column) . ")";
