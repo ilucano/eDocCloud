@@ -41,8 +41,46 @@ if ($_SESSION['VisAdmin']=='X') {
 
 
 //modules permission
-echo "<pre>";
-print_r($_SERVER);
+
+
+$permissionList = array('application' 	=> array('label' => 'Application',
+											   'code' => array('main' => 'Main'),
+											   'script' => array('main' => 'Main')
+											  ),
+						'workflow' 		=> array('label' => 'Workflow',
+											'code' => array('pickup' => 'Pickup',
+															'preparation' => 'Preparation',
+															'scan' => 'Scan',
+															'qa' => 'QA',
+															'ocr' => 'OCR')
+										   ),
+						'reports' 		=> array('label' => 'Reports',
+												 'code' => array('all_boxes'  => 'All Boxes',
+																 'group_by_status' => 'Group By Status')
+												),
+						'admin_menu'	=> array('label' => 'Admin Menu',
+												 'code' => array('home' => 'Home',
+																 'company' => 'Company',
+																 'users' => 'Users',
+																 'groups' => 'Groups',
+																 'orders' => 'Orders',
+																 'pickup' => 'Pickup',
+																 'box'	=> 'Box',
+																 'chart' => 'Chart',
+																 'file' => 'File',
+																 'barcode' => 'Barcode')
+												 
+												 ),
+						'user_menu'		=> array('label' => 'User Menu',
+												 'code' => array('home' => 'Home',
+																 'orders' => 'Orders',
+																 'search' => 'Search',
+																 'change_password' => 'Change Password')
+												 )
+						
+						
+						);
+
 
 function ComboEmpresa() {
 	
