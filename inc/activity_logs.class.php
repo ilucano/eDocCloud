@@ -52,7 +52,7 @@ class Activity_Logs {
     public function log()
     {
         $module = $this->MapScriptToAction($_SERVER['SCRIPT_NAME']);
-        echo "..." . $module ;
+     
         if($module == '')
             return;
         
@@ -95,8 +95,7 @@ class Activity_Logs {
     
     public function MapScriptToAction($key)
     {
-        echo $key;
-        print_r($this->array_log_pages);
+        
         return $this->array_log_pages[$key];
         
     }
@@ -105,8 +104,7 @@ class Activity_Logs {
     {
         $columnStr = '';
         $valueStr = '';
-        
-        print_r($data);
+ 
         foreach($data as $column => $value)
         {
             $array_column[] = "`".$column."`";
@@ -121,7 +119,8 @@ class Activity_Logs {
                          $columnStr 
                          $valueStr ";
                          
-        echo $insert_query;
+        $stmt = $this->pdocon->prepare($insert_query);
+        $stmt->execute($array_bind);
         
         
     }
