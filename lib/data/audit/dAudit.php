@@ -75,8 +75,8 @@
 			foreach ($arr_params as $param_key => $param_value)
 			{
 				echo "<li>";
-				echo "<span style='padding: 2px;' class=\"[secondary round radius] label\">".$param_key."</span> : ";
-				echo "<span style='padding: 2px;' class=\"[success round radius] label\">".$param_value."</span>";
+				echo "<span style='padding: 5px;' class=\"success radius label\">".$param_key."</span> : ";
+				echo "<span style='padding: 5px;' class=\"radius label\">".$param_value."</span>";
 				echo "</li>";
 			}
 			echo "</ul>";
