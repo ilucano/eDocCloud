@@ -113,7 +113,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			vId=$(this).attr('data-reveal-id');
 			vPag=$(this).attr('data-page');
 			vVar=$(this).attr('data-type');
-			vStr=document.getElementById("txtsearch").value;
+			//vStr=document.getElementById("txtsearch").value;
 			
 			buscar(vId, vPag, vVar, vStr);
 			
