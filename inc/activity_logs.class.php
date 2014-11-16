@@ -52,7 +52,7 @@ class Activity_Logs {
     public function log()
     {
         $data = $_REQUEST;
-        $this->insertLog();
+        $this->insertLog($data);
         
     }
     
