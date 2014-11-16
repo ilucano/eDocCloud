@@ -47,7 +47,7 @@
 		if ($pagAct==0) {
 			$qryFT = "SELECT *  FROM activity_logs ".$qryAdd . " ORDER BY row_id desc LIMIT ".($pagAct * $limit).",".($limit).";";
 		} else {
-			$qryFT =  "SELECT *   num FROM activity_logs ".$qryAdd . " ORDER BY row_id desc LIMIT ".(($pagAct) * $limit).",".($limit).";";
+			$qryFT =  "SELECT * FROM activity_logs ".$qryAdd . " ORDER BY row_id desc LIMIT ".(($pagAct) * $limit).",".($limit).";";
 		}
 	} else {
 		$qryFT = "SELECT *  FROM activity_logs ".$qryAdd . " ORDER BY row_id desc";
