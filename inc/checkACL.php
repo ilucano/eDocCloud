@@ -4,6 +4,7 @@ session_start();
 
 require_once '/var/www/html/config.php';
 require_once $arrIni['base'].'lib/db/db.php' ;
+require_once $arrIni['base'].'lib/db/dbConn.php' ;
 
 if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
 
