@@ -92,7 +92,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 		
 		$("#txtsearch").on('keydown', function (e) {
 		 if (e.which==13) {
-			 	vStr = document.getElementById("txtsearch").value;
+			 	vStr = '';
 				vId="grill	";
 				vPag=0;
 				vVar="pagina";
@@ -113,7 +113,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			vId=$(this).attr('data-reveal-id');
 			vPag=$(this).attr('data-page');
 			vVar=$(this).attr('data-type');
-			vStr= '';
+			vStr='';
 			
 			buscar(vId, vPag, vVar, vStr);
 			
