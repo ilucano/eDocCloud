@@ -419,5 +419,6 @@ function CheckPagePermission()
 
 require_once $arrIni['base'].'inc/activity_logs.class.php';
 
-
+$ActivityLogs = new Activity_Logs();
+$ActivityLogs->log();
 ?>
