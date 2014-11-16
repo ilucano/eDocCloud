@@ -107,8 +107,11 @@ $permissionList = array('application' 	=> array('label' => 'Application',
 
 $allowed = CheckPagePermission();
 
-echo "<P><p><p>**** ".$allowed;
-
+if($allowed == false)
+{
+  header("Location: ../noperm.php");
+  exit();
+}
 
 function ComboEmpresa() {
 	
@@ -381,14 +384,13 @@ function CheckPagePermission()
        $group_permission = json_decode($row['group_permission'], true);
     }
     
-	print_r($group_permission);
-	
+ 
 	foreach($permissionList as $key => $option)
 	{
 		foreach($option['script'] as $code => $scriptname)
-		{   echo $scriptname  . ' vs '.  $_SERVER['SCRIPT_NAME'];
+		{   
 			if($scriptname == $_SERVER['SCRIPT_NAME']) {
-				echo "$key $code found";
+				 
 				if($group_permission[$key][$code] == '1')
 			    {
 					return true;
