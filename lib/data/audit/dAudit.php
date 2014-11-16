@@ -52,9 +52,10 @@
 	} else {
 		$qryFT = "SELECT *  FROM activity_logs ".$qryAdd . " ORDER BY row_id desc";
 	}
+	
 	// FIN DEL CAMBIO
 	
-	//echo $qryFT;
+	 echo $qryFT;
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qryFT);
 	
