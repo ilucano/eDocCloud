@@ -113,7 +113,7 @@ class Activity_Logs {
         }
         
         $columnStr = "(" . implode(",", $array_column) . ")";
-        $valueStr = "(" . implode(",", $array_value_bind) . ")";
+        $valueStr = " VALUES (" . implode(",", $array_value_bind) . ")";
     
         $insert_query = "INSERT INTO activity_logs
                          $columnStr 
