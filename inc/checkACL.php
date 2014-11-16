@@ -11,6 +11,9 @@ header ("Location: ../index.php");
 
 }
 
+
+
+
 if ($_SESSION['VisAdmin']=='X') {
 	// Si es admin de sistema ve todo
 	$arrPerm['admin'] = 'X';
@@ -35,6 +38,11 @@ if ($_SESSION['VisAdmin']=='X') {
 	$arrPerm['edit'] = '';
 	$arrPerm['delete'] = '';
 }
+
+
+//modules permission
+echo "<pre>";
+print_r($_SERVER);
 
 function ComboEmpresa() {
 	
