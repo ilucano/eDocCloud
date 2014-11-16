@@ -238,4 +238,45 @@ function ComboYesNo($vName,$vDesc,$vId,$vDis) {
 	return $strRet;
 }
 
+
+
+
+function ComboGroups($vName,$vId,$vDis) {
+	
+	$strRet = "";
+	
+	$con = ConnectionFactory::getConnection();
+	
+	$qry = "SELECT * FROM groups ORDER by nombre";
+	
+	// Inicio de la seleccion de Empresas
+	$strRet = '<label>User Group<select name="'.$vName.'" '.$vDis.'>';
+	$res = mysql_query($qry);
+	
+	if ($_SESSION['VisAdmin']!='X') { $isDis = "disabled"; }
+	
+	if (mysql_num_rows($res)) {
+		while ($row = mysql_fetch_array($res)) {
+			 
+			$vNewId = $vId;
+		 
+			if ($row['row_id']==$vNewId) {
+				$strRet = $strRet.'<option '.$isDis.' selected value="'.$row['row_id'].'">'.$row['nombre'].'</option>';
+			} else {
+				if ($isDis!="disabled") {
+					$strRet = $strRet.'<option value="'.$row['row_id'].'">'.$row['nombre'].'</option>';
+				}
+			}
+		}
+	}
+	
+	$strRet = $strRet.'</select></label>';
+	
+    ConnectionFactory::close();
+	
+	
+	return $strRet;
+}
+
+
 ?>
