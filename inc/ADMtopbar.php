@@ -124,6 +124,11 @@ $group_permission = GetUserPermission();
 				<li<?php if ($page=="barcode") { echo ' class="active"'; } ?>><a href="barcode.php">Barcode</a></li>
 			<?php endif ?>
 			
+			
+			<?php if($group_permission['admin_menu']['audit'] == 1 ): ?>
+				<li<?php if ($page=="audit") { echo ' class="active"'; } ?>><a href="audit.php">Activity Logs</a></li>
+			<?php endif ?>
+			
 			<!-- <li<?php if ($page=="search") { echo ' class="active"'; } ?>><a href="search.php">Search</a></li>
 			<li<?php if ($page=="chgpwd") { echo ' class="active"'; } ?>><a href="chgpwd.php">Change Password</a></li> -->
 		  </ul>
