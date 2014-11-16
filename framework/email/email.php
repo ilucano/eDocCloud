@@ -26,7 +26,7 @@ $message = '
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width : 700px; table-layout: fixed;">
   <tr>
     <td width="10%" nowrap="nowrap">&nbsp;</td>
-    <td width="80%" nowrap="nowrap" class="Centerbo"><img src="http://<?php echo $_SERVER['SERVER_NAME'];?>/images/banerMail.jpg" width="600" height="75" /></td>
+    <td width="80%" nowrap="nowrap" class="Centerbo"><img src="http://'.  $_SERVER['SERVER_NAME'] .'/images/banerMail.jpg" width="600" height="75" /></td>
     <td width="10%" nowrap="nowrap">&nbsp;</td>
   </tr>
   <tr>

@@ -250,7 +250,7 @@ function ComboGroups($vName,$vId,$vDis) {
 	$qry = "SELECT * FROM groups ORDER by nombre";
 	
 	// Inicio de la seleccion de Empresas
-	$strRet = '<label>User Group<select name="'.$vName.'" '.$vDis.'><option value=""></option>';
+	$strRet = '<label>User Role<select name="'.$vName.'" '.$vDis.'><option value=""></option>';
 	$res = mysql_query($qry);
 	
 	if ($_SESSION['VisAdmin']!='X') { $isDis = "disabled"; }
