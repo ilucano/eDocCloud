@@ -386,8 +386,8 @@ function CheckPagePermission()
 	foreach($permissionList as $key => $option)
 	{
 		foreach($option['script'] as $code => $scriptname)
-		{   echo $scriptname  . ' vs '.  $_SERVER['script_name'];
-			if($scriptname == $_SERVER['script_name']) {
+		{   echo $scriptname  . ' vs '.  $_SERVER['SCRIPT_NAME'];
+			if($scriptname == $_SERVER['SCRIPT_NAME']) {
 				echo "$key $code found";
 				if($group_permission[$key][$code] == '1')
 			    {
