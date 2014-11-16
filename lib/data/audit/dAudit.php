@@ -60,24 +60,19 @@
 	
 	if (mysql_num_rows($res)) {
 		// COMIENZO DEL CAMBIO
-		echo "<table><tbody><thead><tr><th width=\"7%\">Id</th><th width=\"30%\">Company</th><th width=\"20%\">Order</th><th width=\"10%\">Barcode</th><th width=\"18%\">Box</th><th width=\"20%\">Actions</th></tr></thead>";
+		echo "<table><tbody><thead><tr><th width=\"7%\">Id</th><th width=\"15%\">Username</th><th width=\"20%\">Event</th><th width=\"30%\">Parameters</th><th width=\"15%\">IP Address</th><th width=\"15%\">Date</th></tr></thead>";
 		
 		while ($row = mysql_fetch_array($res)) {
 			print_r($row);
-			echo "<tr><td width=7%>";
+			echo "<tr><td>";
 			echo $row['row_id'].'</td>';
-			echo '<td width="30%">'.$row['empresa'].'</td>';
-			echo '<td width="20%">'.$row['orden'].'</td>';
-			echo '<td width="10%">'.$row['fk_barcode'].'</td>';
-			echo '<td width="18%">'.$row['caja'].'</td>';
+			echo '<td>'.$row['username'].'</td>';
+			echo '<td>'.$row['module'].'</td>';
+			echo '<td>'.$row['parameters'].'</td>';
+			echo '<td>'.$row['ip_address'].'</td>';
 			// FIN DEL CAMBIO
-			echo '<td width="10%">';
-			
-			if ($arrPerm['view']=='X') { echo '<a href="#" data-type="view" data-page="'.$row['row_id'].'" data-reveal-id="buttons">View</a>'; }
-			if ($arrPerm['edit']=='X') { echo ' | <a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>'; }
-			if ($arrPerm['delete']=='X') { echo ' | <a href="#" data-type="delete" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Delete</a> '; }
-			//if ($arrPerm['edit']=='X' && $row['fk_status']!=5) { echo ' | <a href="#" data-type="close" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Close</a> '; echo ' | <a href="#" data-type="sum" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Sum</a> '; }
-
+			echo '<td>';
+		    echo $row['create_date'];
 			echo '</td>';
 			
 			echo "</tr></td>";
