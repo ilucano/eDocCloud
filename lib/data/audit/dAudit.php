@@ -54,8 +54,7 @@
 	}
 	
 	// FIN DEL CAMBIO
-	
-	 echo $qryFT;
+ 
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qryFT);
 	
