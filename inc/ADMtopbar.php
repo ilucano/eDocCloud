@@ -1,8 +1,10 @@
 <?php
 
-if ($_SESSION['VisAdmin']!='X') {
-	die;
-}
+$group_permission = GetUserPermission();
+ 
+//if ($_SESSION['VisAdmin']!='X') {
+//	die;
+//}
 
 ?>
 
@@ -27,8 +29,10 @@ if ($_SESSION['VisAdmin']!='X') {
 	  
 	  echo '</ul></li>';
 	  }
-?>    
-	  <li class="has-dropdown">
+?>
+	<?php if( is_array($group_permission['workflow']) && count($group_permission['workflow']) > 0): ?>
+       <!-- work flow -->
+	  <li class="has-dropdown"> 
         <a href="#">Workflow</a>
         <ul class="dropdown">
           <li<?php if ($page=="pick") { echo ' class="active"'; } ?>><a href="wf_pick.php">Pickup</a></li>
@@ -38,6 +42,12 @@ if ($_SESSION['VisAdmin']!='X') {
           <li<?php if ($page=="ocr") { echo ' class="active"'; } ?>><a href="ocr.php">OCR</a></li>
         </ul>
       </li>
+	  
+	<?php endif ?>
+ 
+	<?php if( is_array($group_permission['reports']) && count($group_permission['reports']) > 0): ?>
+       <!-- work flow -->
+	   
       <li class="has-dropdown">
         <a href="#">Reports</a>
         <ul class="dropdown">
@@ -45,6 +55,9 @@ if ($_SESSION['VisAdmin']!='X') {
           <li<?php if ($page=="report01") { echo ' class="active"'; } ?>><a href="report01.php">Group By Status</a></li>  
         </ul>
       </li>
+	  
+	<?php endif ?>
+	
       <li class="has-dropdown">
         <a href="#">Admin Menu</a>
         <ul class="dropdown">
