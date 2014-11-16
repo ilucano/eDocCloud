@@ -64,24 +64,26 @@
 		
 		while ($row = mysql_fetch_array($res)) {
 			 
-			echo "<tr><td>";
+			echo "<tr><td valign=top>";
 			echo $row['row_id'].'</td>';
-			echo '<td>'.$row['username'].'</td>';
-			echo '<td>'.$row['module'].'</td>';
-			echo '<td>';
+			echo '<td  valign=top>'.$row['username'].'</td>';
+			echo '<td valign=top>'.$row['module'].'</td>';
+			echo '<td valign=top>';
 			
 			$arr_params = json_decode($row['parameters']);
+			echo "<ul>";
 			foreach ($arr_params as $param_key => $param_value)
 			{
-				echo "<span class=\"[round radius] label\">".$param_key."</span> : ";
-				echo "<span class=\"[secondary round radius] label\">".$param_key."</span>";
-				echo "<br>";
+				echo "<li>";
+				echo "<span style='padding: 2px;' class=\"[secondary round radius] label\">".$param_key."</span> : ";
+				echo "<span style='padding: 2px; class=\"[success round radius] label\">".$param_value."</span>";
+				echo "</li>";
 			}
-			
+			echo "</ul>";
 			echo '</td>';
-			echo '<td>'.$row['ip_address'].'</td>';
+			echo '<td valign=top>'.$row['ip_address'].'</td>';
 			// FIN DEL CAMBIO
-			echo '<td>';
+			echo '<td valign=top>';
 		    echo $row['create_date'];
 			echo '</td>';
 			
