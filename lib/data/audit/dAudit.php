@@ -76,6 +76,7 @@
 			{
 				echo "<span style='padding: 5px;' class=\"success radius label\">".$param_key."</span> : ";
 				echo "<span style='padding: 5px;' class=\"radius label\">".$param_value."</span>";
+				echo "&nbsp;&nbsp;";
  
 			}
 			echo '</td>';
