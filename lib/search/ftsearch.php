@@ -54,7 +54,7 @@ if ($txtSearch=="") {
 	
 	$qryCnt = "SELECT COUNT(*) as num, " . $mainMatchQuery;
 	
-	echo $qryCnt;
+	//echo $qryCnt;
 	
 	$total_pages = mysql_fetch_array(mysql_query($qryCnt));
 	$total_pages = $total_pages['num'];
@@ -70,7 +70,7 @@ if ($txtSearch=="") {
 		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, " . $mainMatchQuery ." ORDER BY Score2 Desc, Score1 desc;";
 	}
 	
-	echo $qryFT;
+	//echo $qryFT;
 	
 	
 	mysql_query("SET NAMES UTF8");
