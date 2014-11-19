@@ -1,5 +1,6 @@
 <?php
-require_once $arrIni['base'].'lib/db/dbConn.php' 
+require_once $arrIni['base'].'lib/db/dbConn.php';
+
 class Activity_Logs {
     
     
