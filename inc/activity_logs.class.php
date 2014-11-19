@@ -1,5 +1,5 @@
 <?php
-
+require_once $arrIni['base'].'lib/db/dbConn.php' 
 class Activity_Logs {
     
     
@@ -16,7 +16,7 @@ class Activity_Logs {
                                         '/orders.php'  => 'List Order',
                                         '/lib/data/dBoxes.php' => 'View Order Boxes',
                                         '/lib/search/ftsearch.php' => 'Search Content',
-                                        '/lib/search/ftsearch.php' =>  'Search Filename',
+                                        '/lib/search/ftsearchn.php' =>  'Search Filename',
                                         '/admin/wf_pick.php'     => 'View Pickups',
                                         '/lib/data/wf.pickup.php' => 'Pickup Action',
                                         '/admin/prep.php'  => 'View Preparations',
@@ -45,6 +45,7 @@ class Activity_Logs {
                                         '/admin/box.php' => 'Admin View Boxes',
                                         '/lib/data/box/dBox.actions.php' => 'Admin Box Action',
                                         '/lib/data/box/dBox.actions.e.php' => 'Admin Box Action Complete',
+                                        '/lib/data/dFiles.php' => 'View Chart In Box',
                                        );
     }
     
@@ -77,7 +78,7 @@ class Activity_Logs {
     
     public function FilterLogDetails($_REQUEST, $module)
     {
-        $array_fields = array('action', 'id', 'wfid', 'status', 'fk_company', 'texto', 'ordid');
+        $array_fields = array('action', 'id', 'wfid', 'status', 'fk_company', 'texto', 'ordid', 'boxid', 'orderid');
         
         $array_result = array();
         
