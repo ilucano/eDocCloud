@@ -125,4 +125,20 @@ class Activity_Logs {
         
     }
     
+    
+    public function customLog($details)
+    {
+        
+        
+        $data['module'] =   $details['module'];
+        $data['username'] =  $details['username'];
+
+        $data['parameters'] =   $details['parameters'];
+        $data['ip_address'] = $_SERVER['REMOTE_ADDR'];
+        $data['create_date'] = date("Y-m-d H:i:s");
+        
+        $this->insertLog($data);
+        
+        
+    }
 }

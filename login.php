@@ -4,6 +4,7 @@ session_start();
 require_once '/var/www/html/config.php';
 
 require_once($arrIni['base'].'lib/db/db.php');
+require_once $arrIni['base'].'lib/db/dbConn.php';
 
 $con = ConnectionFactory::getConnection();
 
@@ -24,11 +25,27 @@ if( $num_row == 1 ) {
 	$_SESSION['Vlast_name'] = $row['last_name'];
 	$_SESSION['VisAdmin'] = $row['is_admin'];
 	$_SESSION['CoCo'] = $row['fk_empresa'];
+	
+
+	
+	$log_details['parameters'] = json_encode(array("result" => "success"));
+	
 	}
 else {
 	echo 'false';
+	$log_details['parameters'] = json_encode(array("result" => "fail"));
 }
 
 ConnectionFactory::close();
+
+//logging
+
+require_once $arrIni['base'].'inc/activity_logs.class.php';
+
+$log_details['username'] =  $_POST['username'];
+$log_details['module'] =  'Login';
+
+$ActivityLogs = new Activity_Logs();
+$ActivityLogs->customLog($log_details);
 
 ?>
