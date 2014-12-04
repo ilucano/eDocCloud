@@ -17,7 +17,7 @@ require_once $arrIni['base'].'inc/general.php';
     <title>Welcome to eDocCloud - imagingXperts</title>
     <link rel="stylesheet" href="<?php echo $arrIni['foundationurl']; ?>css/foundation.css" />
     <link href="<?php echo $arrIni['foundationurl']; ?>css/docs.css" rel="stylesheet" />
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" />
+    <link href="<?php echo $arrIni['foundationurl']; ?>css/foundation-icon.css" rel="stylesheet" />
     <script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/modernizr.js"></script>
 	<script language="JavaScript">
 	<!-- hide from none JavaScript Browsers
@@ -116,7 +116,7 @@ require $arrIni['base'].'inc/topbar.php';
 				if (vVar=="pagina") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://www.edoccloud.com/lib/data/dGroup.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/dGroup.php",
 					   data: "pagAct="+vPag+"&txtsearch="+vStr,
 					   success: function(html){
 						if(html!="")
@@ -138,7 +138,7 @@ require $arrIni['base'].'inc/topbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://www.edoccloud.com/lib/data/dGroup.actions.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/dGroup.actions.php",
 				   data: "action="+vVar+"&id="+vPag,
 				   success: function(html){
 					if(html!="")
@@ -148,7 +148,7 @@ require $arrIni['base'].'inc/topbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://www.edoccloud.com/lib/data/dGroup.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/dGroup.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")
@@ -181,7 +181,7 @@ require $arrIni['base'].'inc/topbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://www.edoccloud.com/lib/data/dGroup.actions.e.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/dGroup.actions.e.php",
 				   data: "action="+vVar+"&id="+vPag+"&"+$("#formulario").serialize(),
 				   success: function(html){
 					if(html!="")
@@ -191,7 +191,7 @@ require $arrIni['base'].'inc/topbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://www.edoccloud.com/lib/data/dGroup.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/dGroup.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")

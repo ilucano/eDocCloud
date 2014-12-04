@@ -17,7 +17,7 @@ require_once $arrIni['base'].'inc/general.php';
     <title>Welcome to eDocCloud - imagingXperts</title>
     <link rel="stylesheet" href="<?php echo $arrIni['foundationurl']; ?>css/foundation.css" />
     <link href="<?php echo $arrIni['foundationurl']; ?>css/docs.css" rel="stylesheet" />
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" />
+    <link href="<?php echo $arrIni['foundationurl']; ?>css/foundation-icon.css" rel="stylesheet" />
     <script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/modernizr.js"></script>
 	<script language="JavaScript">
 	<!-- hide from none JavaScript Browsers
@@ -186,12 +186,12 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 				if (vVar=="create") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://www.edoccloud.com/lib/data/wf.pickup.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/wf.pickup.php",
 					   data: "action="+vVar+"&id="+vPag+"&"+$("#formulario").serialize(),
 					   success: function(html){
 						if(html!="")
 						{
-							window.location.assign("http://www.edoccloud.com/admin/wf_pick.php?orden="+html);
+							window.location.assign("http://<?php echo $_SERVER['SERVER_NAME'];?>/admin/wf_pick.php?orden="+html);
 						}
 						else
 						{

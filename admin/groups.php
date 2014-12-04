@@ -27,11 +27,22 @@ require_once $arrIni['base'].'inc/general.php';
 
 	// End Hiding -->
 	</script>
+  
+  <style>
+  #permission_box li {
+	list-style-type: none;
+  }
+  
+  #permission_box  tr, #permission_box td, #permission_box th {
+	padding: 3px;
+  }
+  
+  </style>
   </head>
 <body>
 <?php
 
-$page = 'users';
+$page = 'groups';
 require $arrIni['base'].'inc/ADMtopbar.php';
 
 ?>
@@ -41,7 +52,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 <!-- TITULO -->
 <div class="row">
 	<div class="large-12 columns">
-    </h2>Administrate Users</h2><p>
+    </h2>Administrate Groups</h2><p>
     </div>
 </div>
 <!-- TABLA -->
@@ -49,7 +60,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 	<div name="grilla" id="grilla" class="row">
 	<?php
   
-	require $arrIni['base'].'lib/data/users/dUsers.php'; 
+	require $arrIni['base'].'lib/data/groups/dGroups.php'; 
 	
 	?>
     </div>
@@ -81,7 +92,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 		
 		$("#txtsearch").on('keydown', function (e) {
 		 if (e.which==13) {
-			 	vStr = document.getElementById("txtsearch").value;
+			 	vStr = '';
 				vId="grill	";
 				vPag=0;
 				vVar="pagina";
@@ -102,7 +113,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			vId=$(this).attr('data-reveal-id');
 			vPag=$(this).attr('data-page');
 			vVar=$(this).attr('data-type');
-			vStr=document.getElementById("txtsearch").value;
+			vStr='';
 			
 			buscar(vId, vPag, vVar, vStr);
 			
@@ -116,7 +127,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 				if (vVar=="pagina") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/groups/dGroups.php",
 					   data: "pagAct="+vPag+"&txtsearch="+vStr,
 					   success: function(html){
 						if(html!="")
@@ -138,7 +149,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.actions.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/groups/dGroups.actions.php",
 				   data: "action="+vVar+"&id="+vPag,
 				   success: function(html){
 					if(html!="")
@@ -148,7 +159,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/groups/dGroups.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")
@@ -181,7 +192,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.actions.e.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/groups/dGroups.actions.e.php",
 				   data: "action="+vVar+"&id="+vPag+"&"+$("#formulario").serialize(),
 				   success: function(html){
 					if(html!="")
@@ -191,7 +202,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/groups/dGroups.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")

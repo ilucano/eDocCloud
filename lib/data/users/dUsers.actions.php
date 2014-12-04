@@ -19,6 +19,8 @@
 		require_once $arrIni['base'].'inc/general.php';
 		require_once $arrIni['base'].'lib/db/db.php' ;
 		
+		
+		
 		//$con = ConnectionFactory::getConnection();
 		
 		switch ($action) {
@@ -201,6 +203,12 @@
 		$_fDesc = 'Company Admin';
 		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
 		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
+		$value = "";
+		echo $despues;
+		
+		echo $antes;
+		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['group_id']; }
+		echo ComboGroups('group_id',$value,$disabled);
 		$value = "";
 		echo $despues;
 		

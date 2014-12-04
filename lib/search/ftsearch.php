@@ -28,21 +28,48 @@ if ($txtSearch=="") {
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qryCnt = "SELECT COUNT(*) as num, MATCH(texto) AGAINST('".$txtSearch."' IN NATURAL LANGUAGE MODE) AS Score, fk_empresa FROM files WHERE MATCH(texto) AND fk_empresa = ".$_SESSION['CoCo']." AGAINST ('".$txtSearch."' IN NATURAL LANGUAGE MODE) HAVING fk_empresa = ".$_SESSION['CoCo'];
+	//fix the query
+	
+	$matchExactAllTerms = addslashes($txtSearch);
+	
+	$arrayText = explode(" ", $txtSearch);
+	
+	foreach($arrayText as $singleWord)
+	{
+		if($singleWord)
+		{
+			$arrayTextMatchAll[] = "+".$singleWord;
+			
+		}
+	}
+	
+ 
+
+	$matchAndAllTerms = addslashes(implode(" ", $arrayTextMatchAll));
+    
+	
+	$mainMatchQuery = " MATCH(texto) AGAINST('".$matchAndAllTerms."' IN BOOLEAN MODE) AS Score1, MATCH(texto) AGAINST('" .
+	$matchExactAllTerms ."' IN BOOLEAN MODE) AS Score2 FROM files WHERE MATCH(texto) AGAINST ('".$matchAndAllTerms."' IN BOOLEAN MODE) AND fk_empresa = " . $_SESSION['CoCo'] ;
+	
+	
+	$qryCnt = "SELECT COUNT(*) as num, " . $mainMatchQuery;
+	
 	//echo $qryCnt;
+	
 	$total_pages = mysql_fetch_array(mysql_query($qryCnt));
 	$total_pages = $total_pages['num'];
 	
 	if ($total_pages>$limit || $pagAct > 0) {
 		if ($pagAct==0) {
-			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, MATCH(texto) AGAINST('".$txtSearch."' IN NATURAL LANGUAGE MODE) AS Score, fk_empresa FROM files WHERE MATCH(texto)  AGAINST ('".$txtSearch."' IN NATURAL LANGUAGE MODE) HAVING fk_empresa = ".$_SESSION['CoCo']." LIMIT ".($pagAct * $limit).",".($limit).";";
+			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto," . $mainMatchQuery. " ORDER BY Score2 Desc, Score1 desc LIMIT ".($pagAct * $limit).",".($limit).";";
 		} else {
-			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, MATCH(texto) AGAINST('".$txtSearch."' IN NATURAL LANGUAGE MODE) AS Score, fk_empresa FROM files WHERE MATCH(texto) AGAINST ('".$txtSearch."' IN NATURAL LANGUAGE MODE) HAVING fk_empresa = ".$_SESSION['CoCo']." LIMIT ".(($pagAct) * $limit).",".($limit).";";
+			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, " . $mainMatchQuery ." ORDER BY Score2 Desc, Score1 desc LIMIT ".(($pagAct) * $limit).",".($limit).";";
 		}
 		
 	} else {
-		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, MATCH(texto) AGAINST('".$txtSearch."' IN NATURAL LANGUAGE MODE) AS Score, fk_empresa FROM files WHERE MATCH(texto) AGAINST ('".$txtSearch."' IN NATURAL LANGUAGE MODE) HAVING fk_empresa = ".$_SESSION['CoCo'].";";
+		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, " . $mainMatchQuery ." ORDER BY Score2 Desc, Score1 desc;";
 	}
+	
 	//echo $qryFT;
 	
 	
@@ -126,5 +153,9 @@ if ($txtSearch=="") {
 
 ConnectionFactory::close();
 
+require_once $arrIni['base'].'inc/activity_logs.class.php';
+
+$ActivityLogs = new Activity_Logs();
+$ActivityLogs->log();
 
 ?>

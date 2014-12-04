@@ -31,7 +31,7 @@ require_once $arrIni['base'].'inc/general.php';
 <body>
 <?php
 
-$page = 'users';
+$page = 'audit';
 require $arrIni['base'].'inc/ADMtopbar.php';
 
 ?>
@@ -41,7 +41,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 <!-- TITULO -->
 <div class="row">
 	<div class="large-12 columns">
-    </h2>Administrate Users</h2><p>
+    </h2>Activity Logs</h2><p>
     </div>
 </div>
 <!-- TABLA -->
@@ -49,7 +49,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 	<div name="grilla" id="grilla" class="row">
 	<?php
   
-	require $arrIni['base'].'lib/data/users/dUsers.php'; 
+	require $arrIni['base'].'lib/data/audit/dAudit.php'; 
 	
 	?>
     </div>
@@ -72,6 +72,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.topbar.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.tab.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/templates.js"></script>
+  	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.abide.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script>
   	<!-- Other JS plugins can be included here -->
 
@@ -116,7 +117,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 				if (vVar=="pagina") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/audit/dAudit.php",
 					   data: "pagAct="+vPag+"&txtsearch="+vStr,
 					   success: function(html){
 						if(html!="")
@@ -138,7 +139,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.actions.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/audit/dAudit.actions.php",
 				   data: "action="+vVar+"&id="+vPag,
 				   success: function(html){
 					if(html!="")
@@ -148,7 +149,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/audit/dAudit.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")
@@ -169,7 +170,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 					}
 					else
 					{
-						$("#details").html('Error');
+						$("#details").html('Errores');
 					}
 				},
 				   beforeSend:function()
@@ -181,17 +182,17 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.actions.e.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/audit/dAudit.actions.e.php",
 				   data: "action="+vVar+"&id="+vPag+"&"+$("#formulario").serialize(),
 				   success: function(html){
 					if(html!="")
 					{
 						$("#details").html(html);
 						vText=html; 
-						if (vText=="Record updated...") {
+						if (vText=="Record updated..." || vText=="Creation successful") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/users/dUsers.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/audit/dAudit.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")
