@@ -67,7 +67,6 @@ class Users {
             $query .= $limit;
         }
         
-        echo $query;
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
         
