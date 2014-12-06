@@ -27,6 +27,8 @@
 		switch ($action) {
 			case "create":
 				
+				$objUsers = new Users;
+				
 				foreach($_GET['group_permission'] as $key => $arrCode)
 				{
 					foreach($arrCode as  $code) {
