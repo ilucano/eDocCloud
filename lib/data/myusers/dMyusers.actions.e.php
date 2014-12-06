@@ -31,8 +31,8 @@
 			case "create":
 				
 				$exist = $objUsers->getUserByUsername($_GET['username']);
-				print_r($exist);
-				if(count($exist) >= 1)
+				
+				if(is_array($exist) && $exist['username'])
 				{
 					echo "Username already exist."; //user friendly message
 					
