@@ -64,6 +64,29 @@ class Users {
     }
     
     
+    public function getUser($user_id, $filter = null, $filter_bind = null)
+    {
+        $query = "SELECT * FROM users WHERE row_id = :row_id";
+        
+        if($filter) {
+            $query .= $filter;
+        }
+        
+        $array_bind = array(':row_id' => $user_id);
+        
+        if($filter_bind) {
+            $array_bind = array_merge($array_bind, $filter_bind);
+            
+        }
+        
+        print_r($array_bind);
+        
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+        $row = $stmt->fetch();
+        
+    }
+    
     public function listUsers($filter = null, $array_bind = null, $order = null, $limit = null)
     {
         
