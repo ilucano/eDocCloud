@@ -342,8 +342,10 @@ function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 	if ($_SESSION['VisAdmin']!='X') { $isDis = "disabled"; }
 	
 	if (mysql_num_rows($res)) {
+		
+	
 		while ($row = mysql_fetch_array($res)) {
-			 
+			 	print_r($row);
 			$vNewId = $vId;
 		 
 			if ($row['row_id']==$vNewId) {
