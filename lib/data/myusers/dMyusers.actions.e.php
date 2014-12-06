@@ -98,6 +98,7 @@
 				
 				$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
 				
+				print_r($_GET);
 				$int = 0;
 				
 				foreach ($arr as $arrItem) {
@@ -134,7 +135,7 @@
 						}
 					}
 									
-					$stmt->execute();
+					//$stmt->execute();
 					echo "Record updated...";
 				} catch(PDOException $ex) {
 					echo "An Error occured!"; //user friendly message
