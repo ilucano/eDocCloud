@@ -144,8 +144,8 @@ $objUsers = new Users;
 		<?php if($objUsers->isCompanyAdmin() == true) :?>
 		    <li class="has-dropdown"><a href="#">Company Admin</a>
 				<ul class="dropdown">
-					<li<?php if ($page=="users") { echo ' class="active"'; } ?>><a href="users.php">My Users</a></li>
-					<li<?php if ($page=="groups") { echo ' class="active"'; } ?>><a href="groups.php">My Groups</a></li>
+					<li<?php if ($page=="myusers") { echo ' class="active"'; } ?>><a href="myusers.php">My Users</a></li>
+					<li<?php if ($page=="mygroups") { echo ' class="active"'; } ?>><a href="groups.php">My Groups</a></li>
 				</ul>
 			</li>
 		<?php endif ?>
