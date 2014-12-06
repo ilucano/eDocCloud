@@ -86,6 +86,36 @@ class Users {
         return $row;
     }
     
+    public function updateUser($data = array(), $row_id, $custom_where = null)
+    {
+        if($row_id == '' || count($data) <= 1)
+            return false;
+        
+        
+    
+        $array_set = array();
+        foreach ($data as $field => $value)
+        {
+            $bind_field = ":". $field;
+            
+            $array_set[] = " `$field` = $bind_field ";
+            
+            $array_bind[$bind_field] = $value;
+            
+        }
+        
+        $array_bind[':row_id'] = $row_id;
+        
+        $string_set = join(", ",  $array_set);
+        
+        $query = "UPDATE users $string_set WHERE row_id = :row_id $custom_where";
+        
+        print_r($query);
+        
+        print_r($array_bind);
+        
+    }
+    
     public function listUsers($filter = null, $array_bind = null, $order = null, $limit = null)
     {
         

@@ -32,4 +32,6 @@ class Companies {
         return $row;
     
     }
+    
+
 }

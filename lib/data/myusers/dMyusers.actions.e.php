@@ -9,6 +9,9 @@
 	
 	require_once $arrIni['base'].'inc/checkACL.php';
 	
+			
+	$objUsers  = new Users;
+	
 	$action =  basename( $_GET['action'] );
 	$id =  basename( $_GET['id'] );
 	
@@ -92,6 +95,9 @@
 				break;
 				
 			case "edit":
+		
+		
+				
 				$qry1 = "UPDATE ".$table." SET ";
 				$qry3 = " WHERE row_id = ";
 				$qry5 = ";";
@@ -99,6 +105,22 @@
 				$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
 				
 				print_r($_GET);
+				
+				$companyCode = $objUsers->userCompany();
+				$custom_where = " fk_empresa = $companyCode";
+				
+				$data['password'] = $_GET['password'];
+				$data['first_name'] = $_GET['first_name'];
+				$data['last_name'] = $_GET['last_name'];
+				$data['email'] = $_GET['email'];
+				$data['phone'] = $_GET['phone'];
+				$data['status'] = $_GET['status'];
+				$data['company_admin'] = $_GET['company_admin'];
+				$data['group_id'] = $_GET['group_id'];
+				
+				$objUsers->updateUser($data, $_GET['id'], $custom_where);
+				
+
 				$int = 0;
 				
 				foreach ($arr as $arrItem) {
