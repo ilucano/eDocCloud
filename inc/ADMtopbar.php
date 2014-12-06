@@ -28,12 +28,12 @@ $objUsers = new Users;
     <ul class="right">
 
 <?php 
-      if ($_SESSION['VisAdmin']=='X') {
+      
       echo '<li class=\"has-dropdown\"><a href="../main.php">Application</a><ul class=\"dropdown\">';
 	  // Cargo el Menu Admin
 	  
 	  echo '</ul></li>';
-	  }
+	  
 ?>
 	
 	<?php if( is_array($group_permission['workflow']) && count($group_permission['workflow']) > 0): ?>
