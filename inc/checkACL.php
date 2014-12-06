@@ -8,10 +8,6 @@ require_once $arrIni['base'].'lib/db/dbConn.php' ;
 
 require_once $arrIni['base'].'inc/users.class.php';
 
-$objUsers = new Users;
-
-print_r($objUsers);
-
 if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
 
 header ("Location: ../index.php");
