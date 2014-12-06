@@ -83,9 +83,12 @@ class Users {
         
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
-        
-        return $stmt->fetch();
+       
+        while ($r = $stmt>fetch()) {
+            $row[] = $r;
+        }
     
+        return $row;
         
     }
 }
