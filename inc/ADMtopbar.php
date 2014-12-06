@@ -27,7 +27,7 @@ $objUsers = new Users;
     <!-- Right Nav Section -->
     <ul class="right">
 		
-		<?php if($objUsers->isCompanyAdmin == true) :?>
+		<?php if($objUsers->isCompanyAdmin() == true) :?>
 		      <li class="has-dropdown"><a href="#">My Company</a></li>
 		<?php endif ?>
 <?php 
