@@ -162,21 +162,12 @@
 		echo $despues;
 		
 		// Combo de Empresas
-		echo $antes;
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['fk_empresa']; }
-		echo ComboCompanies('fk_empresa',$value,$disabled);
-		$value = "";
-		echo $despues;
-		
-		// Is Admin
-		echo $antes;
-		$_fName = 'is_admin';
-		$_fDesc = 'Admin';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
-		
+		//echo $antes;
+		//if ($vAction=='edit' || $vAction=='view') { $value = $vRow['fk_empresa']; }
+		//echo ComboCompanies('fk_empresa',$value,$disabled);
+		//$value = "";
+		//echo $despues;
+		//
 		// Status A:Active I:Inactive
 		echo $antes;
 		$_fName = 'status';
