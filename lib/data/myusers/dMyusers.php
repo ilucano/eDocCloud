@@ -91,10 +91,9 @@
 			// FIN DEL CAMBIO
 			echo '<td width="10%">';
 			
-			if ($arrPerm['view']=='X') { echo '<a href="#" data-type="view" data-page="'.$row['row_id'].'" data-reveal-id="buttons">View</a>'; }
-			if ($arrPerm['edit']=='X') { echo ' | <a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>'; }
-			if ($arrPerm['delete']=='X') { echo ' | <a href="#" data-type="delete" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Delete</a> '; }
-
+			echo '<a href="#" data-type="view" data-page="'.$row['row_id'].'" data-reveal-id="buttons">View</a>'; 
+			echo ' | <a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>'; 
+		 
 			echo '</td>';
 			
 			echo "</tr></td>";
