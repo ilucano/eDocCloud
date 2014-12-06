@@ -42,7 +42,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 	<div name="grilla" id="grilla" class="row">
 	<?php
   
-	require $arrIni['base'].'lib/data/users/dUsers.php'; 
+	require $arrIni['base'].'lib/data/myusers/dMyUsers.php'; 
 	
 	?>
     </div>
