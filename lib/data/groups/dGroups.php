@@ -12,8 +12,6 @@
 	require_once $arrIni['base'].'lib/db/db.php' ;
 	require_once $arrIni['base'].'lib/db/dbConn.php' ;
 	
-	require_once $arrIni['base'].'inc/groups.class.php';
-	
 	$pagAct =  $_GET['pagAct'] ;
     
 	$limit = 5;
@@ -32,31 +30,17 @@
 	if ($arrPerm['create']=='X') { echo $btnCreate; }
 	echo $btnSearch.$btnLast;
 	
-	//$pdocon = NConnectionFactory::getConnection();
+	$pdocon = NConnectionFactory::getConnection();
 	
-	//$stmt = $pdocon->prepare('SELECT * FROM groups order by row_id');
-   // $stmt->execute();
+	$stmt = $pdocon->prepare('SELECT * FROM groups order by row_id');
+    $stmt->execute();
     
-	//$group_rows = array();
-	//while($row = $stmt->fetch()) {
-    //   $group_rows[] = $row;
-    //}
+	$group_rows = array();
+	while($row = $stmt->fetch()) {
+       $group_rows[] = $row;
+    }
  
-	
-	
-	
-	$objUsers = new Users();
-    
-	$companyCode = $objUsers->userCompany();
-	
-	$objGroups = new Groups;
-	
-	$filter = " AND fk_empresa = :fk_empresa";
-	
-	$array_bind[':fk_empresa'] = $companyCode;
-	
-	$group_rows = $objGroups->listGroups($filter, $array_bind);
-	
+	 
 	
 	if (count($group_rows) > 0 ) {
 		// COMIENZO DEL CAMBIO
@@ -85,6 +69,7 @@
 	
 	echo $despues;
 	
+	ConnectionFactory::close();
 
 	function ConvertToYesNo($vIn) {
 	
