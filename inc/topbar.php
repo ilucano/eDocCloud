@@ -20,8 +20,8 @@ $objUsers = new Users;
     <!-- Right Nav Section -->
     <ul class="right">
 <?php 
-      if ($_SESSION['VisAdmin']=='X') {
-      echo '<li><a href="admin/main.php">Administration</a></li>';
+      if ($_SESSION['VisAdmin']=='X' || $objUsers->isCompanyAdmin() == true ) {
+		echo '<li><a href="admin/main.php">Administration</a></li>';
 	  }
 ?>      
       <li class="has-dropdown">
@@ -43,16 +43,7 @@ $objUsers = new Users;
         </ul>
       </li>
 	  
-				
-	  <?php if($objUsers->isCompanyAdmin() == true) :?>
-		  <li class="has-dropdown"><a href="#">Company Admin</a>
-			  <ul class="dropdown">
-				  <li<?php if ($page=="myusers") { echo ' class="active"'; } ?>><a href="admin/myusers.php">My Users</a></li>
-				  <li<?php if ($page=="mygroups") { echo ' class="active"'; } ?>><a href="admin/mygroups.php">My Groups</a></li>
-			  </ul>
-		  </li>
-	  <?php endif ?>
-	  
+
     </ul>
 
     <!-- Left Nav Section -->
