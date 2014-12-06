@@ -35,29 +35,23 @@
 				echo '</div></form>';
 				
 				break;
+			
 			case "edit":
-				//require_once $arrIni['base'].'lib/db/dbConn.php' ;
-				ConnectionFactory::getConnection();
 				
-				$qry = "SELECT * FROM ".$table." WHERE row_id = ".$id.";";
-				//echo $qry;
+				$companyCode = $objUsers->userCompany();
+	
+				$filter = " AND fk_empresa = :fk_empresa";
+	
+				$user = $objUsers->getUser($id, $filter, array(':fk_empresa' => $companyCode));
+
+				echo '<form name="formulario" id="formulario"><div class="panel callout">';
+
+				CreateForm($action,$user);
+
+				echo '</div></form>';
 				
-				mysql_query("SET NAMES UTF8");
-				$res = mysql_query($qry);
-//echo $res;
-				while ($row = mysql_fetch_array($res)) {
-					//echo 'ENTRA';
-					echo '<form name="formulario" id="formulario"><div class="panel callout">';
-
-					CreateForm($action,$row);
-
-					echo '</div></form>';
-
-				}
-				
-				ConnectionFactory::close();
-
 				break;
+			
 			case "view":
 				
 				$companyCode = $objUsers->userCompany();
@@ -66,15 +60,13 @@
 	
 				$user = $objUsers->getUser($id, $filter, array(':fk_empresa' => $companyCode));
 				
-				//while ($row = mysql_fetch_array($res)) {
-					//echo 'ENTRA';
-					echo '<form name="formulario" id="formulario"><div class="panel callout">';
+		 
+				echo '<form name="formulario" id="formulario"><div class="panel callout">';
 
-					CreateForm($action, $user);
+				CreateForm($action, $user);
 
-					echo '</div></form>';
+				echo '</div></form>';
 
-				//}
 				break;
 				
 			case "delete":
