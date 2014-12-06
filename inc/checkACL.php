@@ -326,7 +326,7 @@ function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 	$strRet = "";
 	
 	$con = ConnectionFactory::getConnection();
-	
+	print_r($con);
 	if($companyCode)
 	{
 		$filter = " WHERE fk_empresa = '$companyCode' ";
@@ -334,8 +334,7 @@ function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 	
 	$qry = "SELECT * FROM groups $filter ORDER by nombre";
 	
-    echo $qry;
-	
+ 
 	// Inicio de la seleccion de Empresas
 	$strRet = '<label>User Role<select name="'.$vName.'" '.$vDis.'><option value=""></option>';
 	$res = mysql_query($qry);
