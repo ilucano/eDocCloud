@@ -338,16 +338,11 @@ function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 	// Inicio de la seleccion de Empresas
 	$strRet = '<label>User Role<select name="'.$vName.'" '.$vDis.'><option value=""></option>';
 	$res = mysql_query($qry);
-	
-	if ($_SESSION['VisAdmin']!='X') { $isDis = "disabled"; }
-	
+ 
 	if (mysql_num_rows($res)) {
 		
-	
 		while ($row = mysql_fetch_array($res)) {
-			 	print_r($row);
-			$vNewId = $vId;
-		 
+ 
 			if ($row['row_id']==$vNewId) {
 				$strRet = $strRet.'<option '.$isDis.' selected value="'.$row['row_id'].'">'.$row['nombre'].'</option>';
 			} else {
