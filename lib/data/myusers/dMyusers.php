@@ -11,6 +11,8 @@
 	require_once $arrIni['base'].'inc/general.php';
 	require_once $arrIni['base'].'lib/db/db.php' ;
 	
+	
+	
 	$pagAct =  $_GET['pagAct'] ;
 	$txtSearch = $_GET['txtsearch'] ;
 	$limit = 5;
@@ -28,7 +30,14 @@
 	echo $antes.$btnFirst;
 	if ($arrPerm['create']=='X') { echo $btnCreate; }
 	echo $btnSearch.$btnLast;
-		
+	
+	
+	$objUsers = new Users;
+	
+	$users_list = $objUser->listUsers();
+	
+	print_r($user_list);
+	
 	$con = ConnectionFactory::getConnection();
 		
 	// COMIENZO DEL CAMBIO

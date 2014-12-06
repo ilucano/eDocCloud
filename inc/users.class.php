@@ -24,8 +24,7 @@ class Users {
      */
     public function isCompanyAdmin($username = null)
     {
-        
-        
+
         if($username == '') {
             $username = $_SESSION['Vusername'];
         }
@@ -47,7 +46,32 @@ class Users {
     
     public function userCompany($username = null)
     {
+        return ;
         
+    }
+    
+    
+    public function listUsers($filter = null, $array_bind = null, $order = null, $limit = null)
+    {   
+        $query = "SELECT * FROM users WHERE 1 ";
+        
+        if($filter) {
+            $query .= $filter;
+        }
+        
+        if($order) {
+            $query .= $order;
+        }
+        
+        if($limit) {
+            $query .= $limit;
+        }
+        
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+        
+        return $stmt->fetch();
+    
         
     }
 }
