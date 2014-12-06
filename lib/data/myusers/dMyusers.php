@@ -33,8 +33,14 @@
 	
 	
 	$objUsers = new Users();
- 
-	$users_list = $objUsers->listUsers();
+    
+	$companyCode = $objUsers->userCompany();
+	
+	$filter = " AND fk_empresa = :fk_empresa";
+	
+	$array_bind[':fk_empresa'] = $companyCode;
+	
+	$users_list = $objUsers->listUsers($filter, $array_bind);
 	
 	print_r($users_list);
 	

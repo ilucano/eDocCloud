@@ -46,13 +46,27 @@ class Users {
     
     public function userCompany($username = null)
     {
-        return ;
+        
+        if($username == '') {
+            $username = $_SESSION['Vusername'];
+        }
+        
+        $query = "SELECT 	fk_empresa FROM users WHERE username = :username LIMIT 1";
+        
+        $array_bind = array(':username' => $username);
+        
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+        $row = $stmt->fetch();
+        
+        return $row['fk_empresa'];
         
     }
     
     
     public function listUsers($filter = null, $array_bind = null, $order = null, $limit = null)
-    {   
+    {
+        
         $query = "SELECT * FROM users WHERE 1 ";
         
         if($filter) {
