@@ -326,7 +326,7 @@ function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 	$strRet = "";
 	
 	$con = ConnectionFactory::getConnection();
-	print_r($con);
+	
 	if($companyCode)
 	{
 		$filter = " WHERE fk_empresa = '$companyCode' ";
