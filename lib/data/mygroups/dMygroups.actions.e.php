@@ -36,11 +36,14 @@
 				$json_group_permission = json_encode($array_permission);
 				
 				
+				$companyCode = $objUsers->userCompany();
+				
 				$insert_query = "INSERT INTO groups (`nombre`, `fk_empresa`, `group_permission`)
-				                 VALUES (:nombre, '1', :group_permission)";
+				                 VALUES (:nombre, :fk_empresa, :group_permission)";
 								 
 				$bind_array = array(':nombre' => $_GET['nombre'],
-							  ':group_permission' => $json_group_permission);
+							        ':fk_empresa' => $companyCode,
+									':group_permission' => $json_group_permission);
 				
 				
 				try {
@@ -48,9 +51,7 @@
 					$stmt = $con->prepare($insert_query);
 						
 					$stmt->execute($bind_array);
-					
-   
-					   echo "Creation successful";
+					echo "Creation successful";
 				} catch(PDOException $ex) {
 					echo "An Error occured!"; //user friendly message
 				}
