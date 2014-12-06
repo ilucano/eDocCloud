@@ -48,6 +48,7 @@
 					$data['email'] = $_GET['email'];
 					$data['phone'] = $_GET['phone'];
 					$data['status'] = $_GET['status'];
+					$data['is_admin'] = $_GET['is_admin'];
 					$data['company_admin'] = $_GET['company_admin'];
 					$data['fk_empresa'] = $companyCode;
 					$data['group_id'] = $_GET['group_id'];
@@ -79,6 +80,7 @@
 				$data['email'] = $_GET['email'];
 				$data['phone'] = $_GET['phone'];
 				$data['status'] = $_GET['status'];
+				$data['is_admin'] = $_GET['is_admin'];
 				$data['company_admin'] = $_GET['company_admin'];
 				$data['group_id'] = $_GET['group_id'];
 				
