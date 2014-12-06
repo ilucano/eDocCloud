@@ -38,7 +38,9 @@
 					
 				}
 				else {
-				 
+				   
+				    $companyCode = $objUsers->userCompany();
+				
 					$data['username'] = $_GET['username'];
 					$data['password'] = $_GET['password'];
 					$data['first_name'] = $_GET['first_name'];
@@ -50,7 +52,7 @@
 					$data['fk_empresa'] = $companyCode;
 					$data['group_id'] = $_GET['group_id'];
 					
-					$objUsers->insertUser($data, $_GET['id'], $custom_where);
+					$objUsers->insertUser($data, $_GET['id']);
 					
 					require_once $arrIni['base'].'framework/email/email.php' ;
 					
