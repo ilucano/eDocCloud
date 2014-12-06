@@ -343,7 +343,7 @@ function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 		
 		while ($row = mysql_fetch_array($res)) {
  
-			if ($row['row_id']==$vNewId) {
+			if ($row['row_id']==$vId) {
 				$strRet = $strRet.'<option '.$isDis.' selected value="'.$row['row_id'].'">'.$row['nombre'].'</option>';
 			} else {
 				if ($isDis!="disabled") {
