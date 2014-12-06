@@ -11,8 +11,8 @@
 	require_once $arrIni['base'].'inc/general.php';
 	require_once $arrIni['base'].'lib/db/db.php' ;
 	
-	
-	
+	require_once $arrIni['base'].'inc/companies.class.php';
+
 	$pagAct =  $_GET['pagAct'] ;
 	$txtSearch = $_GET['txtsearch'] ;
 	$limit = 5;
@@ -41,6 +41,8 @@
 	$array_bind[':fk_empresa'] = $companyCode;
 	
 	$res = $objUsers->listUsers($filter, $array_bind);
+	
+	$objCompanies = new Companies;
 	
 	$con = ConnectionFactory::getConnection();
 		
@@ -76,9 +78,12 @@
 		echo "<table><tbody><thead><tr><th width=\"20%\">Name</th><th width=\"20%\">Company</th><th width=\"20%\">Email</th><th width=\"7%\">Admin</th><th width=\"7%\">Active</th><th width=\"6%\">Comp. Adm.</th><th width=\"20%\">Actions</th></tr></thead>";
 		
 		foreach ($res as $row) {
+			
+			$company = $objCompanies->getCompany($row['fk_empresa']);
+	 
 			echo "<tr><td width=20%>";
 			echo $row['first_name'].' '.$row['last_name'].' ('.$row['username'].')'.'</td>';
-			echo '<td width="20%">'.$row['empresa'].'</td>';
+			echo '<td width="20%">'.$company['company_name'].'</td>';
 			echo '<td width="20%">'.$row['email'].'</td>';
 			echo '<td width="7%">'.ConvertToYesNo($row['is_admin']).'</td>';
 			echo '<td width="7%">'.ConvertToYesNo($row['status']).'</td>';

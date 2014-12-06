@@ -51,7 +51,7 @@ class Users {
             $username = $_SESSION['Vusername'];
         }
         
-        $query = "SELECT 	fk_empresa FROM users WHERE username = :username LIMIT 1";
+        $query = "SELECT fk_empresa FROM users WHERE username = :username LIMIT 1";
         
         $array_bind = array(':username' => $username);
         
@@ -91,4 +91,7 @@ class Users {
         return $row;
         
     }
+    
+    
+    public function 
 }
