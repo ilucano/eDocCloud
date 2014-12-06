@@ -103,11 +103,11 @@
 				$qry5 = ";";
 				
 				$arr = split("&", str_replace("+"," ",$_SERVER['QUERY_STRING']));
-				
-				print_r($_GET);
+	 
 				
 				$companyCode = $objUsers->userCompany();
-				$custom_where = " fk_empresa = $companyCode";
+				
+				$custom_where = " AND fk_empresa = $companyCode";
 				
 				$data['password'] = $_GET['password'];
 				$data['first_name'] = $_GET['first_name'];

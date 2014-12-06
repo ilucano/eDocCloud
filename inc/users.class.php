@@ -108,11 +108,10 @@ class Users {
         
         $string_set = join(", ",  $array_set);
         
-        $query = "UPDATE users $string_set WHERE row_id = :row_id $custom_where";
-        
-        print_r($query);
-        
-        print_r($array_bind);
+        $query = "UPDATE users SET $string_set WHERE row_id = :row_id $custom_where";
+
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
         
     }
     
