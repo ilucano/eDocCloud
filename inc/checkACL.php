@@ -321,7 +321,7 @@ function ComboYesNo($vName,$vDesc,$vId,$vDis) {
 
 
 
-function ComboGroups($vName,$vId,$vDis, $companyCode) {
+function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 	
 	$strRet = "";
 	
@@ -334,7 +334,8 @@ function ComboGroups($vName,$vId,$vDis, $companyCode) {
 	
 	$qry = "SELECT * FROM groups $filter ORDER by nombre";
 	
-
+    echo $qry;
+	
 	// Inicio de la seleccion de Empresas
 	$strRet = '<label>User Role<select name="'.$vName.'" '.$vDis.'><option value=""></option>';
 	$res = mysql_query($qry);
