@@ -26,10 +26,7 @@ $objUsers = new Users;
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-		
-		<?php if($objUsers->isCompanyAdmin() == true) :?>
-		      <li class="has-dropdown"><a href="#">My Company</a></li>
-		<?php endif ?>
+
 <?php 
       if ($_SESSION['VisAdmin']=='X') {
       echo '<li class=\"has-dropdown\"><a href="../main.php">Application</a><ul class=\"dropdown\">';
@@ -141,6 +138,11 @@ $objUsers = new Users;
 			<li<?php if ($page=="chgpwd") { echo ' class="active"'; } ?>><a href="chgpwd.php">Change Password</a></li> -->
 		  </ul>
 		</li>
+		<?php endif ?>
+		
+				
+		<?php if($objUsers->isCompanyAdmin() == true) :?>
+		      <li class="has-dropdown"><a href="#">Company Admin</a></li>
 		<?php endif ?>
     </ul>
     
