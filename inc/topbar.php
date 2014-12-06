@@ -1,3 +1,10 @@
+<?php
+
+require_once $arrIni['base'].'inc/users.class.php';
+
+$objUsers = new Users;
+
+?>
 <div class="row">
 <div class="fixed"> 
 <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">

@@ -6,9 +6,6 @@ $group_permission = GetUserPermission();
 //	die;
 //}
 
-require_once $arrIni['base'].'inc/users.class.php';
-
-$objUsers = new Users;
 
 ?>
 
