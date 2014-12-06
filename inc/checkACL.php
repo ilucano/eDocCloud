@@ -43,6 +43,10 @@ if ($_SESSION['VisAdmin']=='X') {
 }
 
 
+$objUsers = new Users;
+print_r($objUsers->isCompanyAdmin());
+
+
 //modules permission
 
 

@@ -1,8 +1,3 @@
-<?php
-$objUsers = new Users;
-print_r($objUsers->isCompanyAdmin());
-
-?>
 <div class="row">
 <div class="fixed"> 
 <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
