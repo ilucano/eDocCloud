@@ -32,8 +32,8 @@
 	echo $btnSearch.$btnLast;
 	
 	
-	$objUsers = new Users;
-	
+	$objUsers = new Users();
+	print_r($objUsers);
 	$users_list = $objUsers->listUsers();
 	
 	print_r($user_list);
