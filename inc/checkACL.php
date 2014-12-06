@@ -42,11 +42,6 @@ if ($_SESSION['VisAdmin']=='X') {
 	$arrPerm['delete'] = '';
 }
 
-
-$objUsers = new Users;
-print_r($objUsers->isCompanyAdmin());
-
-
 //modules permission
 
 

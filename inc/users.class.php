@@ -24,6 +24,8 @@ class Users {
      */
     public function isCompanyAdmin($username = null)
     {
+        
+        
         if($username == '') {
             $username = $_SESSION['Vusername'];
         }
@@ -34,7 +36,8 @@ class Users {
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
         $row = $stmt->fetch();
-        print_r($row);
+         
+        return  ($row['company_admin'] == 'X') ? true : false;
     }
     
     /**
