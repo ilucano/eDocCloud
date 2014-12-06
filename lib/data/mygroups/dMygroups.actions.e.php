@@ -9,6 +9,9 @@
 	
 	require_once $arrIni['base'].'inc/checkACL.php';
 	
+	$objUsers = new Users();
+	
+	
 	$action =  basename( $_GET['action'] );
 	$id =  basename( $_GET['id'] );
 	
@@ -26,8 +29,6 @@
 		
 		switch ($action) {
 			case "create":
-				
-				$objUsers = new Users;
 				
 				foreach($_GET['group_permission'] as $key => $arrCode)
 				{
