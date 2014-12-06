@@ -15,7 +15,7 @@
 
 	$pagAct =  $_GET['pagAct'] ;
 	$txtSearch = $_GET['txtsearch'] ;
-	$limit = 5;
+	$limit = 50;
 	$adj = 2;
 	
 	if ($pagAct=="") { $pagAct=0; }
@@ -100,33 +100,7 @@
 			echo "</tr></td>";
 		}
 		echo "</tbody></table>";
-		if ($total_pages>$limit || $pagAct > 0) {
-			
-			echo "<ul class=\"pagination\">";
-			if ($pagAct==0) {
-				echo "<li class=\"arrow unavailable\">&laquo;</li>";
-			} else {
-				echo "<li class=\"arrow\"><a href=\"#\" data-type=\"pagina\" data-page=\"0\" data-reveal-id=\"grill\">&laquo;</a></li>";
-			}
-			
-			$lastpage = ceil($total_pages/$limit);
-			
-			for ($counter = 1; $counter <= $lastpage; $counter++) {
-				if (($counter-1)==$pagAct) {
-					echo "<li class=\"current\"><a href=\"#\">".($counter)."</a></li>";
-				} else {
-					echo "<li><a href=\"#\" data-type=\"pagina\" data-page=\"".($counter-1)."\" data-reveal-id=\"grill\">".($counter)."</a></li>";
-				}
-			}
-					
-			if (($lastpage-1)!=$pagAct) {
-				echo "<li class=\"arrow\"><a href=\"#\" data-type=\"pagina\" data-page=\"".($lastpage-1)."\" data-reveal-id=\"grill\">&raquo;</a></li>";
-			} else {
-				echo "<li class=\"arrow unavailable\">&raquo;</li>";
-			}
-			
-			echo "</ul>";
-		}
+ 
 	} else {
 			echo $antes;
 			echo "No results";
