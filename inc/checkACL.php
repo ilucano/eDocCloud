@@ -68,7 +68,7 @@ $permissionList = array('application' 	=> array('label' => 'Application',
 																 'group_by_status' => '/admin/report01.php')
 												),
 						'admin_menu'	=> array('label' => 'Admin Menu',
-												 'code' => array('home' => 'Home',
+												 'code' => array(
 																 'company' => 'Company',
 																 'users' => 'Users',
 																 'groups' => 'Groups',
@@ -79,7 +79,7 @@ $permissionList = array('application' 	=> array('label' => 'Application',
 																 'file' => 'File',
 																 'barcode' => 'Barcode',
 																 'audit'	=> 'Activity Logs'),
-												 'script' => array('home' => '/admin/main.php',
+												 'script' => array(
 																 'company' => '/admin/company.php',
 																 'users' => '/admin/users.php',
 																 'groups' => '/admin/groups.php',
