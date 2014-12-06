@@ -79,12 +79,11 @@ class Users {
             
         }
         
-        print_r($array_bind);
-        
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
         $row = $stmt->fetch();
         
+        return $row;
     }
     
     public function listUsers($filter = null, $array_bind = null, $order = null, $limit = null)
