@@ -86,6 +86,49 @@ class Users {
         return $row;
     }
     
+    public function getUserByUsername($username)
+    {
+        
+        $query = "SELECT * FROM users WHERE username = :username";
+ 
+        $array_bind = array(':username' => $username);
+
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+        $row = $stmt->fetch();
+        
+        return $row;
+    }
+    
+    public function insertUser($data = array())
+    {
+        if(count($data) <= 1)
+            return false;
+        
+        $array_values = array();
+        $array_columns = array();
+        
+        foreach ($data as $field => $value)
+        {
+            $array_columns[] = "`$field`";
+            
+            $bind_field = ":". $field;
+            
+            $array_values[] = $bind_field;
+            
+            $array_bind[$bind_field] = $value;
+            
+        }
+        $string_columns = "(" . join(", ", $array_columns) . ")";
+        $string_values = "(" . join(", ", $array_values) . ")";
+        
+        $query = "INSERT INTO users $string_columns
+                  VALUES $string_values ";
+                  
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+    }
+    
     public function updateUser($data = array(), $row_id, $custom_where = null)
     {
         if($row_id == '' || count($data) <= 1)

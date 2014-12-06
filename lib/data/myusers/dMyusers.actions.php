@@ -139,7 +139,7 @@
 		// Apellido
 		echo $antes;
 		$_fName = 'last_name';
-		$_fDesc = 'Last Name 1';
+		$_fDesc = 'Last Name';
 		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
 		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
 		$value = "";
