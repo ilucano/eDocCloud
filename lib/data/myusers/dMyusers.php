@@ -34,7 +34,7 @@
 	
 	$objUsers = new Users;
 	
-	$users_list = $objUser->listUsers();
+	$users_list = $objUsers->listUsers();
 	
 	print_r($user_list);
 	
