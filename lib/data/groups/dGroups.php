@@ -85,7 +85,6 @@
 	
 	echo $despues;
 	
-	ConnectionFactory::close();
 
 	function ConvertToYesNo($vIn) {
 	
