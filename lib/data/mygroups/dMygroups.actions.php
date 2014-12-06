@@ -108,8 +108,13 @@
 		
 		foreach($permissionList as $key =>  $list) {
 			
+			//exclude admin for company admin
+			if($key == 'admin_menu') {
+				continue;
+			}
+			
 			echo "<tr>";
-			echo "<th colspan=2>$key " .$list['label'] . "</th>";
+			echo "<th colspan=2>" .$list['label'] . "</th>";
 			echo "</tr>";
 			echo "<tr>";
 			echo "<td width='20%' style='padding-left: 25px;'><ul>";
