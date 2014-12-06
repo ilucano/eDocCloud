@@ -321,14 +321,20 @@ function ComboYesNo($vName,$vDesc,$vId,$vDis) {
 
 
 
-function ComboGroups($vName,$vId,$vDis) {
+function ComboGroups($vName,$vId,$vDis, $companyCode) {
 	
 	$strRet = "";
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qry = "SELECT * FROM groups ORDER by nombre";
+	if($companyCode)
+	{
+		$filter = " WHERE fk_empresa = '$companyCode' ";
+	}
 	
+	$qry = "SELECT * FROM groups $filter ORDER by nombre";
+	
+
 	// Inicio de la seleccion de Empresas
 	$strRet = '<label>User Role<select name="'.$vName.'" '.$vDis.'><option value=""></option>';
 	$res = mysql_query($qry);

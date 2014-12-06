@@ -188,7 +188,7 @@
 		
 		echo $antes;
 		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['group_id']; }
-		echo ComboGroups('group_id',$value,$disabled);
+		echo ComboGroups('group_id',$value,$disabled, $objUsers->userCompany());
 		$value = "";
 		echo $despues;
 		
