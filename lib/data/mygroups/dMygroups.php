@@ -78,7 +78,7 @@
 		 
 	} else {
 			echo $antes;
-			echo "No results";
+			echo "You have not create any group yet";
 			echo $despues;
 	}
 			

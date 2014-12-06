@@ -107,8 +107,9 @@
 	
 		
 		foreach($permissionList as $key =>  $list) {
+			
 			echo "<tr>";
-			echo "<th colspan=2>" .$list['label'] . "</th>";
+			echo "<th colspan=2>$key " .$list['label'] . "</th>";
 			echo "</tr>";
 			echo "<tr>";
 			echo "<td width='20%' style='padding-left: 25px;'><ul>";
@@ -117,6 +118,7 @@
 			 
 			foreach($codes as $codeKey => $code)
 			{
+				
 			    
 				$checkbox_name = 'group_permission' . '[' . $key .  '][]';
 				$checkbox_id = $key . "_" . $codeKey;
