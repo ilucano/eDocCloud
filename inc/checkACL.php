@@ -6,7 +6,7 @@ require_once '/var/www/html/config.php';
 require_once $arrIni['base'].'lib/db/db.php' ;
 require_once $arrIni['base'].'lib/db/dbConn.php' ;
 
-require_once require_once $arrIni['base'].'inc/users.class.php';
+require_once $arrIni['base'].'inc/users.class.php';
 
 $objUsers = new Users;
 
