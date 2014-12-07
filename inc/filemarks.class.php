@@ -129,7 +129,8 @@ class Filemarks {
         $string_set = join(", ",  $array_set);
         
         $query = "UPDATE file_marks SET $string_set WHERE id = :id $custom_where";
-
+        echo $query;
+        print_r($array_bind);
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
         
