@@ -99,7 +99,7 @@ class Users {
         
         return $row;
     }
-    
+     
     public function insertUser($data = array())
     {
         if(count($data) < 1)
