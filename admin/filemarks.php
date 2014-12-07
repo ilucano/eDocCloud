@@ -199,7 +199,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 					{
 						$("#details").html(html);
 						vText=html; 
-						if (vText=="Record updated...") {
+						if (vText=="Record updated..." || vText=="Creation successful") {
 							$.ajax({
 							   type: "GET",
 							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/filemarks/dFilemarks.php",
