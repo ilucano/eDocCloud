@@ -99,7 +99,7 @@ class Filemarks {
         $string_columns = "(" . join(", ", $array_columns) . ")";
         $string_values = "(" . join(", ", $array_values) . ")";
         
-        $query = "INSERT INTO users $string_columns
+        $query = "INSERT INTO file_marks $string_columns
                   VALUES $string_values ";
  
         $stmt = $this->pdocon->prepare($query);
