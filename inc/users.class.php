@@ -102,7 +102,7 @@ class Users {
     
     public function insertUser($data = array())
     {
-        if(count($data) <= 1)
+        if(count($data) < 1)
             return false;
         
         $array_values = array();
@@ -131,7 +131,7 @@ class Users {
     
     public function updateUser($data = array(), $row_id, $custom_where = null)
     {
-        if($row_id == '' || count($data) <= 1)
+        if($row_id == '' || count($data) < 1)
             return false;
         
         

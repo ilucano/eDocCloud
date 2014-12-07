@@ -108,7 +108,7 @@ class Filemarks {
     
     public function updateRecord($data = array(), $id, $custom_where = null)
     {
-        if($id == '' || count($data) <= 1)
+        if($id == '' || count($data) < 1)
             return false;
         
         
