@@ -124,6 +124,9 @@ $objUsers = new Users;
 			<?php if($group_permission['admin_menu']['file'] == 1 ): ?>
 				<li<?php if ($page=="file") { echo ' class="active"'; } ?>><a href="file.php">File</a></li>
 			<?php endif ?>
+	 
+			<li<?php if ($page=="filemarks") { echo ' class="active"'; } ?>><a href="filemarks.php">File Marks</a></li>
+	 
 			
 			<?php if($group_permission['admin_menu']['barcode'] == 1 ): ?>
 				<li<?php if ($page=="barcode") { echo ' class="active"'; } ?>><a href="barcode.php">Barcode</a></li>
