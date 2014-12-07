@@ -68,21 +68,9 @@
 				
 			case "edit":
  
-				$companyCode = $objUsers->userCompany();
+				$data['label'] = $_GET['label'];
 				
-				$custom_where = " AND fk_empresa = $companyCode";
-				
-				$data['password'] = $_GET['password'];
-				$data['first_name'] = $_GET['first_name'];
-				$data['last_name'] = $_GET['last_name'];
-				$data['email'] = $_GET['email'];
-				$data['phone'] = $_GET['phone'];
-				$data['status'] = $_GET['status'];
-				$data['is_admin'] = $_GET['is_admin'];
-				$data['company_admin'] = $_GET['company_admin'];
-				$data['group_id'] = $_GET['group_id'];
-				
-				$objUsers->updateUser($data, $_GET['id'], $custom_where);
+				$objFilemarks->updateRecord($data, $_GET['id']);
 				
 			    echo "Record updated...";
 			 

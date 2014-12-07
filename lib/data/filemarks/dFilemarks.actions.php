@@ -113,7 +113,7 @@
 		echo $antes;
 		$_fName = 'label';
 		$_fDesc = 'File Marker Label';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; $disabledO = "disabled"; }
+		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
 		//echo $value;
 		echo "<label>".$_fDesc."<input ".$disabled.$disabledO." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
 		$value = "";

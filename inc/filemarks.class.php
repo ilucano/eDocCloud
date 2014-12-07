@@ -106,9 +106,9 @@ class Filemarks {
         $stmt->execute($array_bind);
     }
     
-    public function updateUser($data = array(), $row_id, $custom_where = null)
+    public function updateRecord($data = array(), $id, $custom_where = null)
     {
-        if($row_id == '' || count($data) <= 1)
+        if($id == '' || count($data) <= 1)
             return false;
         
         
@@ -124,11 +124,11 @@ class Filemarks {
             
         }
         
-        $array_bind[':row_id'] = $row_id;
+        $array_bind[':id'] = $id;
         
         $string_set = join(", ",  $array_set);
         
-        $query = "UPDATE users SET $string_set WHERE row_id = :row_id $custom_where";
+        $query = "UPDATE file_marks SET $string_set WHEREid = :id $custom_where";
 
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
