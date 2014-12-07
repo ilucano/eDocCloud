@@ -122,7 +122,7 @@
 		// Boton
 		echo $antes;
 		if ($vAction=='edit' || $vAction=='create') {
-		echo "<a href=\"#\" name=\"but\" id=\"but\" class=\"button radius\" data-type=\"".$vAction."\" data-page=\"".$vRow['row_id']."\" data-reveal-id=\"actions\">Save</a>";
+		echo "<a href=\"#\" name=\"but\" id=\"but\" class=\"button radius\" data-type=\"".$vAction."\" data-page=\"".$vRow['id']."\" data-reveal-id=\"actions\">Save</a>";
 		}
 		echo $despues;
 		
