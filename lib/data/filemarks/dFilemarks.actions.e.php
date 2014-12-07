@@ -8,9 +8,12 @@
 	require_once '/var/www/html/config.php';
 	
 	require_once $arrIni['base'].'inc/checkACL.php';
+	require_once $arrIni['base'].'inc/filemarks.class.php';
 	
 			
-	$objUsers  = new Users;
+	$objFilemarks = new Filemarks;
+	
+	$objUsers = new Users;
 	
 	$action =  basename( $_GET['action'] );
 	$id =  basename( $_GET['id'] );
@@ -30,37 +33,32 @@
 		switch ($action) {
 			case "create":
 				
-				$exist = $objUsers->getUserByUsername($_GET['username']);
+				$filter = " `label` = :label AND global = 1";
 				
-				if(is_array($exist) && $exist['username'])
+				$label = trim($_GET['label']);
+				
+				$array_bind = array(':label' => $label);
+				
+				$exist = $objFilemarks->getRecordByFilter($filter, $array_bind);
+				
+				if(is_array($exist) && $exist['id'])
 				{
-					echo "Username already exist."; //user friendly message
+					echo "File marker already exist."; //user friendly message
 					
 				}
 				else {
 				   
 				    $companyCode = $objUsers->userCompany();
 				
-					$data['username'] = $_GET['username'];
-					$data['password'] = $_GET['password'];
-					$data['first_name'] = $_GET['first_name'];
-					$data['last_name'] = $_GET['last_name'];
-					$data['email'] = $_GET['email'];
-					$data['phone'] = $_GET['phone'];
-					$data['status'] = $_GET['status'];
-					$data['is_admin'] = $_GET['is_admin'];
-					$data['company_admin'] = $_GET['company_admin'];
+					$data['label'] = $_GET['label'];
 					$data['fk_empresa'] = $companyCode;
-					$data['group_id'] = $_GET['group_id'];
 					
-					$objUsers->insertUser($data, $_GET['id']);
+					$data['global'] = 1;
 					
-					require_once $arrIni['base'].'framework/email/email.php' ;
+					$data['create_date'] = date("Y-m-d H:i:s");
 					
-					$to = "\"".$_GET['first_name'].' '.$_GET['last_name']."\" <".$_GET['email'].">";
+					$objFilemarks->insertRecord($data);
 					
-					SendEmail($to,$_GET['username'],$_GET['password'], $_GET['first_name'].' '.$_GET['last_name']);
-
 					echo "Creation successful";
 					
 				}

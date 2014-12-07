@@ -64,13 +64,12 @@ class Filemarks {
         return $row;
     }
     
-    public function getUserByUsername($username)
+    public function getRecordByFilter($filter, $array_bind)
     {
         
-        $query = "SELECT * FROM users WHERE username = :username";
- 
-        $array_bind = array(':username' => $username);
-
+        $query = "SELECT * FROM file_marks WHERE $filter";
+        
+        
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
         $row = $stmt->fetch();
@@ -78,7 +77,7 @@ class Filemarks {
         return $row;
     }
     
-    public function insertUser($data = array())
+    public function insertRecord($data = array())
     {
         if(count($data) <= 1)
             return false;

@@ -6,9 +6,9 @@
 	require_once '/var/www/html/config.php';
 	
 	require_once $arrIni['base'].'inc/checkACL.php';
+    
+	require_once $arrIni['base'].'inc/filemarks.class.php';
 	
-		
-	$objUsers = new Users();
 	
 	$action =  basename( $_GET['action'] );
 	$id =  basename( $_GET['id'] );
@@ -37,8 +37,6 @@
 				break;
 			
 			case "edit":
-				
-				$companyCode = $objUsers->userCompany();
 	
 				$filter = " AND fk_empresa = :fk_empresa";
 	
@@ -109,100 +107,11 @@
 		
 		// Nombre de Usuario
 		echo $antes;
-		$_fName = 'username';
-		$_fDesc = 'Username';
+		$_fName = 'label';
+		$_fDesc = 'File Marker Label';
 		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; $disabledO = "disabled"; }
 		//echo $value;
 		echo "<label>".$_fDesc."<input ".$disabled.$disabledO." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Direccion 1
-		echo $antes;
-		$_fName = 'password';
-		$_fDesc = 'Password';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Nombre
-		echo $antes;
-		$_fName = 'first_name';
-		$_fDesc = 'First Name';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		//echo $value;
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Apellido
-		echo $antes;
-		$_fName = 'last_name';
-		$_fDesc = 'Last Name';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Email
-		echo $antes;
-		$_fName = 'email';
-		$_fDesc = 'Email';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Telefono
-		echo $antes;
-		$_fName = 'phone';
-		$_fDesc = 'Phone';
-		if ($vAction=='edit' || $vAction=='view') { $value = "value=\"".$vRow[$_fName]."\""; }
-		echo "<label>".$_fDesc."<input ".$disabled." type=\"text\" placeholder=\"".$_fDesc."\" name=\"".$_fName."\" id=\"".$_fName."\" ".$value." /></label>";
-		$value = "";
-		echo $despues;
-		
-		// Combo de Empresas
-		//echo $antes;
-		//if ($vAction=='edit' || $vAction=='view') { $value = $vRow['fk_empresa']; }
-		//echo ComboCompanies('fk_empresa',$value,$disabled);
-		//$value = "";
-		//echo $despues;
-		//
-		
-		echo $antes;
-		$_fName = 'is_admin';
-		$_fDesc = 'Admin';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
-		
-		
-		
-		// Status A:Active I:Inactive
-		echo $antes;
-		$_fName = 'status';
-		$_fDesc = 'Active';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
-		
-		
-		// Company Admin
-		echo $antes;
-		$_fName = 'company_admin';
-		$_fDesc = 'Company Admin';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
-		
-		echo $antes;
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['group_id']; }
-		echo ComboGroups('group_id',$value,$disabled, $objUsers->userCompany());
 		$value = "";
 		echo $despues;
 		
