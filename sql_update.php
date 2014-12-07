@@ -17,3 +17,7 @@ CREATE TABLE `activity_logs` (
   KEY `action` (`module`),
   KEY `create_date` (`create_date`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+###2014-12-07
+
+CREATE TABLE `file_marks` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `fk_empresa` smallint(4) unsigned NOT NULL, `label` varchar(250) DEFAULT NULL, `global` tinyint(1) NOT NULL DEFAULT '0', `create_date` datetime DEFAULT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
