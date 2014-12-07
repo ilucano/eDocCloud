@@ -9,6 +9,8 @@
     
 	require_once $arrIni['base'].'inc/filemarks.class.php';
 	
+			
+	$objFilemarks = new Filemarks;
 	
 	$action =  basename( $_GET['action'] );
 	$id =  basename( $_GET['id'] );
@@ -38,13 +40,15 @@
 			
 			case "edit":
 	
-				$filter = " AND fk_empresa = :fk_empresa";
-	
-				$user = $objUsers->getUser($id, $filter, array(':fk_empresa' => $companyCode));
+				$filter = " id = :id AND global = 1";
+				
+	            $array_bind = array(':id' => $_GET['id']);
+				
+				$filemark = $objFilemarks->getRecordByFilter($filter, $array_bind);
 
 				echo '<form name="formulario" id="formulario"><div class="panel callout">';
 
-				CreateForm($action,$user);
+				CreateForm($action, $filemark);
 
 				echo '</div></form>';
 				

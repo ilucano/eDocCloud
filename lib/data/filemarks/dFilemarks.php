@@ -52,7 +52,7 @@
  
 			echo '<td width="20%">';
 			
-			echo '<a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>'; 
+			echo '<a href="#" data-type="edit" data-page="'.$row['id'].'" data-reveal-id="buttons">Edit</a>'; 
 		 
 			echo '</td>';
 			
