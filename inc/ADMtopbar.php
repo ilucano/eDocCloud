@@ -125,7 +125,7 @@ $objUsers = new Users;
 				<li<?php if ($page=="file") { echo ' class="active"'; } ?>><a href="file.php">File</a></li>
 			<?php endif ?>
 	 
-			<li<?php if ($page=="filemarks") { echo ' class="active"'; } ?>><a href="filemarks.php">File Marks</a></li>
+			<li<?php if ($page=="filemarks") { echo ' class="active"'; } ?>><a href="filemarks.php">File Markers</a></li>
 	 
 			
 			<?php if($group_permission['admin_menu']['barcode'] == 1 ): ?>
@@ -149,7 +149,7 @@ $objUsers = new Users;
 				<ul class="dropdown">
 					<li<?php if ($page=="myusers") { echo ' class="active"'; } ?>><a href="myusers.php">My Users</a></li>
 					<li<?php if ($page=="mygroups") { echo ' class="active"'; } ?>><a href="mygroups.php">My Groups</a></li>
-					<li<?php if ($page=="myfilemarks") { echo ' class="active"'; } ?>><a href="myfilemarks.php">My Groups</a></li>
+					<li<?php if ($page=="myfilemarks") { echo ' class="active"'; } ?>><a href="myfilemarks.php">My File Markers</a></li>
 				</ul>
 			</li>
 		<?php endif ?>
