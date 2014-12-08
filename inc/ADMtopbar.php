@@ -149,6 +149,7 @@ $objUsers = new Users;
 				<ul class="dropdown">
 					<li<?php if ($page=="myusers") { echo ' class="active"'; } ?>><a href="myusers.php">My Users</a></li>
 					<li<?php if ($page=="mygroups") { echo ' class="active"'; } ?>><a href="mygroups.php">My Groups</a></li>
+					<li<?php if ($page=="myfilemarks") { echo ' class="active"'; } ?>><a href="myfilemarks.php">My Groups</a></li>
 				</ul>
 			</li>
 		<?php endif ?>
