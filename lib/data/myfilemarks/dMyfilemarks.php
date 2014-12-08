@@ -47,7 +47,7 @@
 		echo "			<div class=\"large-12 columns\">";
 		echo "			</h2>System Built In File Marks</h2><p>";
 		echo "			</div>";
-		echo "		</div>";
+		echo "		</div>"; 
 		// COMIENZO DEL CAMBIO
 		echo "<table><tbody><thead><tr><th width=\"20%\">Mark Label</th><th width=\"20%\">Create Date</th><th width=\"20%\">Actions</th></tr></thead>";
 		
