@@ -52,7 +52,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 <!-- TITULO -->
 <div class="row">
 	<div class="large-12 columns">
-    </h2>Administrate File Marks (Global - Share by all users)</h2><p>
+    </h2>Administrate File Marks</h2><p>
     </div>
 </div>
 <!-- TABLA -->
@@ -60,7 +60,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 	<div name="grilla" id="grilla" class="row">
 	<?php
   
-	require $arrIni['base'].'lib/data/filemarks/dFilemarks.php'; 
+	require $arrIni['base'].'lib/data/myfilemarks/dMyfilemarks.php'; 
 	
 	?>
     </div>
@@ -127,7 +127,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 				if (vVar=="pagina") {
 					$.ajax({
 					   type: "GET",
-					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/filemarks/dFilemarks.php",
+					   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/myfilemarks/dMyfilemarks.php",
 					   data: "pagAct="+vPag+"&txtsearch="+vStr,
 					   success: function(html){
 						if(html!="")
@@ -149,7 +149,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/filemarks/dFilemarks.actions.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/myfilemarks/dMyfilemarks.actions.php",
 				   data: "action="+vVar+"&id="+vPag,
 				   success: function(html){
 					if(html!="")
@@ -159,7 +159,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 						if (vText=="Record updated...") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/filemarks/dFilemarks.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/myfilemarks/dMyfilemarks.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")
@@ -192,7 +192,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 			{
 				$.ajax({
 				   type: "GET",
-				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/filemarks/dFilemarks.actions.e.php",
+				   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/myfilemarks/dMyfilemarks.actions.e.php",
 				   data: "action="+vVar+"&id="+vPag+"&"+$("#formulario").serialize(),
 				   success: function(html){
 					if(html!="")
@@ -202,7 +202,7 @@ require $arrIni['base'].'inc/ADMtopbar.php';
 						if (vText=="Record updated..." || vText=="Creation successful") {
 							$.ajax({
 							   type: "GET",
-							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/filemarks/dFilemarks.php",
+							   url: "http://<?php echo $_SERVER['SERVER_NAME'];?>/lib/data/myfilemarks/dMyfilemarks.php",
 							   data: "pagAct=0&txtsearch=",
 							   success: function(html){
 								if(html!="")
