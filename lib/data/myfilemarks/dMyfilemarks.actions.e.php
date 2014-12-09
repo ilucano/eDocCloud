@@ -69,7 +69,7 @@
  
 				
 			case "edit":
- 
+  
 				$data['label'] = $_GET['label'];
 				
 				$custom_where = " AND fk_empresa = '". $objUsers->userCompany() ."' ";
