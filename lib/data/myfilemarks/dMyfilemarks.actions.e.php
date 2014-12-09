@@ -72,7 +72,9 @@
  
 				$data['label'] = $_GET['label'];
 				
-				$objFilemarks->updateRecord($data, $_GET['id']);
+				$custom_where = " AND fk_empresa = '". $objUsers->userCompany() ."' ";
+				
+				$objFilemarks->updateRecord($data, $_GET['id'], $custom_where);
 				
 			    echo "Record updated...";
 			 
