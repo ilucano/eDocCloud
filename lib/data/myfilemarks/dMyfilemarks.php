@@ -13,6 +13,8 @@
     
 	require_once $arrIni['base'].'inc/filemarks.class.php';
 	
+	$objUsers = new Users;
+		
 	$pagAct =  $_GET['pagAct'] ;
 	$txtSearch = $_GET['txtsearch'] ;
 	$limit = 50;
@@ -39,9 +41,15 @@
 	$array_bind[':global'] = '1'; //fk_empresa = global share
 	
 	$res = $objFilemarks->listFilemarks($filter, $array_bind);
- 
+    
+	$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
+	$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
 	
-	if (count($res) >= 1) {
+	$company_array_bind[':global'] = '0';
+	
+	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
+	
+	if (count($res) >= 1 || count($company_res) >= 1) {
 		
 		 
 		// COMIENZO DEL CAMBIO
@@ -60,6 +68,21 @@
 			
 			echo "</tr></td>";
 		}
+		
+		foreach ($company_res as $row) {
+
+			echo '<td width="20%">'.$row['label'].'</td>';
+			echo '<td width="20%">'.$row['create_date'].'</td>';
+ 
+			echo '<td width="20%">';
+			
+			echo '<a href="#" data-type="edit" data-page="'.$row['id'].'" data-reveal-id="buttons">Edit</a>'; 
+	 
+			echo '</td>';
+			
+			echo "</tr></td>";
+		}
+		
 		echo "</tbody></table>";
  
 	} else {
