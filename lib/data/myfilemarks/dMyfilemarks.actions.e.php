@@ -33,11 +33,14 @@
 		switch ($action) {
 			case "create":
 				
-				$filter = " `label` = :label AND global = 1";
+				$companyCode = $objUsers->userCompany();
+				
+				$filter = " `label` = :label AND fk_empresa = :fk_empresa";
 				
 				$label = trim($_GET['label']);
 				
-				$array_bind = array(':label' => $label);
+				$array_bind = array(':label' => $label,
+									':fk_empresa' => $companyCode);
 				
 				$exist = $objFilemarks->getRecordByFilter($filter, $array_bind);
 				
@@ -47,13 +50,12 @@
 					
 				}
 				else {
-				   
-				    $companyCode = $objUsers->userCompany();
-				
-					$data['label'] = $_GET['label'];
+
+					$data['label'] = $label;
+					
 					$data['fk_empresa'] = $companyCode;
 					
-					$data['global'] = 1;
+					$data['global'] = 0;
 					
 					$data['create_date'] = date("Y-m-d H:i:s");
 					
