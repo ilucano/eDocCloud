@@ -9,7 +9,8 @@
     
 	require_once $arrIni['base'].'inc/filemarks.class.php';
 	
-			
+	$objUsers = new Users;
+	
 	$objFilemarks = new Filemarks;
 	
 	$action =  basename( $_GET['action'] );
@@ -40,9 +41,10 @@
 			
 			case "edit":
 	
-				$filter = " id = :id AND global = 1";
+				$filter = " id = :id AND fk_empresa = :fk_empresa";
 				
-	            $array_bind = array(':id' => $_GET['id']);
+	            $array_bind = array(':id' => $_GET['id'],
+									':fk_empresa' => $objUsers->userCompany());
 				
 				$filemark = $objFilemarks->getRecordByFilter($filter, $array_bind);
 
@@ -53,49 +55,8 @@
 				echo '</div></form>';
 				
 				break;
-			
-			case "view":
-				
-				$companyCode = $objUsers->userCompany();
-	
-				$filter = " AND fk_empresa = :fk_empresa";
-	
-				$user = $objUsers->getUser($id, $filter, array(':fk_empresa' => $companyCode));
-				
+
 		 
-				echo '<form name="formulario" id="formulario"><div class="panel callout">';
-
-				CreateForm($action, $user);
-
-				echo '</div></form>';
-
-				break;
-				
-			case "delete":
-				//require_once $arrIni['base'].'lib/db/dbConn.php' ;
-				ConnectionFactory::getConnection();
-				
-				$qry = "SELECT * FROM companies WHERE fk_admin = ".$id.";";
-	
-				$res = mysql_query($qry);
-				while ($row = mysql_fetch_array($res)) {
-					$vRet = "NO";
-				}
-				
-				if ($vRet!="NO") {
-					$qry = "DELETE FROM ".$table." WHERE row_id = ".$id.";";
-					
-					$res=mysql_query($qry)
-						or die("-1");
-					
-					echo "Record updated...";
-				} else {
-					echo "Record cannot be deleted...";	
-				}
-
-				ConnectionFactory::close();
-
-				break;
 			}
 		//echo "OK";
 	}
