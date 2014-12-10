@@ -17,10 +17,6 @@ require_once $arrIni['base'].'inc/general.php';
     <title>Welcome to eDocCloud - imagingXperts</title>
     <link rel="stylesheet" href="<?php echo $arrIni['foundationurl']; ?>css/foundation.css" />
     <link href="<?php echo $arrIni['foundationurl']; ?>css/docs.css" rel="stylesheet" />
-	
-	  <link href="http://foundation.zurb.com/docs/assets/css/docs.css" rel="stylesheet" />
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" />
-	
     <link href="<?php echo $arrIni['foundationurl']; ?>css/foundation-icon.css" rel="stylesheet" />
     <script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/modernizr.js"></script>
 	<script language="JavaScript">
@@ -62,15 +58,6 @@ require $arrIni['base'].'inc/topbar.php';
     </table>
     
     </div>
-	<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
-
-<div id="myModal" class="reveal-modal" data-reveal>
-  <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
 	<div class="large-6 columns">
 		<div class="row" id="contajax">&nbsp;</div>
     </div>
@@ -80,21 +67,15 @@ require $arrIni['base'].'inc/topbar.php';
 <!-- END OF CONTENT OF THE PAGE -->
 
 	<script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/jquery.js"></script>
-  	<!--<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.js"></script>
+  	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.js"></script>
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.topbar.js"></script>
-	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.dropdown.js"></script>
-	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.reveal.js"></script> 
     <script src="<?php echo $arrIni['foundationurl']; ?>js/templates.js"></script>
-    <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script> -->
-	
-	<script src="http://foundation.zurb.com/docs/assets/js/templates.js"></script>
-	<script src="http://foundation.zurb.com/docs/assets/js/all.js"></script>
-	
+    <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script>
   	<!-- Other JS plugins can be included here -->
 
   	<script>
     	$(document).foundation();
-		$(document).on("click", "a[data-reveal-idxx]", function() {
+		$(document).on("click", "a[data-reveal-id]", function() {
     		
 			
 			vId=$(this).attr('data-reveal-id');
