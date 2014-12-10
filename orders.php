@@ -73,6 +73,10 @@ require $arrIni['base'].'inc/topbar.php';
 	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.reveal.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/templates.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script>
+	
+	<script src="http://foundation.zurb.com/docs/assets/js/templates.js"></script>
+	<script src="http://foundation.zurb.com/docs/assets/js/all.js"></script>
+	
   	<!-- Other JS plugins can be included here -->
 
   	<script>
