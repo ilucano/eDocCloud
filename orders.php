@@ -67,12 +67,12 @@ require $arrIni['base'].'inc/topbar.php';
 <!-- END OF CONTENT OF THE PAGE -->
 
 	<script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/jquery.js"></script>
-  	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.js"></script>
+  	<!--<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.js"></script>
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.topbar.js"></script>
 	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.dropdown.js"></script>
-	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.reveal.js"></script>
+	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.reveal.js"></script> 
     <script src="<?php echo $arrIni['foundationurl']; ?>js/templates.js"></script>
-    <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script>
+    <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script> -->
 	
 	<script src="http://foundation.zurb.com/docs/assets/js/templates.js"></script>
 	<script src="http://foundation.zurb.com/docs/assets/js/all.js"></script>
