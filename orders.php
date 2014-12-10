@@ -17,6 +17,10 @@ require_once $arrIni['base'].'inc/general.php';
     <title>Welcome to eDocCloud - imagingXperts</title>
     <link rel="stylesheet" href="<?php echo $arrIni['foundationurl']; ?>css/foundation.css" />
     <link href="<?php echo $arrIni['foundationurl']; ?>css/docs.css" rel="stylesheet" />
+	
+	  <link href="http://foundation.zurb.com/docs/assets/css/docs.css" rel="stylesheet" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" />
+	
     <link href="<?php echo $arrIni['foundationurl']; ?>css/foundation-icon.css" rel="stylesheet" />
     <script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/modernizr.js"></script>
 	<script language="JavaScript">
