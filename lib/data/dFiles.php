@@ -63,27 +63,16 @@ function GetAllCharts($boxid, $orderid) {
 function dropDownButton()
 {
 	
-//	return '<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Dropdown Button</button><br>
-//<ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
- // <li><a href="#">This is a link</a></li>
-//  <li><a href="#">This is another</a></li>
-//  <li><a href="#">Yet another</a></li>
-// </ul>';
+	return '<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Dropdown Button</button><br>
+<ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+ </ul>';
 
 }
 
 require_once $arrIni['base'].'inc/activity_logs.class.php';
 
 $ActivityLogs = new Activity_Logs();
-$ActivityLogs->log();
-?>
-<button data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Has Dropdown</button>
-<ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
-  <li><a href="#">This is a link</a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
-</ul>
-<button data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">Has Content Dropdown</a>
-<div id="drop2" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
-  <p>Some text that people will think is awesome! Some text that people will think is awesome! Some text that people will think is awesome!</p>
-</div>
+$ActivityLogs->log();W
