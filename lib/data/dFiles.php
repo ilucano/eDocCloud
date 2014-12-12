@@ -63,12 +63,20 @@ function GetAllCharts($boxid, $orderid) {
 function dropDownButton()
 {
 	
-	return '<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Dropdown Button</button><br>
-<ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a href="#">This is a link</a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
-</ul>';
+//	return '<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Dropdown Button</button><br>
+//<ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+ // <li><a href="#">This is a link</a></li>
+//  <li><a href="#">This is another</a></li>
+//  <li><a href="#">Yet another</a></li>
+// </ul>';
+   
+   return '<li class="has-dropdown">
+        <a href="#">Right Button Dropdown</a>
+        <ul class="dropdown">
+          <li><a href="#">First link in dropdown</a></li>
+          <li class="active"><a href="#">Active link in dropdown</a></li>
+        </ul>
+      </li>';
 }
 
 require_once $arrIni['base'].'inc/activity_logs.class.php';
