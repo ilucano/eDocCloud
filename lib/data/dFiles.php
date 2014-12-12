@@ -65,7 +65,7 @@ function dropDownButton()
 	
 	return '<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="tiny button dropdown">Dropdown Button</button><br>
 <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a href="http://www.google.com?a=ddd" data-reveal-id="myModal" data-reveal-ajax="true">
+  <li><a href="/?=test" data-reveal-id="myModal" data-reveal-ajax="true">
     Click Me For A Modal
 </a></li>
   <li><a href="#">This is another</a></li>
@@ -80,8 +80,5 @@ $ActivityLogs = new Activity_Logs();
 $ActivityLogs->log();
 ?>
 <div id="myModal" class="reveal-modal" data-reveal>
-  <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-  <a class="close-reveal-modal">&#215;</a>
+ 
 </div>
