@@ -56,14 +56,6 @@ require $arrIni['base'].'inc/topbar.php';
             ?>
         </tbody>
     </table>
-	
-    <a href="#" data-dropdown="hover1" data-options="is_hover:true">Has Hover Dropdown</a>
-
-<ul id="hover1" class="f-dropdown" data-dropdown-content>
-  <li><a href="#">This is a link</a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
-</ul>
 
     </div>
 	<div class="large-6 columns">
