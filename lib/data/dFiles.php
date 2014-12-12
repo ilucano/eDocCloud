@@ -59,7 +59,7 @@ function GetAllCharts($boxid, $orderid) {
 	echo $despues;
 	ConnectionFactory::close();
 }
-
+ 
 function dropDownButton()
 {
 	
