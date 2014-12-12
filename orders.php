@@ -75,10 +75,10 @@ require $arrIni['base'].'inc/topbar.php';
 
   	<script>
     	$(document).foundation();
-		$(document).on("click", "a[data-reveal-id]", function() {
+		$(document).on("click", "a[my-data-reveal-id]", function() {
     		
 			
-			vId=$(this).attr('data-reveal-id');
+			vId=$(this).attr('my-data-reveal-id');
 			vType=$(this).attr('link-type');
 			vOrder=$(this).attr('link-order');
 			vBox=$(this).attr('link-box');
