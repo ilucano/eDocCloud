@@ -10,7 +10,7 @@ GetAllFiles($_GET['chartid'], $_GET['boxid'], $_GET['orderid']);
 
 function GetAllFiles($chartid, $boxid, $orderid) {
 	
-	$antes = '<table><thead><tr><th><a href="#" link-type="order" data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > <a href="#" link-type="box" link-order="'.$orderid.'" link-box="'.$boxid.'" data-reveal-id="'.$boxid.'">Box '.GetName($boxid).'</a> > Your Files in Chart '.GetName($chartid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="30%">Filename</th><th width="25%">Creation</th><th width="15%">Changed</th><th width="15%">Pages</th><th width="15%">Size</th></tr></thead><tbody>';
+	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > <a href="#" link-type="box" link-order="'.$orderid.'" link-box="'.$boxid.'" data-reveal-id="'.$boxid.'">Box '.GetName($boxid).'</a> > Your Files in Chart '.GetName($chartid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="30%">Filename</th><th width="25%">Creation</th><th width="15%">Changed</th><th width="15%">Pages</th><th width="15%">Size</th></tr></thead><tbody>';
 	
 	$despues = '</tbody></table></tbody></table></td></tr>';
 	

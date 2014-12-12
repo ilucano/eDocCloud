@@ -10,7 +10,7 @@ GetAllCharts($_GET['boxid'], $_GET['orderid']);
 
 function GetAllCharts($boxid, $orderid) {
 	
-	$antes = '<table><thead><tr><th><a href="#" link-type="order" data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="35%">Chart</th><th width="20%">Marks</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
+	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="35%">Chart</th><th width="20%">Marks</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
 	$despues = '</tbody></table></tbody></table></td></tr>';
 	
 	$con = ConnectionFactory::getConnection();

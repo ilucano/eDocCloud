@@ -46,7 +46,7 @@ function GetAllBoxes($ordid) {
 				
 				//$row['status']
 				
-				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"box\" link-order=\"".$ordid."\" data-reveal-id=\"".$row['row_id']."\">".$screen."</a></td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$elStatus."</td>";
+				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"box\" link-order=\"".$ordid."\" my-data-reveal-id=\"".$row['row_id']."\">".$screen."</a></td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$elStatus."</td>";
 				echo "<td width=\"100\">".$row['qty']."</td><td width=\"100\">";
 				
 				setlocale(LC_MONETARY, 'en_US');
