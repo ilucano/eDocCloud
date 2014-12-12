@@ -51,7 +51,7 @@ function GetAllCharts($boxid, $orderid) {
 			}
 		}
 	} else {
-		//echo $antes;
+		//echo $antes; 
 		echo "<tr><td>";
 		echo "You don't have charts at this time</td></tr>";
 		//echo $despues;
