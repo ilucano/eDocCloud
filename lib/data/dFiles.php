@@ -65,7 +65,9 @@ function dropDownButton()
 	
 	return '<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="tiny button dropdown">Dropdown Button</button><br>
 <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a href="#">This is a link</a></li>
+  <li><a href="http://www.google.com?a=ddd" data-reveal-id="myModal" data-reveal-ajax="true">
+    Click Me For A Modal
+</a></li>
   <li><a href="#">This is another</a></li>
   <li><a href="#">Yet another</a></li>
  </ul>';
