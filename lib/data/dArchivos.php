@@ -30,7 +30,7 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 				//echo $despues;
 			} else {
 				//echo $antes;
-				
+				 
 				if ($row['code']!=""&&$row['name']!="") {
 					$screen = $row['code']." / ".$row['name'];
 				} else if ($row['code']=="") {
