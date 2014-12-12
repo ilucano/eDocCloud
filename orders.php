@@ -124,6 +124,7 @@ require $arrIni['base'].'inc/topbar.php';
 					if(html!="")
 					{
 						$("#contajax").html(html);
+						$(document).foundation();
 					}
 					else
 					{
