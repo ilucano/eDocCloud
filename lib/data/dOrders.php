@@ -40,3 +40,4 @@ function GetAllOrders() {
 	ConnectionFactory::close();
 }
 ?>
+

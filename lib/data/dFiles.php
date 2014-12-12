@@ -87,3 +87,11 @@ $ActivityLogs->log();
 <div id="drop2" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
   <p>Some text that people will think is awesome! Some text that people will think is awesome! Some text that people will think is awesome!</p>
 </div>
+
+<a href="#" data-dropdown="hover1" data-options="is_hover:true">Has Hover Dropdown</a>
+
+<ul id="hover1" class="f-dropdown" data-dropdown-content>
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
