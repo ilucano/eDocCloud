@@ -69,17 +69,21 @@ function dropDownButton()
 //  <li><a href="#">This is another</a></li>
 //  <li><a href="#">Yet another</a></li>
 // </ul>';
-   
-   return '<li class="has-dropdown">
-        <a href="#">Right Button Dropdown</a>
-        <ul class="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
-          <li class="active"><a href="#">Active link in dropdown</a></li>
-        </ul>
-      </li>';
+
 }
 
 require_once $arrIni['base'].'inc/activity_logs.class.php';
 
 $ActivityLogs = new Activity_Logs();
 $ActivityLogs->log();
+?>
+<button data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Has Dropdown</button>
+<ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
+<button data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">Has Content Dropdown</a>
+<div id="drop2" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
+  <p>Some text that people will think is awesome! Some text that people will think is awesome! Some text that people will think is awesome!</p>
+</div>
