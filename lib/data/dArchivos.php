@@ -74,7 +74,7 @@ function dropDownButton($row_id, $mark_id)
 	
 	if($label == '')
 	{
-		$label = "(No Mark)"
+		$label = "(No Mark)";
 	}
 
 	$filter = " AND global = :global";
