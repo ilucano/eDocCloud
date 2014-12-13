@@ -163,4 +163,19 @@ class Filemarks {
         
     }
     
+    
+    public function getLabelById($id)
+    {
+        
+        $query = "SELECT * FROM file_marks WHERE id = :id";
+        
+        $array_bind = array(':id' => $id);
+        
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+        $row = $stmt->fetch();
+        
+        return $row['label'];
+
+    }
 }

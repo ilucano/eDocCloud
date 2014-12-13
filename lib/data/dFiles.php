@@ -4,9 +4,17 @@ require_once '/var/www/html/config.php';
 require_once $arrIni['base'].'inc/general.php';
 require_once $arrIni['base'].'lib/db/db.php';
 
+
 session_start();
 
 GetAllCharts($_GET['boxid'], $_GET['orderid']);
+
+
+require_once $arrIni['base'].'inc/users.class.php';
+require_once $arrIni['base'].'inc/filemarks.class.php';
+
+$objFilemarks = new Filemarks;
+
 
 function GetAllCharts($boxid, $orderid) {
 	
@@ -15,7 +23,7 @@ function GetAllCharts($boxid, $orderid) {
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qry = "SELECT T1.row_id as row_id, T1.qty as qty, T1.f_code as code, T1.f_name as name, T1.creation, T2.status as status FROM objects T1 INNER JOIN ordstatus T2 ON T2.row_id = T1.fk_status WHERE T1.fk_company = ".$_SESSION['CoCo']." and T1.fk_obj_type = 3 and T1.fk_parent = ".$boxid.' ORDER BY f_code, f_name ASC';
+	$qry = "SELECT T1.row_id as row_id, T1.qty as qty, T1.f_code as code, T1.f_name as name, T1.creation,  T1.file_mark_id, T2.status as status FROM objects T1 INNER JOIN ordstatus T2 ON T2.row_id = T1.fk_status WHERE T1.fk_company = ".$_SESSION['CoCo']." and T1.fk_obj_type = 3 and T1.fk_parent = ".$boxid.' ORDER BY f_code, f_name ASC';
 	
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qry);
@@ -39,7 +47,7 @@ function GetAllCharts($boxid, $orderid) {
 				}
 				
 				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"chart\" link-order=\"".$orderid."\" link-box=\"".$boxid."\" my-data-reveal-id=\"".$row['row_id']."\">".$screen."</a></td><td>";
-				echo dropDownButton($row['row_id']);
+				echo dropDownButton($row['row_id'], $row['file_mark_id']);
 				echo "</td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$row['status']."</td>";
 				echo "<td width=\"100\">".$row['qty'];
 				//."</td><td width=\"100\">";
@@ -60,10 +68,14 @@ function GetAllCharts($boxid, $orderid) {
 	ConnectionFactory::close();
 }
  
-function dropDownButton($row_id)
+function dropDownButton($row_id, $mark_id)
 {
+	global $objFilemarks;
 	
-	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">Confidential Level 1</button><br>
+	$label = $objFilemarks->getLabelById($mark_id);
+	
+	
+	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
 <ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
   <li><a data-reveal-id="myModal">
     Click Me For A Modal
