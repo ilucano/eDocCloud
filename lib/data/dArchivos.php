@@ -93,12 +93,12 @@ function dropDownButton($row_id, $mark_id)
 		
 		foreach ($res as $row) {
 
-			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">'.$row['label'].'</a></li>';
+			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
 			
 		}
 		
 		foreach ($company_res as $row) {
-			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">'.$row['label'].'</a></li>';
+			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
 		}
  
 	}

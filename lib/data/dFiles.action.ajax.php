@@ -36,11 +36,7 @@ switch ($action) {
 		$stmt = $con->prepare($query);
 						
 		$stmt->execute($array_bind);
-		
-		echo $query;
-		
-		print_r($array_bind);
-		
+
 		$objFilemarks = new Filemarks;
 		echo $objFilemarks->getLabelById($file_mark_id);
 		
