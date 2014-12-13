@@ -33,9 +33,9 @@ switch ($action) {
 							':row_id'	=> $row_id,
 							':fk_empresa' => $companyCode);
 		
-		$stmt = $con->prepare($insert_query);
+		$stmt = $con->prepare($query);
 						
-		$stmt->execute($bind_array);
+		$stmt->execute($array_bind);
 		
 		$objFilemarks = new Filemarks;
 		echo $objFilemarks->getLabelById($file_mark_id);
