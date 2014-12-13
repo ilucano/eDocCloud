@@ -19,7 +19,7 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qry = "SELECT row_id, filename, creadate, moddate, pages, filesize FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." and parent_id = ".$chartid.' ORDER BY filename ASC;';
+	$qry = "SELECT row_id, filename, creadate, moddate, pages, filesize, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." and parent_id = ".$chartid.' ORDER BY filename ASC;';
 	
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qry);
