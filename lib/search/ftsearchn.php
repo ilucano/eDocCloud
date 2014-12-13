@@ -68,9 +68,9 @@ if ($txtSearch=="") {
 			$marker_header = '<th width="30%">Marks</th>';
 		}
 	
-		echo "<table><tbody><thead><tr><th width=\"40%\">Filename</th>".$marker_header."<th width=\"20%\">Creation Date</th><th width=\"20%\">Modifcation Date</th><th width=\"10%\">Pages</th><th width=\"10%\">Size</th></tr></thead>";
+		echo "<table><tbody><thead><tr><th width=\"25%\">Filename</th>".$marker_header."<th width=\"20%\">Creation Date</th><th width=\"20%\">Modifcation Date</th><th width=\"10%\">Pages</th><th width=\"10%\">Size</th></tr></thead>";
 		while ($row = mysql_fetch_array($res)) {
-			echo "<tr><td width=40%>";
+			echo "<tr><td width=25%>";
 			
   			echo '<a href="lib/data/file.download.php?fileid='.$row['row_id'].'" target="_blank">'.$row['filename'].'</a></td>';
 			
