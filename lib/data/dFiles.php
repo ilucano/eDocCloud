@@ -23,7 +23,7 @@ function GetAllCharts($boxid, $orderid) {
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qry = "SELECT T1.row_id as row_id, T1.qty as qty, T1.f_code as code, T1.f_name as name, T1.creation,  T1.file_mark_id, T2.status as status FROM objects T1 INNER JOIN ordstatus T2 ON T2.row_id = T1.fk_status WHERE T1.fk_company = ".$_SESSION['CoCo']." and T1.fk_obj_type = 3 and T1.fk_parent = ".$boxid.' ORDER BY f_code, f_name ASC';
+	$qry = "SELECT T1.row_id as row_id, T1.qty as qty, T1.f_code as code, T1.f_name as name, T1.creation, T2.status as status FROM objects T1 INNER JOIN ordstatus T2 ON T2.row_id = T1.fk_status WHERE T1.fk_company = ".$_SESSION['CoCo']." and T1.fk_obj_type = 3 and T1.fk_parent = ".$boxid.' ORDER BY f_code, f_name ASC';
 	
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qry);
