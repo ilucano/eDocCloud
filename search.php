@@ -133,6 +133,8 @@ require $arrIni['base'].'inc/topbar.php';
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.js"></script>
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.topbar.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.tab.js"></script>
+	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.dropdown.js"></script>
+	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.reveal.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/templates.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script>
   	<!-- Other JS plugins can be included here -->
