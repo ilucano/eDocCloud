@@ -131,7 +131,7 @@ function dropDownButton($row_id, $mark_id)
 					if(html != "")
 					{
 						$("#set-filemark-button"+vFileId).html(html);
-						$(document).foundation();
+						
 					}
 					else
 					{
@@ -140,7 +140,8 @@ function dropDownButton($row_id, $mark_id)
 				 }
 				});
 			}
-	
+	        
+			$(this).foundation('dropdown', 'close', $(this).parent('.f-dropdown'))
 			
 		
 		}
