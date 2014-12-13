@@ -141,7 +141,7 @@ function dropDownButton($row_id, $mark_id)
 				});
 			}
 	        
-			$(this).foundation('dropdown', 'close', $(this).parent('.f-dropdown'))
+			$(document).foundation('dropdown', 'close')
 			
 		
 		}
