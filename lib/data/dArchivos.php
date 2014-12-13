@@ -16,7 +16,8 @@ $objFilemarks = new Filemarks;
 $group_permission = GetUserPermission();
 
  
-
+print_r($group_permission);
+	
 function GetAllFiles($chartid, $boxid, $orderid) {
 	
 	global $group_permission;
