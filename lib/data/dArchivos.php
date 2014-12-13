@@ -132,7 +132,7 @@ function dropDownButton($row_id, $mark_id)
 					{
 						$("#set-filemark-button"+vFileId).html(html);
 						$("ul.f-dropdown").removeClass("open");
-						$("ul.f-dropdown").offset({ left: "-99999px" });
+						$("ul.f-dropdown").style.left = '-99999px';
 						 
 					}
 					else
