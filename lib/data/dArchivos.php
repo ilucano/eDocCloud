@@ -72,6 +72,10 @@ function dropDownButton($row_id, $mark_id)
 	$objUsers = new Users;
 	$label = $objFilemarks->getLabelById($mark_id);
 	
+	if($label == '')
+	{
+		$label = "(No Mark)"
+	}
 
 	$filter = " AND global = :global";
 	
