@@ -6,6 +6,10 @@ require_once '/var/www/html/config.php';
 require_once $arrIni['base'].'inc/check.php';
 require_once $arrIni['base'].'inc/general.php';
 require_once $arrIni['base'].'lib/db/db.php' ;
+require_once $arrIni['base'].'inc/checkACL.php';
+
+require_once $arrIni['base'].'inc/users.class.php';
+require_once $arrIni['base'].'inc/filemarks.class.php';
 
 session_start();
 
@@ -24,6 +28,9 @@ if ($txtSearch=="") {
 	echo "Please enter any text to search...";
 	echo $despues;
 } else {
+	
+	$objFilemarks = new Filemarks;
+		
 	echo $antes;
 	
 	$con = ConnectionFactory::getConnection();
@@ -78,11 +85,29 @@ if ($txtSearch=="") {
 	
 	
 	if (mysql_num_rows($res)) {
-		echo "<table><tbody><thead><tr><th width=\"40%\">Filename</th><th width=\"20%\">Creation Date</th><th width=\"20%\">Modifcation Date</th><th width=\"10%\">Pages</th><th width=\"10%\">Size</th></tr></thead>";
+		
+		$group_permission = GetUserPermission();
+		
+		$show_file_marker  = ($group_permission['use_file_marker']['view'] == 1 || $group_permission['use_file_marker']['change'] == 1) ? true : false;
+		
+		if($show_file_marker == true) {
+			$marker_header = '<th width="30%">Marks</th>';
+		}
+			
+		echo "<table><tbody><thead><tr><th width=\"25%\">Filename</th>".$marker_header."<th width=\"20%\">Creation Date</th><th width=\"20%\">Modifcation Date</th><th width=\"10%\">Pages</th><th width=\"10%\">Size</th></tr></thead>";
 		while ($row = mysql_fetch_array($res)) {
-			echo "<tr><td width=40%>";
+			echo "<tr><td width=25%>";
 			
   			echo '<a href="lib/data/file.download.php?fileid='.$row['row_id'].'" target="_blank">'.$row['filename'].'</a></td>';
+			
+					
+			if($show_file_marker == true) {
+					
+				echo "<td>";
+				echo dropDownButton($row['row_id'], $row['file_mark_id']);
+				echo "</td>";
+			}
+			
 			$fecha = date("m/d/Y G:i:s",strtotime($row['creadate']));
 			echo '<td width="20%">'.$fecha.'</td>';
 			$fecha = date("m/d/Y G:i:s",strtotime($row['moddate']));
@@ -151,6 +176,68 @@ if ($txtSearch=="") {
 	echo $despues;
 }
 
+
+function dropDownButton($row_id, $mark_id)
+{
+	
+	$group_permission = GetUserPermission();
+	
+	$objFilemarks = new Filemarks;
+	$objUsers = new Users;
+	$label = $objFilemarks->getLabelById($mark_id);
+	
+	if($label == '')
+	{
+		$label = "(No Mark)";
+	}
+	
+	$drop_down_list = '';
+	$disabled_class = "disabled ";
+	
+    if( $group_permission['use_file_marker']['change'] == 1 ) {
+		
+			$disabled_class = '';
+			
+			$filter = " AND global = :global";
+			
+			$array_bind[':global'] = '1'; //fk_empresa = global share
+			
+			$res = $objFilemarks->listFilemarks($filter, $array_bind);
+			
+			$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
+			
+			$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
+			
+			$company_array_bind[':global'] = '0';
+			
+			$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
+			
+		    
+			
+			if (count($res) >= 1 || count($company_res) >= 1) {
+				
+				foreach ($res as $row) {
+		
+					$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
+					
+				}
+				
+				foreach ($company_res as $row) {
+					$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
+				}
+
+				$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value=""> <i>Remove Mark</i></a></li>';
+	
+			}
+			$drop_down_list = '<ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">'.$drop_down_list.'</ul>';
+	
+	}
+
+	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="'.$disabled_class.'tiny button dropdown">'.$label.'</button><br>' .$drop_down_list;
+
+}
+
+
 ConnectionFactory::close();
 
 require_once $arrIni['base'].'inc/activity_logs.class.php';
@@ -159,3 +246,43 @@ $ActivityLogs = new Activity_Logs();
 $ActivityLogs->log();
 
 ?>
+
+
+<script>
+	$(document).foundation();
+	
+	$( ".set-filemarker" ).unbind("click").bind("click",
+			function() {	
+				vFileId=$(this).attr('data-set-filemark-id');
+				vFilemarkId=$(this).attr('data-set-filemark-value');
+			
+			originalText = $("#set-filemark-button"+vFileId).html();
+			
+			if (vFileId.length > 0) {
+				$("#set-filemark-button"+vFileId).html("Updating...");
+				
+				$.ajax({
+				   type: "GET",
+				   url: "lib/data/dFiles.action.ajax.php",
+				   data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
+				   success: function(html){
+					if(html != "")
+					{
+						$("#set-filemark-button"+vFileId).html(html);
+						$("ul.f-dropdown").removeClass("open");
+						$("ul.f-dropdown").css({left: '-99999px' , position:'absolute'});
+						 
+					}
+					else
+					{   $("#set-filemark-button"+vFileId).html(originalText);
+						alert('error');
+					}
+				 }
+				});
+			}
+
+		}
+	);
+ 
+</script>
+
