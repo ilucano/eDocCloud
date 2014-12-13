@@ -104,7 +104,7 @@ function dropDownButton($row_id, $mark_id)
 	}
 	
  
-	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
+	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button split">'.$label.'<span data-dropdown="drop"></span></button><br>
 <ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
   '.$drop_down_list.'
  </ul>';
@@ -140,10 +140,7 @@ function dropDownButton($row_id, $mark_id)
 				 }
 				});
 			}
-	        
-			$(document).foundation('dropdown', 'close')
-			
-		
+
 		}
 	);
 	//
