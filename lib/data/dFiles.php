@@ -3,18 +3,17 @@ require_once '/var/www/html/config.php';
 
 require_once $arrIni['base'].'inc/general.php';
 require_once $arrIni['base'].'lib/db/db.php';
-require_once $arrIni['base'].'inc/users.class.php';
-require_once $arrIni['base'].'inc/filemarks.class.php';
+
 
 session_start();
 
 GetAllCharts($_GET['boxid'], $_GET['orderid']);
 
-$objFilemarks = new Filemarks;
+
 
 function GetAllCharts($boxid, $orderid) {
 	
-	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="20%">Chart</th><th width="35%">Marks</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
+	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="20%">Chart</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
 	$despues = '</tbody></table></tbody></table></td></tr>';
 	
 	$con = ConnectionFactory::getConnection();
@@ -43,7 +42,7 @@ function GetAllCharts($boxid, $orderid) {
 				}
 				
 				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"chart\" link-order=\"".$orderid."\" link-box=\"".$boxid."\" my-data-reveal-id=\"".$row['row_id']."\">".$screen."</a></td><td>";
-				echo dropDownButton($row['row_id'], $row['file_mark_id']);
+			
 				echo "</td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$row['status']."</td>";
 				echo "<td width=\"100\">".$row['qty'];
 				//."</td><td width=\"100\">";
@@ -64,32 +63,9 @@ function GetAllCharts($boxid, $orderid) {
 	ConnectionFactory::close();
 }
  
-function dropDownButton($row_id, $mark_id)
-{
-	$objFilemarks = new Filemarks;
-	
-	$label = $objFilemarks->getLabelById($mark_id);
-	
-	
-	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
-<ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a data-reveal-id="myModal">
-    Click Me For A Modal
-</a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
- </ul>';
 
-}
 
 require_once $arrIni['base'].'inc/activity_logs.class.php';
 
 $ActivityLogs = new Activity_Logs();
 $ActivityLogs->log();
-?>
-<div id="myModal" class="reveal-modal" data-reveal>
-   <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
