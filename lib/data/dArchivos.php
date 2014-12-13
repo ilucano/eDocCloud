@@ -107,28 +107,24 @@ function dropDownButton($row_id, $mark_id)
 	    alert(vFileId);
 		alert(vFilemarkId);
 		
-		if (vType=="order")
-		{
+	    if (vFileId.length > 0 && vFilemarkId.length > 0) {
+			
 			$.ajax({
 			   type: "GET",
-			   url: "lib/data/dBoxes.php",
-			   data: "ordid="+vId,
+			   url: "lib/data/dFiles.action.ajax.php",
+			   data: "action=update&id="+vFileId+"file_mark_id="+vFilemarkId,
 			   success: function(html){
 				if(html!="")
 				{
-					$("#contajax").html(html);
+					//$("#contajax").html(html);
 				}
 				else
 				{
-					$("#contajax").html('Error');
+					//$("#contajax").html('Error');
 				}
-			},
-			   beforeSend:function()
-			   {
-					$("#contajax").html('&nbsp;&nbsp;<img heigth="25" width="25" src="/images/loader.gif" />  Loading...');
-			   }
+			 }
 			});
-		}  
+	    }
 
 		
 	
