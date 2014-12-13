@@ -116,7 +116,7 @@ function dropDownButton($row_id, $mark_id)
 <script>
 	$(document).foundation();
 	
-	$( ".set-filemarker" ).click(
+	$( ".set-filemarker" ).unbind("click").bind("click",
 			function() {	
 				vFileId=$(this).attr('data-set-filemark-id');
 				vFilemarkId=$(this).attr('data-set-filemark-value');
