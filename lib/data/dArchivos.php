@@ -3,6 +3,8 @@ require_once '/var/www/html/config.php';
 
 require_once $arrIni['base'].'inc/general.php';
 require_once($arrIni['base'].'lib/db/db.php');
+
+require_once $arrIni['base'].'inc/checkACL.php';
 require_once $arrIni['base'].'inc/users.class.php';
 require_once $arrIni['base'].'inc/filemarks.class.php';
 session_start();
