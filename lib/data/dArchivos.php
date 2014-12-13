@@ -115,37 +115,71 @@ function dropDownButton($row_id, $mark_id)
 ?>
 <script>
 	$(document).foundation();
-	$(document).on("click", "a[class*='set-filemarker']", function() {
-		
-		
-		vFileId=$(this).attr('data-set-filemark-id');
-		vFilemarkId=$(this).attr('data-set-filemark-value');
-	 
-	 
-	    alert(vFileId);
-		alert(vFilemarkId);
-		
-	    if (vFileId.length > 0 && vFilemarkId.length > 0) {
-			
-			$.ajax({
-			   type: "GET",
-			   url: "lib/data/dFiles.action.ajax.php",
-			   data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
-			   success: function(html){
-				if(html != "")
-				{
-					$("#set-filemark-button"+vFileId).html(html);
-				}
-				else
-				{
-					alert('error');
-				}
-			 }
-			});
-	    }
-
-		
 	
-	} );
+	$( ".set-filemarker" ).click(
+			function() {	
+				vFileId=$(this).attr('data-set-filemark-id');
+				vFilemarkId=$(this).attr('data-set-filemark-value');
+			 
+			 
+				alert(vFileId);
+				alert(vFilemarkId);
+			
+			if (vFileId.length > 0 && vFilemarkId.length > 0) {
+				
+				$.ajax({
+				   type: "GET",
+				   url: "lib/data/dFiles.action.ajax.php",
+				   data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
+				   success: function(html){
+					if(html != "")
+					{
+						$("#set-filemark-button"+vFileId).html(html);
+					}
+					else
+					{
+						alert('error');
+					}
+				 }
+				});
+			}
+	
+			
+		
+		}
+	);
+	//
+	//$(document).on("click", "a[class*='set-filemarker']", function() {
+	//	
+	//	
+	//	vFileId=$(this).attr('data-set-filemark-id');
+	//	vFilemarkId=$(this).attr('data-set-filemark-value');
+	// 
+	// 
+	//    alert(vFileId);
+	//	alert(vFilemarkId);
+	//	
+	//    if (vFileId.length > 0 && vFilemarkId.length > 0) {
+	//		
+	//		$.ajax({
+	//		   type: "GET",
+	//		   url: "lib/data/dFiles.action.ajax.php",
+	//		   data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
+	//		   success: function(html){
+	//			if(html != "")
+	//			{
+	//				$("#set-filemark-button"+vFileId).html(html);
+	//			}
+	//			else
+	//			{
+	//				alert('error');
+	//			}
+	//		 }
+	//		});
+	//    }
+	//
+	//	
+	//
+	//} );
 </script>
 
