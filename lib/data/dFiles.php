@@ -15,8 +15,6 @@ require_once $arrIni['base'].'inc/filemarks.class.php';
 
 $objFilemarks = new Filemarks;
 
-print_r($objFilemarks);
-
 function GetAllCharts($boxid, $orderid) {
 	
 	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="20%">Chart</th><th width="35%">Marks</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
@@ -72,7 +70,7 @@ function GetAllCharts($boxid, $orderid) {
 function dropDownButton($row_id, $mark_id)
 {
 	global $objFilemarks;
-	
+	print_r($objFilemarks);
 	//$label = $objFilemarks->getLabelById($mark_id);
 	
 	
