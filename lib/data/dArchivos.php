@@ -132,13 +132,13 @@ function dropDownButton($row_id, $mark_id)
 			   url: "lib/data/dFiles.action.ajax.php",
 			   data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
 			   success: function(html){
-				if(html!="")
+				if(html != "")
 				{
-					//$("#contajax").html(html);
+					$("#set-filemark-button"+vFileId).html(html);
 				}
 				else
 				{
-					//$("#contajax").html('Error');
+					alert('error');
 				}
 			 }
 			});

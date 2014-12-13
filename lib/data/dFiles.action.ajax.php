@@ -33,8 +33,12 @@ switch ($action) {
 							':row_id'	=> $row_id,
 							':fk_empresa' => $companyCode);
 		
-		echo $query;
-		print_r($array_bind);
+		$stmt = $con->prepare($insert_query);
+						
+		$stmt->execute($bind_array);
+		
+		$objFilemarks = new Filemarks;
+		echo $objFilemarks->getLabelById($file_mark_id);
 		
 	break;
 	
