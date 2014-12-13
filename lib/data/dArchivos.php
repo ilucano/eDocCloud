@@ -69,27 +69,44 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 function dropDownButton($row_id, $mark_id)
 {
 	$objFilemarks = new Filemarks;
-	
+	$objUsers = new Users;
 	$label = $objFilemarks->getLabelById($mark_id);
 	
-	
-	$modalDiv = '
-<div id="myModal'.$row_id.'" class="tiny reveal-modal" data-reveal>
-   <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I am cool</p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>';
 
+	$filter = " AND global = :global";
+	
+	$array_bind[':global'] = '1'; //fk_empresa = global share
+	
+	$res = $objFilemarks->listFilemarks($filter, $array_bind);
+    
+	$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
+	
+	$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
+	
+	$company_array_bind[':global'] = '0';
+	
+	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
+    
+	$drop_down_list = '';
+	if (count($res) >= 1 || count($company_res) >= 1) {
+		
+		foreach ($res as $row) {
+
+			$drop_down_list .= '<li><a data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">"'.$row['label'].'</a></li>';
+			
+		}
+		
+		foreach ($company_res as $row) {
+			$drop_down_list .= '<li><a data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">"'.$row['label'].'</a></li>';
+		}
+ 
+	}
+	
+ 
 	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
 <ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a data-set-filemark-id="'.$row_id.'" data-set-filemark-value="4">
-    Click Me For A Modal
-</a></li>
-  <li><a data-set-filemark-id="'.$row_id.'" data-set-filemark-value="5">This is another</a></li>
-  <li><a data-set-filemark-id="'.$row_id.'" data-set-filemark-value="6">Yet another</a></li>
- </ul>' . $modalDiv;
- 
+  '.$drop_down_list.'
+ </ul>';
  
 
 }
@@ -112,7 +129,7 @@ function dropDownButton($row_id, $mark_id)
 			$.ajax({
 			   type: "GET",
 			   url: "lib/data/dFiles.action.ajax.php",
-			   data: "action=update&id="+vFileId+"file_mark_id="+vFilemarkId,
+			   data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
 			   success: function(html){
 				if(html!="")
 				{
