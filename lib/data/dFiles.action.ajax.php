@@ -38,8 +38,11 @@ switch ($action) {
 		$stmt->execute($array_bind);
 
 		$objFilemarks = new Filemarks;
-		echo $objFilemarks->getLabelById($file_mark_id);
 		
+		$label = $objFilemarks->getLabelById($file_mark_id);
+		
+		echo ($label != '') ? $label : '(No Mark)';
+
 	break;
 	
 	

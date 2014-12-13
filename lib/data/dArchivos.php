@@ -129,7 +129,9 @@ function dropDownButton($row_id, $mark_id)
 				foreach ($company_res as $row) {
 					$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
 				}
-		 
+		        
+				$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value=""> <i>Remove Mark</i></a></li>';
+				
 			}
 			$drop_down_list = '<ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">'.$drop_down_list.'</ul>';
 	
@@ -150,7 +152,7 @@ function dropDownButton($row_id, $mark_id)
 			
 			originalText = $("#set-filemark-button"+vFileId).html();
 			
-			if (vFileId.length > 0 && vFilemarkId.length > 0) {
+			if (vFileId.length > 0) {
 				$("#set-filemark-button"+vFileId).html("Updating...");
 				
 				$.ajax({
