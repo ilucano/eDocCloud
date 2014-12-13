@@ -13,16 +13,10 @@ GetAllFiles($_GET['chartid'], $_GET['boxid'], $_GET['orderid']);
 
 $objFilemarks = new Filemarks;
 
-$group_permission = GetUserPermission();
-
- 
-print_r($group_permission);
-	
 function GetAllFiles($chartid, $boxid, $orderid) {
 	
-	global $group_permission;
-	
-	print_r($group_permission);
+ 
+	$group_permission = GetUserPermission();
 	
 	$show_file_marker  = ($group_permission['use_file_marker']['view'] == 1 || $group_permission['use_file_marker']['change'] == 1) ? true : false;
 	
@@ -90,7 +84,7 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 function dropDownButton($row_id, $mark_id)
 {
 	
-	global $group_permission;
+	$group_permission = GetUserPermission();
 	
 	$objFilemarks = new Filemarks;
 	$objUsers = new Users;
