@@ -88,16 +88,17 @@ function dropDownButton($row_id, $mark_id)
 	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
     
 	$drop_down_list = '';
+	
 	if (count($res) >= 1 || count($company_res) >= 1) {
 		
 		foreach ($res as $row) {
 
-			$drop_down_list .= '<li><a data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">'.$row['label'].'</a></li>';
+			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">'.$row['label'].'</a></li>';
 			
 		}
 		
 		foreach ($company_res as $row) {
-			$drop_down_list .= '<li><a data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">'.$row['label'].'</a></li>';
+			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row['id'].'" data-set-filemark-value="'.$row_id.'">'.$row['label'].'</a></li>';
 		}
  
 	}
@@ -114,7 +115,7 @@ function dropDownButton($row_id, $mark_id)
 ?>
 <script>
 	$(document).foundation();
-	$(document).on("click", "a[data-set-filemark-id]", function() {
+	$(document).on("click", "a[[class*='set-filemarker']", function() {
 		
 		
 		vFileId=$(this).attr('data-set-filemark-id');
