@@ -81,13 +81,13 @@ function dropDownButton($row_id, $mark_id)
   <a class="close-reveal-modal">&#215;</a>
 </div>';
 
-	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
+	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
 <ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a data-reveal-id="myModal'.$row_id.'">
+  <li><a data-set-filemark-id="'.$row_id.'" data-set-filemark-value="4">
     Click Me For A Modal
 </a></li>
-  <li><a href="#">This is another</a></li>
-  <li><a href="#">Yet another</a></li>
+  <li><a data-set-filemark-id="'.$row_id.'" data-set-filemark-value="5">This is another</a></li>
+  <li><a data-set-filemark-id="'.$row_id.'" data-set-filemark-value="6">Yet another</a></li>
  </ul>' . $modalDiv;
  
  
@@ -95,3 +95,43 @@ function dropDownButton($row_id, $mark_id)
 }
 
 ?>
+<script>
+	$(document).foundation();
+	$(document).on("click", "a[data-set-filemark-id]", function() {
+		
+		
+		vFileId=$(this).attr('data-set-filemark-id');
+		vFilemarkId=$(this).attr('data-set-filemark-value');
+	 
+	 
+	    alert(vFileId);
+		alert(vFilemarkId);
+		
+		if (vType=="order")
+		{
+			$.ajax({
+			   type: "GET",
+			   url: "lib/data/dBoxes.php",
+			   data: "ordid="+vId,
+			   success: function(html){
+				if(html!="")
+				{
+					$("#contajax").html(html);
+				}
+				else
+				{
+					$("#contajax").html('Error');
+				}
+			},
+			   beforeSend:function()
+			   {
+					$("#contajax").html('&nbsp;&nbsp;<img heigth="25" width="25" src="/images/loader.gif" />  Loading...');
+			   }
+			});
+		}  
+
+		
+	
+	} );
+</script>
+
