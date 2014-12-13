@@ -73,22 +73,25 @@ function dropDownButton($row_id, $mark_id)
 	$label = $objFilemarks->getLabelById($mark_id);
 	
 	
+	$modalDiv = '
+<div id="myModal'.$row_id.'" class="reveal-modal" data-reveal>
+   <h2>Awesome. I have it.</h2>
+  <p class="lead">Your couch.  It is mine.</p>
+  <p>I am cool</p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>';
+
 	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
 <ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a data-reveal-id="myModal">
+  <li><a data-reveal-id="myModal'.$row_id.'">
     Click Me For A Modal
 </a></li>
   <li><a href="#">This is another</a></li>
   <li><a href="#">Yet another</a></li>
- </ul>';
+ </ul>' . $modalDiv;
+ 
+ 
 
 }
 
 ?>
-
-<div id="myModal" class="reveal-modal" data-reveal>
-   <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
