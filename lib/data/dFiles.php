@@ -10,7 +10,7 @@ GetAllCharts($_GET['boxid'], $_GET['orderid']);
 
 function GetAllCharts($boxid, $orderid) {
 	
-	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="35%">Chart</th><th width="20%">Marks</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
+	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="20%">Chart</th><th width="35%">Marks</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
 	$despues = '</tbody></table></tbody></table></td></tr>';
 	
 	$con = ConnectionFactory::getConnection();
@@ -39,7 +39,7 @@ function GetAllCharts($boxid, $orderid) {
 				}
 				
 				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"chart\" link-order=\"".$orderid."\" link-box=\"".$boxid."\" my-data-reveal-id=\"".$row['row_id']."\">".$screen."</a></td><td>";
-				echo dropDownButton();
+				echo dropDownButton($row['row_id']);
 				echo "</td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$row['status']."</td>";
 				echo "<td width=\"100\">".$row['qty'];
 				//."</td><td width=\"100\">";
@@ -60,11 +60,11 @@ function GetAllCharts($boxid, $orderid) {
 	ConnectionFactory::close();
 }
  
-function dropDownButton()
+function dropDownButton($row_id)
 {
 	
-	return '<button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="tiny button dropdown">Dropdown Button</button><br>
-<ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">Confidential Level 1</button><br>
+<ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
   <li><a href="/?=test" data-reveal-id="myModal" data-reveal-ajax="true">
     Click Me For A Modal
 </a></li>
