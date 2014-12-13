@@ -167,7 +167,7 @@ function dropDownButton($row_id, $mark_id)
 	}
 	
 	$drop_down_list = '';
-	$disabled_class = "disabled ";
+	$disabled_class = "disabled secondary ";
 	
     if( $group_permission['use_file_marker']['change'] == 1 ) {
 		
