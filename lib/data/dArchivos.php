@@ -15,11 +15,19 @@ $objFilemarks = new Filemarks;
 
 $group_permission = GetUserPermission();
 
-print_r($group_permission);
+ 
 
 function GetAllFiles($chartid, $boxid, $orderid) {
 	
-	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > <a href="#" link-type="box" link-order="'.$orderid.'" link-box="'.$boxid.'" my-data-reveal-id="'.$boxid.'">Box '.GetName($boxid).'</a> > Your Files in Chart '.GetName($chartid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="20%">Filename</th><th width="30%">Marks</th><th width="20%">Creation</th><th width="10%">Changed</th><th width="10%">Pages</th><th width="10%">Size</th></tr></thead><tbody>';
+	global $group_permission;
+	
+	$show_file_marker  = ($group_permission['use_file_marker']['view'] == 1 || $group_permission['use_file_marker']['change'] == 1) ? true : false;
+	
+	if($show_file_marker == true) {
+		$marker_header = '<th width="30%">Marks</th>';
+	}
+	
+	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > <a href="#" link-type="box" link-order="'.$orderid.'" link-box="'.$boxid.'" my-data-reveal-id="'.$boxid.'">Box '.GetName($boxid).'</a> > Your Files in Chart '.GetName($chartid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="20%">Filename</th>'.$marker_header.'<th width="20%">Creation</th><th width="10%">Changed</th><th width="10%">Pages</th><th width="10%">Size</th></tr></thead><tbody>';
 	
 	$despues = '</tbody></table></tbody></table></td></tr>';
 	
@@ -51,9 +59,13 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 				
 					
 				echo "<tr><td><a href=\"lib/data/file.download.php?fileid=".$row['row_id']."\" target=\"_blank\">".$row['filename']."</a></td>";
-				echo "<td>";
-				echo dropDownButton($row['row_id'], $row['file_mark_id']);
-				echo "</td>";
+				if($show_file_marker == true) {
+					
+					echo "<td>";
+					echo dropDownButton($row['row_id'], $row['file_mark_id']);
+					echo "</td>";
+				}
+				
 				echo "<td>".$row['creadate']."</td><td>".$row['moddate']."</td>";
 				echo "<td width=\"100\">".$row['pages']."</td><td width=\"100\">";
 				$mbytes = number_format($row['filesize'] / 1024 / 1024,2);
@@ -74,6 +86,9 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 
 function dropDownButton($row_id, $mark_id)
 {
+	
+	global $group_permission;
+	
 	$objFilemarks = new Filemarks;
 	$objUsers = new Users;
 	$label = $objFilemarks->getLabelById($mark_id);
@@ -82,39 +97,47 @@ function dropDownButton($row_id, $mark_id)
 	{
 		$label = "(No Mark)";
 	}
-
-	$filter = " AND global = :global";
 	
-	$array_bind[':global'] = '1'; //fk_empresa = global share
-	
-	$res = $objFilemarks->listFilemarks($filter, $array_bind);
-    
-	$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
-	
-	$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
-	
-	$company_array_bind[':global'] = '0';
-	
-	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
-    
 	$drop_down_list = '';
+	$disabled_class = "disabled ";
 	
-	if (count($res) >= 1 || count($company_res) >= 1) {
+    if( $group_permission['use_file_marker']['change'] == 1 ) {
 		
-		foreach ($res as $row) {
-
-			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
+			$disabled_class = '';
 			
-		}
+			$filter = " AND global = :global";
+			
+			$array_bind[':global'] = '1'; //fk_empresa = global share
+			
+			$res = $objFilemarks->listFilemarks($filter, $array_bind);
+			
+			$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
+			
+			$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
+			
+			$company_array_bind[':global'] = '0';
+			
+			$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
+			
+		    
+			
+			if (count($res) >= 1 || count($company_res) >= 1) {
+				
+				foreach ($res as $row) {
 		
-		foreach ($company_res as $row) {
-			$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
-		}
- 
-	}
+					$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
+					
+				}
+				
+				foreach ($company_res as $row) {
+					$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
+				}
+		 
+			}
 	
- 
-	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
+	}
+
+	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="'.$disabled_class.'tiny button dropdown">'.$label.'</button><br>
 <ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
   '.$drop_down_list.'
  </ul>';
