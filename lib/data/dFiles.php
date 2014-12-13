@@ -65,7 +65,7 @@ function dropDownButton($row_id)
 	
 	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">Confidential Level 1</button><br>
 <ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-  <li><a href="/?=test" data-reveal-id="myModal" data-reveal-ajax="true">
+  <li><a data-reveal-id="myModal">
     Click Me For A Modal
 </a></li>
   <li><a href="#">This is another</a></li>
