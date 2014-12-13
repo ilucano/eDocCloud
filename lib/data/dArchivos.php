@@ -74,7 +74,7 @@ function dropDownButton($row_id, $mark_id)
 	
 	
 	$modalDiv = '
-<div id="myModal'.$row_id.'" class="reveal-modal" data-reveal>
+<div id="myModal'.$row_id.'" class="tiny reveal-modal" data-reveal>
    <h2>Awesome. I have it.</h2>
   <p class="lead">Your couch.  It is mine.</p>
   <p>I am cool</p>
