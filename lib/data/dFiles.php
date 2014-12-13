@@ -15,6 +15,7 @@ require_once $arrIni['base'].'inc/filemarks.class.php';
 
 $objFilemarks = new Filemarks;
 
+print_r($objFilemarks);
 
 function GetAllCharts($boxid, $orderid) {
 	
@@ -72,7 +73,7 @@ function dropDownButton($row_id, $mark_id)
 {
 	global $objFilemarks;
 	
-	$label = $objFilemarks->getLabelById($mark_id);
+	//$label = $objFilemarks->getLabelById($mark_id);
 	
 	
 	return '<button href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="tiny button dropdown">'.$label.'</button><br>
