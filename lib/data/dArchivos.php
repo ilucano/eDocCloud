@@ -131,7 +131,7 @@ function dropDownButton($row_id, $mark_id)
 					if(html != "")
 					{
 						$("#set-filemark-button"+vFileId).html(html);
-						$("ul.f-dropdown").removeClass("open");
+						$("ul.f-dropdown").removeClass("open").hide();
 					}
 					else
 					{
