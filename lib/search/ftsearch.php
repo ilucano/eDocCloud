@@ -68,13 +68,13 @@ if ($txtSearch=="") {
 	
 	if ($total_pages>$limit || $pagAct > 0) {
 		if ($pagAct==0) {
-			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto," . $mainMatchQuery. " ORDER BY Score2 Desc, Score1 desc LIMIT ".($pagAct * $limit).",".($limit).";";
+			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, file_mark_id, " . $mainMatchQuery. " ORDER BY Score2 Desc, Score1 desc LIMIT ".($pagAct * $limit).",".($limit).";";
 		} else {
-			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, " . $mainMatchQuery ." ORDER BY Score2 Desc, Score1 desc LIMIT ".(($pagAct) * $limit).",".($limit).";";
+			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, file_mark_id, " . $mainMatchQuery ." ORDER BY Score2 Desc, Score1 desc LIMIT ".(($pagAct) * $limit).",".($limit).";";
 		}
 		
 	} else {
-		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, " . $mainMatchQuery ." ORDER BY Score2 Desc, Score1 desc;";
+		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, file_mark_id, " . $mainMatchQuery ." ORDER BY Score2 Desc, Score1 desc;";
 	}
 	
 	//echo $qryFT;
