@@ -21,6 +21,8 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 	
 	global $group_permission;
 	
+	print_r($group_permission);
+	
 	$show_file_marker  = ($group_permission['use_file_marker']['view'] == 1 || $group_permission['use_file_marker']['change'] == 1) ? true : false;
 	
 	if($show_file_marker == true) {
