@@ -124,7 +124,7 @@ function dropDownButton($row_id, $mark_id)
 			originalText = $("#set-filemark-button"+vFileId).html();
 			
 			if (vFileId.length > 0 && vFilemarkId.length > 0) {
-				$("#set-filemark-button"+vFileId).html("updating...");
+				$("#set-filemark-button"+vFileId).html("Updating...");
 				
 				$.ajax({
 				   type: "GET",
