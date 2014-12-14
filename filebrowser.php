@@ -77,8 +77,8 @@ require $arrIni['base'].'inc/topbar.php';
 		  $(document).ready(function () {
 			 $.ajax({
 				  type: "GET",
-				  url: "lib/search/ftsearch.php",
-				  data: "texto=daniel",
+				  url: "lib/filebrowser/browser.php",
+				  data: "action=listyear",
 				  success: function(html){
 				   if(html!="")
 				   {
