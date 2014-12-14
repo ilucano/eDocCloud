@@ -47,6 +47,7 @@ switch ($action)
 					<li class="current">%company_name%</li>
 				  </ul>';
 				
+		$html .= '<h3 class="subheader">Year</h3>';
 		
 		$html .= '<hr><ul class="inline-list">
 					%list_result%
