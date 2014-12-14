@@ -47,11 +47,11 @@ switch ($action)
 					<li class="current">%company_name%</li>
 				  </ul>';
 				
-		$html .= '<h4 class="subheader">List by Year</h4>';
+		$html .= '<h4>List by Year</h3>';
 		
 		$html .= '<ul class="inline-list">
 					%list_result%
-				  </ul><hr>';
+				  </ul>';
 				  
 		
 		$html = str_replace(array('%company_name%', '%list_result%'),
