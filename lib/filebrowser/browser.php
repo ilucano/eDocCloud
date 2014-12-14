@@ -39,7 +39,7 @@ switch ($action)
 			}
 			$file_count = $list['num'];
 			
-			$list_result .= '<li><a href="#"'. $file_year .' ('.$file_count.')</a></li>';
+			$list_result .= '<li><a href="#">'. $file_year .' ('.$file_count.')</a></li>';
 			
 		}
 		
@@ -48,9 +48,9 @@ switch ($action)
 				  </ul>';
 				
 		
-		$html .= '<ul class="inline-list">
+		$html .= '<hr><ul class="inline-list">
 					%list_result%
-				  </ul>';
+				  </ul><hr>';
 				  
 		
 		$html = str_replace(array('%company_name%', '%list_result%'),
