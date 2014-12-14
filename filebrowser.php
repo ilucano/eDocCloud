@@ -78,7 +78,7 @@ require $arrIni['base'].'inc/topbar.php';
 			 $.ajax({
 				  type: "GET",
 				  url: "lib/search/ftsearch.php",
-				  data: "texto=daniel&pagAct="+vPag,
+				  data: "texto=daniel",
 				  success: function(html){
 				   if(html!="")
 				   {
