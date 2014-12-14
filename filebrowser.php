@@ -45,12 +45,15 @@ require $arrIni['base'].'inc/topbar.php';
 </div>
 
 <div class="row">
-  <ul class="breadcrumbs">
-	<li><a href="#">Home</a></li>
-	<li><a href="#">Features</a></li>
-	<li class="unavailable"><a href="#">Gene Splicing</a></li>
-	<li class="current"><a href="#">Cloning</a></li>
-  </ul>
+  <div class="large-12 columns">
+	  
+	<ul class="breadcrumbs">
+	  <li><a href="#">Home</a></li>
+	  <li><a href="#">Features</a></li>
+	  <li class="unavailable"><a href="#">Gene Splicing</a></li>
+	  <li class="current"><a href="#">Cloning</a></li>
+	</ul>
+  </div>
 </div>
 <div class="row">
  
