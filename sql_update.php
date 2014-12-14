@@ -28,3 +28,11 @@ CREATE TABLE `file_marks` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `fk_e
 ALTER TABLE `files`
 ADD `file_mark_id` mediumint unsigned NULL,
 COMMENT='';
+
+
+ALTER TABLE `files`
+ADD `file_year` tinyint(4) unsigned NULL,
+COMMENT='';
+
+ALTER TABLE `files`
+ADD INDEX `file_year_fk_empresa` (`file_year`, `fk_empresa`);
