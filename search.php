@@ -40,7 +40,7 @@ require $arrIni['base'].'inc/topbar.php';
 <p>
 <div class="row">
 	<div class="large-12 columns">
-    </h2>Search for files</h2><p>
+    <h2>Search for files</h2><p>
     </div>
 </div>
 <div class="row">

@@ -43,9 +43,17 @@ require $arrIni['base'].'inc/topbar.php';
     <h3>File Browser</h2><p>
     </div>
 </div>
+
 <div class="row">
-<div class="large-1 columns">
+  <ul class="breadcrumbs">
+	<li><a href="#">Home</a></li>
+	<li><a href="#">Features</a></li>
+	<li class="unavailable"><a href="#">Gene Splicing</a></li>
+	<li class="current"><a href="#">Cloning</a></li>
+  </ul>
 </div>
+<div class="row">
+ 
 <div class="large-10 columns">
 
 <!-- BEGIN OF TAB -->
