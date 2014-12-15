@@ -111,7 +111,7 @@ require $arrIni['base'].'inc/topbar.php';
 			 $.ajax({
 				  type: "GET",
 				  url: "lib/filebrowser/browser.php",
-				  data: "action=listfile&alphabet="+vYear,
+				  data: "action=listalphabet&year="+vYear,
 				  success: function(html){
 				   if(html!="")
 				   {
