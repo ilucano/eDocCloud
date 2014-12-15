@@ -160,6 +160,41 @@ class Files {
         
     }
     
+    
+    public function listCountByAlphabet($company = null, $year)
+    {
+        $array_bind = array();
+        
+        if($company) {
+            $filter .= " AND fk_empresa = :fk_empresa";
+            $array_bind[':fk_empresa'] = $company;
+        }
+        
+        if($year == '') {
+            $filter .= " AND (file_year = :file_year OR file_year is NULL)";
+        }
+        else {
+            $filter .= " AND file_year = :file_year";
+        }
+        
+        $array_bind[':file_year'] = $year;
+        
+ 
+        $query = "SELECT SUBSTR(`filename`,1,1) AS alpha, COUNT(`filename`) as num
+                    FROM files  WHERE 1 $filter
+                 GROUP BY SUBSTR(`filename`,1,1) ORDER SUBSTR(`filename`,1,1) ";
+                   
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+       
+        while ($r = $stmt->fetch()) {
+            $row[] = $r;
+        }
+    
+        return $row;
+        
+    }
+    
     public function listFilemarks($filter = null, $array_bind = null, $order = null, $limit = null)
     {
         

@@ -49,7 +49,11 @@ require $arrIni['base'].'inc/topbar.php';
 
   </div>
 </div>
+<div class="row">
+  <div class="large-12 columns" id="result-year">
 
+  </div>
+</div>
 
 
 
@@ -90,8 +94,37 @@ require $arrIni['base'].'inc/topbar.php';
 			   })
 			
 			
-		  }
-		);
+		   }
+		  );
+		
+		
+		
+		$(document).on("click", "a[data-list-year]", function() {
+    		
+			
+			vYear=$(this).attr('data-list-year');
+			 
+			 $.ajax({
+				  type: "GET",
+				  url: "lib/filebrowser/browser.php",
+				  data: "action=listalphabet&year="+vYear,
+				  success: function(html){
+				   if(html!="")
+				   {
+					   $("#result-year").html(html);
+				   }
+				   else
+				   {
+					   $("#result-year").html('Error');
+				   }
+			   },
+				  beforeSend:function()
+				  {
+					   $("#result-year").html('&nbsp;&nbsp;<img heigth="25" width="25" src="/images/loader.gif" />  Loading...');
+				  }
+			   })
+    	
+  		} );
 		
   	</script>
 

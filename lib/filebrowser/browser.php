@@ -17,19 +17,20 @@ $objCompanies = new Companies;
 session_start();
 
 $action = $_GET['action'];
+$year = $_GET['year'];
 
+$companyCode = $objUsers->userCompany();
+$company_res = $objCompanies->getCompany($companyCode);
+$company_name = $company_res['company_name'];
+		
+		
+		
 
 switch ($action)
 {
 	case "listyear":
 		
-		$companyCode = $objUsers->userCompany();
-		
 		$row = $objFiles->listCountByYears($companyCode);
-		
-		$company_res = $objCompanies->getCompany($companyCode);
-		$company_name = $company_res['company_name'];
-		
 		
 		$list_result = '';
 		foreach($row as $list)
@@ -39,7 +40,7 @@ switch ($action)
 			}
 			$file_count = $list['num'];
 			
-			$list_result .= '<li><a href="#">'. $file_year .' ('.$file_count.')</a></li>';
+			$list_result .= '<li><a data-list-year='.$file_year.' href="#">'. $file_year .' ('.$file_count.')</a></li>';
 			
 		}
 		
@@ -65,6 +66,38 @@ switch ($action)
 	
 	break;
 	
+
+	case "listalphabet":
+		
+		$row = $objFiles->listCountByAlphabet($companyCode, $year);
+	    
+		
+		$list_result = '';
+		foreach($row as $list)
+		{
+			$alphabet = $list['alpha'];
+			$file_count = $list['num'];
+			
+			$list_result .= '<li><a data-list-file='.$alphabet.' href="#">'. $alphabet .' ('.$file_count.')</a></li>';
+			
+		}
+		 
+		$html = '<h4>List by Alphabet</h3>';
+		
+		$html .= '<ul class="inline-list">
+					%list_result%
+				  </ul>';
+				  
+		
+		$html = str_replace(array('%list_result%'),
+							array($list_result),
+							$html);
+									
+		
+		echo $html;
+		
+		
+	break;
 	
 	
 }
