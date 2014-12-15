@@ -180,9 +180,9 @@ class Files {
         $array_bind[':file_year'] = $year;
         
         
-        $query = "SELECT SUBSTR(`filename`,1,1) AS alpha, COUNT(`filename`) as num
+        $query = "SELECT UPPER(SUBSTR(`filename`,1,1)) AS alpha, COUNT(`filename`) as num
                     FROM files  WHERE 1 $filter
-                 GROUP BY SUBSTR(`filename`,1,1) ORDER BY SUBSTR(`filename`,1,1) ";
+                 GROUP BY UPPER(SUBSTR(`filename`,1,1)) ORDER BY UPPER(SUBSTR(`filename`,1,1)) ";
         
  
         $stmt = $this->pdocon->prepare($query);
