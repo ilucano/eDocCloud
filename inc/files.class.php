@@ -182,11 +182,9 @@ class Files {
         
         $query = "SELECT SUBSTR(`filename`,1,1) AS alpha, COUNT(`filename`) as num
                     FROM files  WHERE 1 $filter
-                 GROUP BY SUBSTR(`filename`,1,1) ORDER SUBSTR(`filename`,1,1) ";
+                 GROUP BY SUBSTR(`filename`,1,1) ORDER BY SUBSTR(`filename`,1,1) ";
         
-        echo $query;
-        print_r($array_bind);
-        
+ 
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
        
