@@ -36,11 +36,14 @@ switch ($action)
 		foreach($row as $list)
 		{
 			if($list['file_year'] == null || $list['file_year'] == '') {
-				$file_year = 'Unknown';
+				$file_year_label = 'Unknown';
+			}
+			else {
+				$file_year_label = $list['file_year'];
 			}
 			$file_count = $list['num'];
 			
-			$list_result .= '<li><a data-list-year='.$file_year.' href="#">'. $file_year .' ('.$file_count.')</a></li>';
+			$list_result .= '<li><a data-list-year='.$file_year.' href="#">'. $file_year_label .' ('.$file_count.')</a></li>';
 			
 		}
 		
