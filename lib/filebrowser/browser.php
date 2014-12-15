@@ -43,7 +43,7 @@ switch ($action)
 			}
 			$file_count = $list['num'];
 			
-			$list_result .= '<li><a data-list-year='.$file_year.' href="#">'. $file_year_label .' ('.$file_count.')</a></li>';
+			$list_result .= '<li><a data-list-year="'.$file_year.'" href="#">'. $file_year_label .' ('.$file_count.')</a></li>';
 			
 		}
 		
