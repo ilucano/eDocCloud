@@ -43,9 +43,11 @@ switch ($action)
 			
 		}
 		
-		$html = '<ul class="breadcrumbs">
-					<li class="current">%company_name%</li>
-				  </ul>';
+		$html = '<div style="width: 50%">
+					<ul class="breadcrumbs">
+						<li class="current">%company_name%</li>
+					</ul>
+				</div>';
 				
 		$html .= '<h4>List by Year</h3>';
 		

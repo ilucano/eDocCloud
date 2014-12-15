@@ -29,7 +29,8 @@ $objUsers = new Users;
         <ul class="dropdown">
           <li<?php if ($page=="main") { echo ' class="active"'; } ?>><a href="main.php">Home</a></li>
           <li<?php if ($page=="orders") { echo ' class="active"'; } ?>><a href="orders.php">Orders</a></li>
-          <li<?php if ($page=="search") { echo ' class="active"'; } ?>><a href="search.php">Search</a></li> 
+          <li<?php if ($page=="search") { echo ' class="active"'; } ?>><a href="search.php">Search</a></li>
+		  <li<?php if ($page=="filebrowser") { echo ' class="active"'; } ?>><a href="filebrowser.php">File Browser</a></li> 
           <li<?php if ($page=="chgpwd") { echo ' class="active"'; } ?>><a href="chgpwd.php">Change Password</a></li> 
           <?php
 		  

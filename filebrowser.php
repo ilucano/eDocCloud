@@ -31,7 +31,7 @@ require_once $arrIni['base'].'inc/general.php';
 <body>
 <?php
 
-$page = 'search';
+$page = 'filebrowser';
 require $arrIni['base'].'inc/topbar.php';
 
 ?>
