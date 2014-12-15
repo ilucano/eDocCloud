@@ -82,7 +82,7 @@ switch ($action)
 			$alphabet = $list['alpha'];
 			$file_count = $list['num'];
 			
-			$list_result .= '<li><a data-list-file='.$alphabet.' data-list-year='.$year.' href="#">'. $alphabet .' ('.$file_count.')</a></li>';
+			$list_result .= '<li><a data-list-file="'.$alphabet.'" data-list-alpha-year="'.$year.'" href="#">'. $alphabet .' ('.$file_count.')</a></li>';
 			
 		}
 		 

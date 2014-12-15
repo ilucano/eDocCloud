@@ -134,7 +134,7 @@ require $arrIni['base'].'inc/topbar.php';
 		$(document).on("click", "a[data-list-file]", function() {
     		
 			
-			vYear=$(this).attr('data-list-year');
+			vYear=$(this).attr('data-list-alpha-year');
 			 vAlpha=$(this).attr('data-list-file');
 			 $.ajax({
 				  type: "GET",
