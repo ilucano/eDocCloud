@@ -196,6 +196,47 @@ class Files {
         
     }
     
+    
+    public function listFileByAlphabet($company, $year, $alphabet)
+    {
+        $array_bind = array();
+        
+        if($company) {
+            $filter .= " AND fk_empresa = :fk_empresa";
+            $array_bind[':fk_empresa'] = $company;
+        }
+        
+        if($year == '') {
+            $filter .= " AND (file_year = :file_year OR file_year is NULL)";
+        }
+        else {
+            $filter .= " AND file_year = :file_year";
+        }
+        
+        $array_bind[':file_year'] = $year;
+        
+        if($alphabet) {
+            $filter .= " AND UPPER(SUBSTR(`filename`,1,1)) = :alphabet";
+            $array_bind[':alphabet'] = $alphabet;
+        }
+        
+        
+        $query = "SELECT * FROM files WHERE 1 $filter
+                   ORDER BY `filename`";
+        
+ 
+        $stmt = $this->pdocon->prepare($query);
+        $stmt->execute($array_bind);
+       
+        while ($r = $stmt->fetch()) {
+            $row[] = $r;
+        }
+    
+        return $row;
+    
+        
+    }
+    
     public function listFilemarks($filter = null, $array_bind = null, $order = null, $limit = null)
     {
         

@@ -18,6 +18,7 @@ session_start();
 
 $action = $_GET['action'];
 $year = $_GET['year'];
+$alphabet = $_GET['alphabet'];
 
 $companyCode = $objUsers->userCompany();
 $company_res = $objCompanies->getCompany($companyCode);
@@ -81,7 +82,7 @@ switch ($action)
 			$alphabet = $list['alpha'];
 			$file_count = $list['num'];
 			
-			$list_result .= '<li><a data-list-file='.$alphabet.' href="#">'. $alphabet .' ('.$file_count.')</a></li>';
+			$list_result .= '<li><a data-list-file='.$alphabet.' data-list-year='.$year.' href="#">'. $alphabet .' ('.$file_count.')</a></li>';
 			
 		}
 		 
@@ -101,6 +102,40 @@ switch ($action)
 		
 		
 	break;
+
+	
+
+	case "listfile":
+		
+		$row = $objFiles->listFileByAlphabet($companyCode, $year, $alphabet);
+	    
+		
+		$list_result = '';
+		foreach($row as $list)
+		{
+			$filename = $list['filename'];
+			 
+			$list_result .= '<li><a href="#">'. $filename .'</a></li>';
+			
+		}
+		 
+		$html = '<h4>List of files</h3>';
+		
+		$html .= '<ul class="inline-list">
+					%list_result%
+				  </ul>';
+				  
+		
+		$html = str_replace(array('%list_result%'),
+							array($list_result),
+							$html);
+									
+		
+		echo $html;
+		
+		
+	break;
+
 	
 	
 }
