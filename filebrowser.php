@@ -139,7 +139,7 @@ require $arrIni['base'].'inc/topbar.php';
 			 $.ajax({
 				  type: "GET",
 				  url: "lib/filebrowser/browser.php",
-				  data: "action=listalphabet&year="+vYear+"&alphabet="+vAlpha,
+				  data: "action=listfile&year="+vYear+"&alphabet="+vAlpha,
 				  success: function(html){
 				   if(html!="")
 				   {
