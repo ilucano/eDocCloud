@@ -57,7 +57,7 @@ require $arrIni['base'].'inc/topbar.php';
 </div>
 
 <div class="row">
-  <div class="large-8 columns" id="result-alphabet">
+  <div class="large-10 columns" id="result-alphabet">
 
   </div>
 </div>
