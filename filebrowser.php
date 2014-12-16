@@ -18,6 +18,7 @@ require_once $arrIni['base'].'inc/general.php';
     <link rel="stylesheet" href="<?php echo $arrIni['foundationurl']; ?>css/foundation.css" />
     <link href="<?php echo $arrIni['foundationurl']; ?>css/docs.css" rel="stylesheet" />
     <link href="<?php echo $arrIni['foundationurl']; ?>css/foundation-icon.css" rel="stylesheet" />
+	<link href="<?php echo $arrIni['foundationurl']; ?>css/jquery.dataTables.css" rel="stylesheet" />
     <script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/modernizr.js"></script>
 	<script language="JavaScript">
 	<!-- hide from none JavaScript Browsers
@@ -64,6 +65,7 @@ require $arrIni['base'].'inc/topbar.php';
 <!-- END OF CONTENT OF THE PAGE -->
 
 	<script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/jquery.js"></script>
+	<script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/jquery.dataTables.min.js"></script>
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.js"></script>
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.topbar.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.tab.js"></script>

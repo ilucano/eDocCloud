@@ -111,6 +111,7 @@ switch ($action)
 	    
 		
 		$list_result = '';
+		
 		foreach($row as $list)
 		{
 			$filename = $list['filename'];
