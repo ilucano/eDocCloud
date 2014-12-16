@@ -146,6 +146,7 @@ require $arrIni['base'].'inc/topbar.php';
 				   if(html!="")
 				   {
 					   $("#result-alphabet").html(html);
+					    $('#list-file-table').DataTable();
 				   }
 				   else
 				   {

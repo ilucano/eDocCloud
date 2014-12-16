@@ -168,7 +168,7 @@ switch ($action)
 		}
 		
 		$html = '<h4>List of files</h3>';
-		$html .= '<table id="list-file-table" class="display" cellspacing="0" width="100%">';
+		$html .= '<table id="list-file-table" class="display" cellspacing="0" width="70%">';
 		
 		$html .= '<thead>
 					<tr>
