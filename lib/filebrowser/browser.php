@@ -405,68 +405,6 @@ if ($txtSearch=="") {
 	echo $despues;
 }
 
-
-
-function dropDownButton($row_id, $mark_id)
-{
-	
-	$group_permission = GetUserPermission();
-	
-	$objFilemarks = new Filemarks;
-	$objUsers = new Users;
-	$label = $objFilemarks->getLabelById($mark_id);
-	
-	if($label == '')
-	{
-		$label = "(No Mark)";
-	}
-	
-	$drop_down_list = '';
-	$disabled_class = "disabled secondary ";
-	
-    if( $group_permission['use_file_marker']['change'] == 1 ) {
-		
-			$disabled_class = '';
-			
-			$filter = " AND global = :global";
-			
-			$array_bind[':global'] = '1'; //fk_empresa = global share
-			
-			$res = $objFilemarks->listFilemarks($filter, $array_bind);
-			
-			$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
-			
-			$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
-			
-			$company_array_bind[':global'] = '0';
-			
-			$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
-			
-		    
-			
-			if (count($res) >= 1 || count($company_res) >= 1) {
-				
-				foreach ($res as $row) {
-		
-					$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
-					
-				}
-				
-				foreach ($company_res as $row) {
-					$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value="'.$row['id'].'">'.$row['label'].'</a></li>';
-				}
-
-				$drop_down_list .= '<li><a class="set-filemarker" data-set-filemark-id="'.$row_id.'" data-set-filemark-value=""> <i>Remove Mark</i></a></li>';
-	
-			}
-			$drop_down_list = '<ul id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">'.$drop_down_list.'</ul>';
-	
-	}
-
-	return '<button id="set-filemark-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="'.$disabled_class.'tiny button dropdown">'.$label.'</button><br>' .$drop_down_list;
-
-}
-
 ConnectionFactory::close();
 
 
