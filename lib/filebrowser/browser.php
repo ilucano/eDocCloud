@@ -129,6 +129,7 @@ switch ($action)
 
 			
 			$tr = '<tr>
+			    <td><input type="checkbox" id="checkbox_%id%" class="case" name="case" value="%id%"/></td>
                 <td>%filename%</td>';
 				
 			if($show_file_marker == true) {
@@ -150,13 +151,15 @@ switch ($action)
 				$bytes = number_format($row['filesize'] / 1024 / 1024,2).' Mb';
 			}
 			
-			$list_result .= str_replace(array('%filename%',
+			$list_result .= str_replace(array('%id%',
+									'%filename%',
 									'%marker%',
 									'%creation_date%',
 									'%modification_date%',
 									'%pages%',
 									'%size%'),
-							  array($str_filename,
+							  array($row['row_id'],
+									$str_filename,
 									$str_marker,
 									date("m/d/Y G:i:s",strtotime($row['creadate'])),
 									date("m/d/Y G:i:s",strtotime($row['moddate'])),
@@ -172,6 +175,7 @@ switch ($action)
 		
 		$html .= '<thead>
 					<tr>
+						<th><input type="checkbox" id="selectall"/></th>
 						<th>Filename</th>' . $marker_header . '
 						<th>Creation Date</th>
 						<th>Modifcation Date</th>

@@ -145,43 +145,65 @@ require $arrIni['base'].'inc/topbar.php';
 				  success: function(html){
 				   if(html!="")
 				   {
-					   $("#result-alphabet").html(html);
-					    $('#list-file-table').DataTable();
- 
-						  $(document).foundation();
-						  
-						  $( ".set-filemarker" ).unbind("click").bind("click",
-								  function() {	
-									  vFileId=$(this).attr('data-set-filemark-id');
-									  vFilemarkId=$(this).attr('data-set-filemark-value');
-								  
-								  originalText = $("#set-filemark-button"+vFileId).html();
-								  
-								  if (vFileId.length > 0) {
-									  $("#set-filemark-button"+vFileId).html("Updating...");
-									  
-									  $.ajax({
-										 type: "GET",
-										 url: "lib/data/dFiles.action.ajax.php",
-										 data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
-										 success: function(html){
-										  if(html != "")
-										  {
-											  $("#set-filemark-button"+vFileId).html(html);
-											  $("ul.f-dropdown").removeClass("open");
-											  $("ul.f-dropdown").css({left: '-99999px' , position:'absolute'});
-											   
-										  }
-										  else
-										  {   $("#set-filemark-button"+vFileId).html(originalText);
-											  alert('error');
-										  }
-									   }
-									  });
-								  }
+					  $("#result-alphabet").html(html);
+					  $('#list-file-table').DataTable();
+
+					  $(document).foundation();
 					  
+					  $( ".set-filemarker" ).unbind("click").bind("click",
+							  function() {	
+								  vFileId=$(this).attr('data-set-filemark-id');
+								  vFilemarkId=$(this).attr('data-set-filemark-value');
+							  
+							  originalText = $("#set-filemark-button"+vFileId).html();
+							  
+							  if (vFileId.length > 0) {
+								  $("#set-filemark-button"+vFileId).html("Updating...");
+								  
+								  $.ajax({
+									 type: "GET",
+									 url: "lib/data/dFiles.action.ajax.php",
+									 data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
+									 success: function(html){
+									  if(html != "")
+									  {
+										  $("#set-filemark-button"+vFileId).html(html);
+										  $("ul.f-dropdown").removeClass("open");
+										  $("ul.f-dropdown").css({left: '-99999px' , position:'absolute'});
+										   
+									  }
+									  else
+									  {   $("#set-filemark-button"+vFileId).html(originalText);
+										  alert('error');
+									  }
+								   }
+								  });
 							  }
-						  );
+				  
+						  }
+					  );
+					  
+					  
+					  $(function(){
+					  
+						 // add multiple select / deselect functionality
+						 $("#selectall").click(function () {
+							   $('.case').attr('checked', this.checked);
+						 });
+					  
+						 // if all checkbox are selected, check the selectall checkbox
+						 // and viceversa
+						 $(".case").click(function(){
+					  
+							 if($(".case").length == $(".case:checked").length) {
+								 $("#selectall").attr("checked", "checked");
+							 } else {
+								 $("#selectall").removeAttr("checked");
+							 }
+					  
+						 });
+					 });
+						  
 
 				   }
 				   else
