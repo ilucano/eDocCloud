@@ -199,7 +199,8 @@ switch ($action)
 						 // add multiple select / deselect functionality
 						 $("#selectall").click(function () {
 						       alert(this.checked);
-							   $(\'.case\').attr(\'checked\', this.checked);
+							   //$(\'.case\').attr(\'checked\', this.checked);
+							   $(\'.case\').prop(\'checked\', this.checked);
 						 });
 					  
 						 // if all checkbox are selected, check the selectall checkbox
