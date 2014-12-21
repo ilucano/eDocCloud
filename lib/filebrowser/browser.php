@@ -175,7 +175,7 @@ switch ($action)
 		
 		$html .= '<thead>
 					<tr>
-						<th><input type="checkbox" id="selectall"/></th>
+						<th>::  <input type="checkbox" id="selectall" /> :: </th>
 						<th>Filename</th>' . $marker_header . '
 						<th>Creation Date</th>
 						<th>Modifcation Date</th>
@@ -206,9 +206,9 @@ switch ($action)
 						 $(".case").click(function(){
 					  
 							 if($(".case").length == $(".case:checked").length) {
-								 $("#selectall").attr("checked", "checked");
+								// $("#selectall").attr("checked", "checked");
 							 } else {
-								 $("#selectall").removeAttr("checked");
+								// $("#selectall").removeAttr("checked");
 							 }
 							
 							   });
