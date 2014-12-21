@@ -146,7 +146,12 @@ require $arrIni['base'].'inc/topbar.php';
 				   if(html!="")
 				   {
 					  $("#result-alphabet").html(html);
-					  $('#list-file-table').DataTable();
+					  $('#list-file-table').DataTable({
+											  //"bPaginate": false,
+											  "aoColumnDefs": [
+												{ "bSortable": false, "aTargets": [ 0 ] }
+												] 
+											  });
 
 					  $(document).foundation();
 					  
