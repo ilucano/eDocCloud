@@ -147,6 +147,42 @@ require $arrIni['base'].'inc/topbar.php';
 				   {
 					   $("#result-alphabet").html(html);
 					    $('#list-file-table').DataTable();
+ 
+						  $(document).foundation();
+						  
+						  $( ".set-filemarker" ).unbind("click").bind("click",
+								  function() {	
+									  vFileId=$(this).attr('data-set-filemark-id');
+									  vFilemarkId=$(this).attr('data-set-filemark-value');
+								  
+								  originalText = $("#set-filemark-button"+vFileId).html();
+								  
+								  if (vFileId.length > 0) {
+									  $("#set-filemark-button"+vFileId).html("Updating...");
+									  
+									  $.ajax({
+										 type: "GET",
+										 url: "lib/data/dFiles.action.ajax.php",
+										 data: "action=update&id="+vFileId+"&file_mark_id="+vFilemarkId,
+										 success: function(html){
+										  if(html != "")
+										  {
+											  $("#set-filemark-button"+vFileId).html(html);
+											  $("ul.f-dropdown").removeClass("open");
+											  $("ul.f-dropdown").css({left: '-99999px' , position:'absolute'});
+											   
+										  }
+										  else
+										  {   $("#set-filemark-button"+vFileId).html(originalText);
+											  alert('error');
+										  }
+									   }
+									  });
+								  }
+					  
+							  }
+						  );
+
 				   }
 				   else
 				   {
