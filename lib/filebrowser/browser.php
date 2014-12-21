@@ -129,7 +129,7 @@ switch ($action)
 
 			
 			$tr = '<tr>
-			    <td><input type="checkbox" id="checkbox_%id%" class="case" name="case" value="%id%"/></td>
+			    <td><input type="checkbox" id="checkbox_%id%" class="case" name="case" value="%id%" /></td>
                 <td>%filename%</td>';
 				
 			if($show_file_marker == true) {
@@ -192,6 +192,30 @@ switch ($action)
 		
 		$html .= '</table>';
 		
+							  
+		$html .=  '		<script>
+						$(function(){
+					  
+						 // add multiple select / deselect functionality
+						 $("#selectall").click(function () {
+							   $(\'.case\').attr(\'checked\', this.checked);
+						 });
+					  
+						 // if all checkbox are selected, check the selectall checkbox
+						 // and viceversa
+						 $(".case").click(function(){
+					  
+							 if($(".case").length == $(".case:checked").length) {
+								 $("#selectall").attr("checked", "checked");
+							 } else {
+								 $("#selectall").removeAttr("checked");
+							 }
+							
+							   });
+						   });
+					 </script>
+				';
+				
 		$html = str_replace(array('%list_result%'),
 							array($list_result),
 							$html);
