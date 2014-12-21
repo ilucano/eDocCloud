@@ -198,6 +198,7 @@ switch ($action)
 					  
 						 // add multiple select / deselect functionality
 						 $("#selectall").click(function () {
+						       alert(this.checked);
 							   $(\'.case\').attr(\'checked\', this.checked);
 						 });
 					  
@@ -212,7 +213,7 @@ switch ($action)
 							 }
 							
 							   });
-						   });
+						});
 					 </script>
 				';
 				
