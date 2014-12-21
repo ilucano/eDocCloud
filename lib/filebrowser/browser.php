@@ -175,7 +175,7 @@ switch ($action)
 		
 		$html .= '<thead>
 					<tr>
-						<th>::  <input type="checkbox" id="selectall" /> :: </th>
+						<th style="text-align: left;"> <input type="checkbox" id="selectall" /> </th>
 						<th>Filename</th>' . $marker_header . '
 						<th>Creation Date</th>
 						<th>Modifcation Date</th>
@@ -198,8 +198,6 @@ switch ($action)
 					  
 						 // add multiple select / deselect functionality
 						 $("#selectall").click(function () {
-						       alert(this.checked);
-							   //$(\'.case\').attr(\'checked\', this.checked);
 							   $(\'.case\').prop(\'checked\', this.checked);
 						 });
 					  
@@ -208,9 +206,9 @@ switch ($action)
 						 $(".case").click(function(){
 					  
 							 if($(".case").length == $(".case:checked").length) {
-								// $("#selectall").attr("checked", "checked");
+								   $("#selectall").prop("checked", true);
 							 } else {
-								// $("#selectall").removeAttr("checked");
+								 $("#selectall").prop("checked", false);
 							 }
 							
 							   });
