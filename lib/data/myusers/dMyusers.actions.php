@@ -171,13 +171,13 @@
 		//echo $despues;
 		//
 		
-		echo $antes;
-		$_fName = 'is_admin';
-		$_fDesc = 'Admin';
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
-		echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
-		$value = "";
-		echo $despues;
+		//echo $antes;
+		//$_fName = 'is_admin';
+		//$_fDesc = 'Admin';
+		//if ($vAction=='edit' || $vAction=='view') { $value = $vRow[$_fName]=="X"; }
+		//echo ComboYesNo($_fName, $_fDesc, $value, $disabled);
+		//$value = "";
+		//echo $despues;
 		
 		
 		
