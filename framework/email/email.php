@@ -74,7 +74,7 @@ $headers .= 'From: "The eDocCloud Team" <info@imagingxperts.com>' . "\r\n";
 
 // Mail it
 mail($to, $subject, $message, $headers);
-
+ 
 }
 
 ?>
