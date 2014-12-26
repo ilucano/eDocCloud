@@ -43,7 +43,7 @@ $message = '
         to access your records anytime, anywhere, and from any device. The very essence of <span class="Bold">eDocCloud</span> is to make documents available in seconds in a secure and responsive environment.</p>
       <p>Start using <span class="Bold">eDocCloud</span> now! Below you\'ll find your login and password informatiom. We strongly
         recommend to change it the first time you use it.</p>
-      <p><span class="Bold">URL:</span> <a href="http://'. $_SERVER['SERVER_NAME'] .'>'. $_SERVER['SERVER_NAME'].'</a></p>
+      <p><span class="Bold">URL:</span> <a href="http://'. $_SERVER['SERVER_NAME'] .'">http://'. $_SERVER['SERVER_NAME'].'</a></p>
       <p><span class="Bold">Username:</span> '.$vUser.'</p>
       <p><span class="Bold">Password:</span> '.$vPass.'</p>
       <p>We are constantly improving our services and we would love to hear from you!</p>
