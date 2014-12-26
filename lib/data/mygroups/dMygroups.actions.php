@@ -103,8 +103,11 @@
 	{
 		global $permissionList; 
 		
+		$objUsers = new Users();
+			
 		echo "<table id='permission_box'>";
 	
+		$companyCode = $objUsers->userCompany();
 		
 		foreach($permissionList as $key =>  $list) {
 			
@@ -113,6 +116,13 @@
 				continue;
 			}
 			
+			if( $key == 'workflow' || $key == 'reports' )  {
+				
+				if($companyCode != 1) {
+					continue;
+				}
+				
+			}
 			echo "<tr>";
 			echo "<th colspan=2>" .$list['label'] . "</th>";
 			echo "</tr>";
