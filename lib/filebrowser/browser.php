@@ -151,6 +151,8 @@ switch ($action)
 				$bytes = number_format($row['filesize'] / 1024 / 1024,2).' Mb';
 			}
 			
+			$str_file_year = dropDownYearButton($row_id, $row['file_year']);
+			
 			$list_result .= str_replace(array('%id%',
 									'%filename%',
 									'%marker%',
@@ -162,7 +164,7 @@ switch ($action)
 							  array($row['row_id'],
 									$str_filename,
 									$str_marker,
-									$row['file_year'],
+									$str_file_year,
 									date("m/d/Y G:i:s",strtotime($row['creadate'])),
 									date("m/d/Y G:i:s",strtotime($row['moddate'])),
 									$row['pages'],
@@ -231,6 +233,32 @@ switch ($action)
 
 	
 	
+}
+
+
+
+function dropDownYearButton($row_id, $file_year)
+{
+	
+ 
+	if($file_year == '')
+	{
+		$file_year = "(Unknown)";
+	}
+	
+	$drop_down_list = '';
+   
+   
+   
+    for ($i = 1990; $i <= date("Y"); $i++) {
+
+		$drop_down_list .= '<li><a class="set-year" data-set-year-id="'.$row_id.'" data-set-year-value="'.$i.'">'.$i.'</a></li>';
+		
+	}
+	$drop_down_list .= '<li><a class="set-year" data-set-year-id="'.$row_id.'" data-set-year-value="">Unknown</a></li>';
+	
+	return '<button id="set-year-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="'.$disabled_class.'tiny button dropdown">'.$label.'</button><br>' .$drop_down_list;
+
 }
 
 
