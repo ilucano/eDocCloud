@@ -136,7 +136,7 @@ switch ($action)
 				$tr .= '<td>%marker%</td>';
 				$str_marker = dropDownButton($row['row_id'], $row['file_mark_id']);
 			}
-			$tr .= '<td>%creation_date%</td>
+			$tr .= '<td>%file_year%</td><td>%creation_date%</td>
 					<td>%modification_date%</td>
 					<td>%pages%</td>
 					<td>%size%</td>
@@ -154,6 +154,7 @@ switch ($action)
 			$list_result .= str_replace(array('%id%',
 									'%filename%',
 									'%marker%',
+									'%file_year%',
 									'%creation_date%',
 									'%modification_date%',
 									'%pages%',
