@@ -263,7 +263,7 @@ function dropDownYearButton($row_id, $file_year)
 	$drop_down_list = '<ul style="max-height: 50px;" id="drop'.$row_id.'" data-dropdown-content class="f-year-dropdown f-dropdown" aria-hidden="true" tabindex="-1">'.$drop_down_list.'</ul>';
 	
 	
-	return '<button id="set-year-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="'.$disabled_class.'tiny button dropdown">'.$label.'</button><br>' .$drop_down_list;
+	return '<button id="set-year-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="'.$disabled_class.'tiny button dropdown">'.$file_year.'</button><br>' .$drop_down_list;
 
 }
 
