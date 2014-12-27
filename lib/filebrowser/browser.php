@@ -219,6 +219,9 @@ switch ($action)
 							   });
 						});
 					 </script>
+					 <style>
+					  .f-dropdown { max-height: 100px; height: 100px;}
+					 </style>
 				';
 				
 		$html = str_replace(array('%list_result%'),
