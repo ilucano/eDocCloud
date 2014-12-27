@@ -220,7 +220,7 @@ switch ($action)
 						});
 					 </script>
 					 <style>
-					  .f-dropdown { max-height: 100px; height: 100px;}
+					  .f-year-dropdown { max-height: 150px; height: 150px; overflow: auto;}
 					 </style>
 				';
 				
@@ -260,7 +260,7 @@ function dropDownYearButton($row_id, $file_year)
 	}
 	$drop_down_list .= '<li><a class="set-year" data-set-year-id="'.$row_id.'" data-set-year-value="">Unknown</a></li>';
 	
-	$drop_down_list = '<ul style="max-height: 50px;" id="drop'.$row_id.'" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">'.$drop_down_list.'</ul>';
+	$drop_down_list = '<ul style="max-height: 50px;" id="drop'.$row_id.'" data-dropdown-content class="f-year-dropdown f-dropdown" aria-hidden="true" tabindex="-1">'.$drop_down_list.'</ul>';
 	
 	
 	return '<button id="set-year-button'.$row_id.'" href="#" data-dropdown="drop'.$row_id.'" aria-controls="drop'.$row_id.'" aria-expanded="false" class="'.$disabled_class.'tiny button dropdown">'.$label.'</button><br>' .$drop_down_list;
