@@ -151,7 +151,7 @@ switch ($action)
 				$bytes = number_format($row['filesize'] / 1024 / 1024,2).' Mb';
 			}
 			
-			$str_file_year = dropDownYearButton($row_id, $row['file_year']);
+			$str_file_year = dropDownYearButton($row['row_id'], $row['file_year']);
 			
 			$list_result .= str_replace(array('%id%',
 									'%filename%',
