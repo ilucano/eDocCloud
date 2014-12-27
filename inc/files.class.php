@@ -221,7 +221,7 @@ class Files {
         }
         
         
-        $query = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, file_mark_id FROM files WHERE 1 $filter
+        $query = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, file_mark_id, file_year FROM files WHERE 1 $filter
                    ORDER BY `filename`";
         
  
