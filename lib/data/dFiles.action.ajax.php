@@ -45,6 +45,38 @@ switch ($action) {
 
 	break;
 	
+
+	case "updateyear":
+		
+		$row_id = $_GET['id'];
+	    $file_year = $_GET['file_year'];
+		
+		$con = NConnectionFactory::getConnection();
+		
+		$objUsers = new Users;
+		
+		$companyCode = $objUsers->userCompany();
+		
+		$query = "UPDATE `files` SET file_year = :file_year
+		          WHERE row_id = :row_id AND fk_empresa = :fk_empresa LIMIT 1";
+		
+		$array_bind = array(':file_year' => $file_year,
+							':row_id'	=> $row_id,
+							':fk_empresa' => $companyCode);
+		
+		$stmt = $con->prepare($query);
+						
+		if($stmt->execute($array_bind))
+		{
+			$label = $file_year;
+			
+		}
+		
+		echo ($label != '') ? $label : '(Unknown)';
+
+
+	break;
+
 	
 } 
   

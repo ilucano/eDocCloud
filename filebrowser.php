@@ -187,6 +187,41 @@ require $arrIni['base'].'inc/topbar.php';
 				  
 						  }
 					  );
+					  
+					  
+					   $( ".set-year" ).unbind("click").bind("click",
+							  function() {	
+								  vFileId=$(this).attr('data-set-year-id');
+								  vFileYear=$(this).attr('data-set-year-value');
+							  
+							  originalText = $("#set-year-button"+vFileId).html();
+							  
+							  if (vFileId.length > 0) {
+								  $("#set-year-button"+vFileId).html("Updating...");
+								  
+								  $.ajax({
+									 type: "GET",
+									 url: "lib/data/dFiles.action.ajax.php",
+									 data: "action=updateyear&id="+vFileId+"&file_year="+vFileYear,
+									 success: function(html){
+									  if(html != "")
+									  {
+										  $("#set-year-button"+vFileId).html(html);
+										  $("ul.f-dropdown").removeClass("open");
+										  $("ul.f-dropdown").css({left: '-99999px' , position:'absolute'});
+										   
+									  }
+									  else
+									  {   $("#set-year-button"+vFileId).html(originalText);
+										  alert('error');
+									  }
+								   }
+								  });
+							  }
+				  
+						  }
+					  );
+					   
 
 				   }
 				   else
