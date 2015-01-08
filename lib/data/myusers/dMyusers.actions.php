@@ -320,7 +320,7 @@ function ShowFilePermissionCheckboxes($array_permission)
 	$objUsers = new Users();
 	
 	echo "<label>File Permissions</label>";
-	echo "<table id='file_permission_box'>";
+	echo "<table id='permission_box'>";
     echo "<tr><td>";
 	
 	
@@ -342,13 +342,19 @@ function ShowFilePermissionCheckboxes($array_permission)
 	
 	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
 	
-	print_r($res);
-	
-	print_r($company_res);
-	
 	if (count($res) >= 1 || count($company_res) >= 1) {
 		
 		foreach($res as $key =>  $list) {
+			$checkbox_id = $list['id'];
+			$checkbox_value = $list['id'];
+			$checkbox_name = 'file_permission[]';
+			$checkbox_label = $list['label'];
+			
+			echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
+		
+		}
+		
+		foreach($company_res as $key =>  $list) {
 			$checkbox_id = $list['id'];
 			$checkbox_value = $list['id'];
 			$checkbox_name = 'file_permission[]';
