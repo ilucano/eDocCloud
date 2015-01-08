@@ -7,6 +7,7 @@
 	
 	require_once $arrIni['base'].'inc/checkACL.php';
 	
+	require_once $arrIni['base'].'inc/filemarks.class.php';
 		
 	$objUsers = new Users();
 	
@@ -206,6 +207,14 @@
 		$value = "";
 		echo $despues;
 		
+		
+		echo $antes;
+		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['group_id']; }
+		echo ShowFilePermissionCheckboxes();
+		$value = "";
+		echo $despues;
+		
+		
 		// Boton
 		echo $antes;
 		if ($vAction=='edit' || $vAction=='create') {
@@ -305,4 +314,80 @@
 	
 */
 
+function ShowFilePermissionCheckboxes($array_permission)
+{
+	
+	$objUsers = new Users();
+		
+	echo "<table id='permission_box'>";
+
+	$companyCode = $objUsers->userCompany();
+	
+	
+	$objFilemarks = new Filemarks();
+
+	$filter = " AND global = :global";
+	
+	$array_bind[':global'] = '1'; //fk_empresa = global share
+	
+	$res = $objFilemarks->listFilemarks($filter, $array_bind);
+    
+	$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
+	$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
+	
+	$company_array_bind[':global'] = '0';
+	
+	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
+	
+	print_r($res);
+	
+	print_r($company_res);
+	
+	//foreach($filemarks as $key =>  $list) {
+		
+		////exclude admin for company admin
+		//if($key == 'admin_menu') {
+		//	continue;
+		//}
+		//
+		//if( $key == 'workflow' || $key == 'reports' )  {
+		//	
+		//	if($companyCode != 1) {
+		//		continue;
+		//	}
+		//	
+		//}
+		//echo "<tr>";
+		//echo "<th colspan=2>" .$list['label'] . "</th>";
+		//echo "</tr>";
+		//echo "<tr>";
+		//echo "<td width='20%' style='padding-left: 25px;'><ul>";
+		//
+		//$codes = $list['code'];
+		// 
+		//foreach($codes as $codeKey => $code)
+		//{
+		//	
+		//	
+		//	$checkbox_name = 'group_permission' . '[' . $key .  '][]';
+		//	$checkbox_id = $key . "_" . $codeKey;
+		//	$checkbox_value = $codeKey;
+		//	$checkbox_label = $code;
+		//
+		//	$checkedString = ($array_permission[$key][$codeKey] == '1') ? " checked" : "";
+		//					
+		//	echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
+		//	
+		//}
+		//
+		//echo "</ul></td>";
+		//echo "</tr>";
+
+	//}
+
+	
+	echo "</table>";
+
+}
+	
 ?>

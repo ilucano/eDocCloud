@@ -36,3 +36,8 @@ COMMENT='';
 
 ALTER TABLE `files`
 ADD INDEX `file_year_fk_empresa` (`file_year`, `fk_empresa`);
+
+
+ALTER TABLE `users`
+ADD `file_permission` mediumtext NOT NULL COMMENT 'File mark ID allow in json format',
+COMMENT='';
