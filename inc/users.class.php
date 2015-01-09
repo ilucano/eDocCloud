@@ -99,7 +99,15 @@ class Users {
         
         return $row;
     }
+    
+    public function getOwnDetails()
+    {
+        $username = $_SESSION['Vusername'];
+        
+        return $this->getUserByUsername($username);
      
+    }
+    
     public function insertUser($data = array())
     {
         if(count($data) < 1)

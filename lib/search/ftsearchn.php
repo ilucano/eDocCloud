@@ -33,24 +33,40 @@ if ($txtSearch=="") {
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qryCnt = "SELECT COUNT(*) as num, FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND filename LIKE '%".$txtSearch."%'";
+	$objUsers = new Users;
+	
+	$me = $objUsers->getOwnDetails();
+	
+	$array_file_permission = json_decode($me['file_permission'], true);
+	
+	if(count($array_file_permission) >=1)
+	{
+		$file_in_string = join(", ", $array_file_permission);
+		
+		$user_file_mark_id_allowed = " OR file_mark_id IN ($file_in_string) ";
+	}
+	
+	
+	$filter_file_permission = " AND (file_mark_id IS NULL OR file_mark_id = '' $user_file_mark_id_allowed ) ";
+	
+	$qryCnt = "SELECT COUNT(*) as num, FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND filename LIKE '%".$txtSearch."%' $filter_file_permission";
 	//echo $qryCnt;
 	$total_pages = mysql_fetch_array(mysql_query($qryCnt));
 	$total_pages = $total_pages['num'];
 	
 	if ($total_pages>$limit || $pagAct > 0) {
 		if ($pagAct==0) {
-			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, texto, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND filename LIKE '%".$txtSearch."%' LIMIT ".($pagAct * $limit).",".($limit).";";
+			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, texto, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND filename LIKE '%".$txtSearch."%' $filter_file_permission LIMIT ".($pagAct * $limit).",".($limit).";";
 			
 			//$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, MATCH(texto) AGAINST('".$txtSearch."' IN BOOLEAN MODE) AS Score FROM files WHERE MATCH(texto) AGAINST ('".$txtSearch."' IN BOOLEAN MODE) LIMIT ".($pagAct * $limit).",".($limit).";";
 		} else {
-			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, texto, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND  filename LIKE '%".$txtSearch."%' LIMIT ".(($pagAct) * $limit).",".($limit).";";
+			$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, texto, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND  filename LIKE '%".$txtSearch."%' $filter_file_permission LIMIT ".(($pagAct) * $limit).",".($limit).";";
 			//echo $qryFT;
 			//$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, filename, texto, MATCH(texto) AGAINST('".$txtSearch."' IN BOOLEAN MODE) AS Score FROM files WHERE MATCH(texto) AGAINST ('".$txtSearch."' IN BOOLEAN MODE) LIMIT ".(($pagAct - 1) * $limit).",".($limit).";";
 		}
 		//echo $qryFT;
 	} else {
-		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, texto, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND  filename LIKE '%".$txtSearch."%';";
+		$qryFT = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, texto, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." AND  filename LIKE '%".$txtSearch."%' $filter_file_permission;";
 	}
 	
 	//echo $qryFT;
