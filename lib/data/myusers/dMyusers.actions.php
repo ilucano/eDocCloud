@@ -327,8 +327,7 @@ function ShowFilePermissionCheckboxes($str_user_file_permission)
 	$companyCode = $objUsers->userCompany();
 	
 	$array_user_file_permission = json_decode($str_user_file_permission);
-	print_r($array_user_file_permission);
-	
+ 
 	$objFilemarks = new Filemarks();
 
 	$filter = " AND global = :global";
@@ -352,6 +351,8 @@ function ShowFilePermissionCheckboxes($str_user_file_permission)
 			$checkbox_name = 'file_permission[]';
 			$checkbox_label = $list['label'];
 			
+			$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
+			
 			echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 		
 		}
@@ -361,6 +362,8 @@ function ShowFilePermissionCheckboxes($str_user_file_permission)
 			$checkbox_value = $list['id'];
 			$checkbox_name = 'file_permission[]';
 			$checkbox_label = $list['label'];
+			
+			$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
 			
 			echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 		
