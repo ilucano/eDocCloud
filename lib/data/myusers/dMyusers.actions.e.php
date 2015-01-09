@@ -59,6 +59,8 @@
 						$data['file_permission'] = json_encode($_GET['file_permission']);
 					}
 					
+					print_r($data);
+					
 					$objUsers->insertUser($data, $_GET['id']);
 					
 					require_once $arrIni['base'].'framework/email/email.php' ;
