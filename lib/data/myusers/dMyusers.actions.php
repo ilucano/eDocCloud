@@ -209,8 +209,8 @@
 		
 		
 		echo $antes;
-		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['group_id']; }
-		echo ShowFilePermissionCheckboxes();
+		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['file_permission']; }
+		echo ShowFilePermissionCheckboxes($value);
 		$value = "";
 		echo $despues;
 		
@@ -314,7 +314,7 @@
 	
 */
 
-function ShowFilePermissionCheckboxes($array_permission)
+function ShowFilePermissionCheckboxes($str_user_file_permission)
 {
 	
 	$objUsers = new Users();
@@ -326,6 +326,8 @@ function ShowFilePermissionCheckboxes($array_permission)
 	
 	$companyCode = $objUsers->userCompany();
 	
+	$array_user_file_permission = json_decode($str_user_file_permission);
+	print_r($array_user_file_permission);
 	
 	$objFilemarks = new Filemarks();
 
