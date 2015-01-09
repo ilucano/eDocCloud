@@ -124,7 +124,9 @@ class Users {
         
         $query = "INSERT INTO users $string_columns
                   VALUES $string_values ";
- 
+        
+        echo $query;
+        print_r($array_bind);
         $stmt = $this->pdocon->prepare($query);
         $stmt->execute($array_bind);
     }
