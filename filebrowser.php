@@ -57,11 +57,11 @@ require $arrIni['base'].'inc/topbar.php';
 </div>
 
 <div class="row">
- 
+ <div id="processingIndicator" style="display:none;">Processing data...</div>
   <div class="large-12 columns" id="result-alphabet">
 
   </div>
-  <div id="processingIndicator" style="display:none;">Processing data...</div>
+  
 </div>
 
 <!-- END OF CONTENT OF THE PAGE -->
