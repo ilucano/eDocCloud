@@ -145,9 +145,9 @@ require $arrIni['base'].'inc/topbar.php';
 				  success: function(html){
 				   if(html!="")
 				   {
+					  $("#result-alphabet").html("Loading data into table...");
 					  $("#result-alphabet").html(html);
 					  $('#list-file-table').DataTable({
-											  "bProcessing": true,
 											  //"bPaginate": false,
 											  "aoColumnDefs": [
 												{ "bSortable": false, "aTargets": [ 0 ] }
