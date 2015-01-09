@@ -224,160 +224,72 @@
 		
 		}
 	
+		
+	 
+	function ShowFilePermissionCheckboxes($str_user_file_permission, $vAction)
+	{
+		
+		$objUsers = new Users();
+		
+		echo "<label>File Permissions</label>";
+		echo "<table id='permission_box'>";
+		echo "<tr><td>";
+		
+		
+		$companyCode = $objUsers->userCompany();
+		
+		$array_user_file_permission = json_decode($str_user_file_permission);
+	 
+		$objFilemarks = new Filemarks();
 	
-	
-	/*
-	;
+		$filter = " AND global = :global";
 		
-	$qryCnt = "SELECT COUNT(*) as num FROM groups WHERE fk_empresa = ".$_SESSION['CoCo'];
+		$array_bind[':global'] = '1'; //fk_empresa = global share
 		
-	$total_pages = mysql_fetch_array(mysql_query($qryCnt));
-	$total_pages = $total_pages['num'];
+		$res = $objFilemarks->listFilemarks($filter, $array_bind);
 		
-	if ($total_pages>$limit || $pagAct > 0) {
-		if ($pagAct==0) {
-			$qryFT = "SELECT T1.*, (T2.company_name) as empresa FROM groups T1 INNER JOIN companies T2 ON T1.fk_empresa = T2.row_id WHERE T1.fk_empresa = ".$_SESSION['CoCo']." LIMIT ".($pagAct * $limit).",".($limit).";";
-		} else {
-			$qryFT = "SELECT T1.*, (T2.company_name) as empresa FROM groups T1 INNER JOIN companies T2 ON T1.fk_empresa = T2.row_id WHERE T1.fk_empresa = ".$_SESSION['CoCo']." LIMIT ".(($pagAct) * $limit).",".($limit).";";
+		$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
+		$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
+		
+		$company_array_bind[':global'] = '0';
+		
+		$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
+		
+		if($vAction == 'view') {
+			$checkbox_disabled = " disabled ";
 		}
-	} else {
-		$qryFT = "SELECT T1.*, (T2.company_name) as empresa FROM groups T1 INNER JOIN companies T2 ON T1.fk_empresa = T2.row_id WHERE T1.fk_empresa = ".$_SESSION['CoCo'].";";
-	}
-		
-	mysql_query("SET NAMES UTF8");
-	$res = mysql_query($qryFT);
-	
-	if (mysql_num_rows($res)) {
-		echo "<table><tbody><thead><tr><th width=\"40%\">Group Name</th><th width=\"40%\">Company</th><th width=\"20%\">Actions</th></tr></thead>";
-		while ($row = mysql_fetch_array($res)) {
-			echo "<tr><td width=50%>";
-			echo $row['nombre'].'</td>';
-			echo '<td width="40%">'.$row['empresa'].'</td>';
-
-			echo '<td width="10%">';
+		if (count($res) >= 1 || count($company_res) >= 1) {
 			
-			if ($arrPerm['view']=='X') { echo '<a href="#">View</a>'; }
-			if ($arrPerm['edit']=='X') { echo ' | <a href="#">Edit</a>'; }
-			if ($arrPerm['delete']=='X') { echo ' | <a href="#">Delete</a> '; }
-
-			echo '</td>';
+			foreach($res as $key =>  $list) {
+				$checkbox_id = $list['id'];
+				$checkbox_value = $list['id'];
+				$checkbox_name = 'file_permission[]';
+				$checkbox_label = $list['label'];
+				
+				$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
+				
+				echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString.$checkbox_disabled." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 			
-			echo "</tr></td>";
-		}
-		echo "</tbody></table>";
-		if ($total_pages>$limit || $pagAct > 0) {
-			
-			echo "<ul class=\"pagination\">";
-			if ($pagAct==0) {
-				echo "<li class=\"arrow unavailable\">&laquo;</li>";
-			} else {
-				echo "<li class=\"arrow\"><a href=\"#\" data-type=\"pagina\" data-page=\"0\" data-reveal-id=\"grill\">&laquo;</a></li>";
 			}
 			
-			$lastpage = ceil($total_pages/$limit);
+			foreach($company_res as $key =>  $list) {
+				$checkbox_id = $list['id'];
+				$checkbox_value = $list['id'];
+				$checkbox_name = 'file_permission[]';
+				$checkbox_label = $list['label'];
+				
+				$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
+				
+				echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 			
-			if ($lastpage<5) {
-				for ($counter = 1; $counter <= $lastpage; $counter++) {
-					if (($counter-1)==$pagAct) {
-						echo "<li class=\"current\"><a href=\"#\">".($counter)."</a></li>";
-					} else {
-						echo "<li><a href=\"#\" data-type=\"pagina\" data-page=\"".($counter-1)."\" data-reveal-id=\"grill\">".($counter)."</a></li>";
-					}
-				}
-			} else {
-				for ($counter = 1; $counter < 1 + ($adj * 2); $counter++) {
-					if (($counter-1)==$pagAct) {
-						echo "<li class=\"current\"><a href=\"#\">".($counter)."</a></li>";
-					} else {
-						echo "<li><a href=\"#\" data-type=\"pagina\" data-page=\"".($counter-1)."\" data-reveal-id=\"grill\">".($counter)."</a></li>";
-					}
-				}
 			}
 			
-			if ($lastpag==$pagAct) {
-				echo "<li class=\"arrow\"><a href=\"#\" data-type=\"pagina\" data-page=\"".$lastpage."\" data-reveal-id=\"grill\">&raquo;</a></li>";
-			} else {
-				echo "<li class=\"arrow unavailable\">&raquo;</li>";
-			}
-			
-			echo "</ul>";
-		}
-	} else {
-			echo $antes;
-			echo "No results";
-			echo $despues;
-	}
-			
-	
-	echo $despues;
-	
-	
-*/
-
-function ShowFilePermissionCheckboxes($str_user_file_permission)
-{
-	
-	$objUsers = new Users();
-	
-	echo "<label>File Permissions</label>";
-	echo "<table id='permission_box'>";
-    echo "<tr><td>";
-	
-	
-	$companyCode = $objUsers->userCompany();
-	
-	$array_user_file_permission = json_decode($str_user_file_permission);
- 
-	$objFilemarks = new Filemarks();
-
-	$filter = " AND global = :global";
-	
-	$array_bind[':global'] = '1'; //fk_empresa = global share
-	
-	$res = $objFilemarks->listFilemarks($filter, $array_bind);
-    
-	$company_filter = " AND fk_empresa = :fk_empresa AND global = :global";
-	$company_array_bind[':fk_empresa'] =  $objUsers->userCompany();
-	
-	$company_array_bind[':global'] = '0';
-	
-	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
-	
-	if($vAction == 'view') {
-		$checkbox_disabled = " disabled ";
-	}
-	if (count($res) >= 1 || count($company_res) >= 1) {
-		
-		foreach($res as $key =>  $list) {
-			$checkbox_id = $list['id'];
-			$checkbox_value = $list['id'];
-			$checkbox_name = 'file_permission[]';
-			$checkbox_label = $list['label'];
-			
-			$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
-			
-			echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString.$checkbox_disabled." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 		
 		}
-		
-		foreach($company_res as $key =>  $list) {
-			$checkbox_id = $list['id'];
-			$checkbox_value = $list['id'];
-			$checkbox_name = 'file_permission[]';
-			$checkbox_label = $list['label'];
-			
-			$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
-			
-			echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
-		
-		}
-		
+		 echo "</td></tr>";
+	
+		echo "</table>";
 	
 	}
-	 echo "</td></tr>";
-
-	echo "</table>";
-
-}
 	
 ?>
