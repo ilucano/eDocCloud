@@ -280,7 +280,7 @@
 				
 				$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
 				
-				echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
+				echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString.$checkbox_disabled." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 			
 			}
 			
