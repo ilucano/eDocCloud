@@ -69,7 +69,9 @@
  
 				
 			case "edit":
- 
+                
+				print_r($_GET['file_permission']);
+				
 				$companyCode = $objUsers->userCompany();
 				
 				$custom_where = " AND fk_empresa = $companyCode";
