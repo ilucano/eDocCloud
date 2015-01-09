@@ -69,9 +69,7 @@
  
 				
 			case "edit":
-                
-				print_r($_GET['file_permission']);
-				
+
 				$companyCode = $objUsers->userCompany();
 				
 				$custom_where = " AND fk_empresa = $companyCode";
@@ -85,6 +83,7 @@
 				$data['is_admin'] = $_GET['is_admin'];
 				$data['company_admin'] = $_GET['company_admin'];
 				$data['group_id'] = $_GET['group_id'];
+				$data['file_permission'] = json_encode($_GET['file_permission']);
 				
 				$objUsers->updateUser($data, $_GET['id'], $custom_where);
 				
