@@ -53,6 +53,8 @@
 					$data['fk_empresa'] = $companyCode;
 					$data['group_id'] = $_GET['group_id'];
 					
+					print_r($_GET);
+					
 					if(is_array($_GET['file_permission'])) {
 						$data['file_permission'] = json_encode($_GET['file_permission']);
 					}
