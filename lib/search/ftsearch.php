@@ -50,13 +50,30 @@ if ($txtSearch=="") {
 		}
 	}
 	
- 
+    
+	$objUsers = new Users;
+	
+	$me = $objUsers->getOwnDetails();
+	
+	$array_file_permission = json_decode($me['file_permission'], true);
+	
+	if(count($array_file_permission) >=1)
+	{
+		$file_in_string = join(", ", $array_file_permission);
+		
+		$user_file_mark_id_allowed = " OR file_mark_id IN ($file_in_string) ";
+	}
+	
+	
+	$filter_file_permission = " AND (file_mark_id IS NULL OR file_mark_id = '' $user_file_mark_id_allowed ) ";
+	
+	
 
 	$matchAndAllTerms = addslashes(implode(" ", $arrayTextMatchAll));
     
 	
 	$mainMatchQuery = " MATCH(texto) AGAINST('".$matchAndAllTerms."' IN BOOLEAN MODE) AS Score1, MATCH(texto) AGAINST('" .
-	$matchExactAllTerms ."' IN BOOLEAN MODE) AS Score2 FROM files WHERE MATCH(texto) AGAINST ('".$matchAndAllTerms."' IN BOOLEAN MODE) AND fk_empresa = " . $_SESSION['CoCo'] ;
+	$matchExactAllTerms ."' IN BOOLEAN MODE) AS Score2 FROM files WHERE MATCH(texto) AGAINST ('".$matchAndAllTerms."' IN BOOLEAN MODE) AND fk_empresa = " . $_SESSION['CoCo'] . $filter_file_permission ;
 	
 	
 	$qryCnt = "SELECT COUNT(*) as num, " . $mainMatchQuery;
