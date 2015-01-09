@@ -30,7 +30,24 @@ function GetAllFiles($chartid, $boxid, $orderid) {
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qry = "SELECT row_id, filename, creadate, moddate, pages, filesize, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." and parent_id = ".$chartid.' ORDER BY filename ASC;';
+	
+	$objUsers = new Users;
+	
+	$me = $objUsers->getOwnDetails();
+	
+	$array_file_permission = json_decode($me['file_permission'], true);
+	
+	if(count($array_file_permission) >=1)
+	{
+		$file_in_string = join(", ", $array_file_permission);
+		
+		$user_file_mark_id_allowed = " OR file_mark_id IN ($file_in_string) ";
+	}
+	
+	
+	$filter_file_permission = " AND (file_mark_id IS NULL OR file_mark_id = '' $user_file_mark_id_allowed ) ";
+	
+	$qry = "SELECT row_id, filename, creadate, moddate, pages, filesize, file_mark_id FROM files WHERE fk_empresa = ".$_SESSION['CoCo']." and parent_id = ".$chartid.$filter_file_permission.' ORDER BY filename ASC;';
 	
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qry);
