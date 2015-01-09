@@ -57,9 +57,11 @@ require $arrIni['base'].'inc/topbar.php';
 </div>
 
 <div class="row">
+ 
   <div class="large-12 columns" id="result-alphabet">
 
   </div>
+  <div id="processingIndicator" style="display:none;">Processing data...</div>
 </div>
 
 <!-- END OF CONTENT OF THE PAGE -->
@@ -147,7 +149,7 @@ require $arrIni['base'].'inc/topbar.php';
 				   {
 					  $("#result-alphabet").html(html);
 					  $('#list-file-table').on( 'processing.dt', function ( e, settings, processing ) {
-											  alert('loading');
+											   $('#processingIndicator').css( 'display', processing ? 'block' : 'none' );
 										  } ).DataTable({
 											  //"bPaginate": false,
 											  "aoColumnDefs": [
