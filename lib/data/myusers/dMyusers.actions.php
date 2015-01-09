@@ -210,7 +210,7 @@
 		
 		echo $antes;
 		if ($vAction=='edit' || $vAction=='view') { $value = $vRow['file_permission']; }
-		echo ShowFilePermissionCheckboxes($value);
+		echo ShowFilePermissionCheckboxes($value, $vAction);
 		$value = "";
 		echo $despues;
 		
@@ -343,6 +343,9 @@ function ShowFilePermissionCheckboxes($str_user_file_permission)
 	
 	$company_res = $objFilemarks->listFilemarks($company_filter, $company_array_bind);
 	
+	if($vAction == 'view') {
+		$checkbox_disabled = " disabled ";
+	}
 	if (count($res) >= 1 || count($company_res) >= 1) {
 		
 		foreach($res as $key =>  $list) {
@@ -353,7 +356,7 @@ function ShowFilePermissionCheckboxes($str_user_file_permission)
 			
 			$checkedString = (in_array($checkbox_value, $array_user_file_permission)) ? " checked" : "";
 			
-			echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
+			echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString.$checkbox_disabled." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
 		
 		}
 		
@@ -372,49 +375,7 @@ function ShowFilePermissionCheckboxes($str_user_file_permission)
 	
 	}
 	 echo "</td></tr>";
-	//foreach($filemarks as $key =>  $list) {
-		
-		////exclude admin for company admin
-		//if($key == 'admin_menu') {
-		//	continue;
-		//}
-		//
-		//if( $key == 'workflow' || $key == 'reports' )  {
-		//	
-		//	if($companyCode != 1) {
-		//		continue;
-		//	}
-		//	
-		//}
-		//echo "<tr>";
-		//echo "<th colspan=2>" .$list['label'] . "</th>";
-		//echo "</tr>";
-		//echo "<tr>";
-		//echo "<td width='20%' style='padding-left: 25px;'><ul>";
-		//
-		//$codes = $list['code'];
-		// 
-		//foreach($codes as $codeKey => $code)
-		//{
-		//	
-		//	
-		//	$checkbox_name = 'group_permission' . '[' . $key .  '][]';
-		//	$checkbox_id = $key . "_" . $codeKey;
-		//	$checkbox_value = $codeKey;
-		//	$checkbox_label = $code;
-		//
-		//	$checkedString = ($array_permission[$key][$codeKey] == '1') ? " checked" : "";
-		//					
-		//	echo "<li><label for='".$checkbox_id."'><input type='checkbox' ".$checkedString." value='".$checkbox_value."' name='".$checkbox_name."' id='".$checkbox_id."'> ".$checkbox_label."</label></li>";
-		//	
-		//}
-		//
-		//echo "</ul></td>";
-		//echo "</tr>";
 
-	//}
-
-	
 	echo "</table>";
 
 }
