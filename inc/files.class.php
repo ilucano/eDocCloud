@@ -136,7 +136,7 @@ class Files {
     }
     
     
-    public function listCountByYears($company = null)
+    public function listCountByYears($company = null, $file_permission = null)
     {
         $array_bind = array();
         
@@ -145,8 +145,22 @@ class Files {
             $array_bind[':fk_empresa'] = $company;
         }
         
+
+        $array_file_permission = json_decode($file_permission, true);
+    
+    
+        if(count($array_file_permission) >=1)
+        {
+            $file_in_string = join(", ", $array_file_permission);
+            
+            $user_file_mark_id_allowed = " OR file_mark_id IN ($file_in_string) ";
+        }
+
+        $filter_file_permission = " AND (file_mark_id IS NULL OR file_mark_id = '' $user_file_mark_id_allowed ) ";
+
+        
         $query = "SELECT file_year, COUNT(*) as num FROM files
-                  WHERE 1 $filter GROUP BY file_year ORDER BY file_year";
+                  WHERE 1 $filter $filter_file_permission GROUP BY file_year ORDER BY file_year";
                   
         
         $stmt = $this->pdocon->prepare($query);
@@ -161,7 +175,7 @@ class Files {
     }
     
     
-    public function listCountByAlphabet($company = null, $year)
+    public function listCountByAlphabet($company = null, $year, $file_permission = null)
     {
         $array_bind = array();
         
@@ -180,8 +194,21 @@ class Files {
         $array_bind[':file_year'] = $year;
         
         
+         $array_file_permission = json_decode($file_permission, true);
+    
+    
+        if(count($array_file_permission) >=1)
+        {
+            $file_in_string = join(", ", $array_file_permission);
+            
+            $user_file_mark_id_allowed = " OR file_mark_id IN ($file_in_string) ";
+        }
+
+        $filter_file_permission = " AND (file_mark_id IS NULL OR file_mark_id = '' $user_file_mark_id_allowed ) ";
+
+        
         $query = "SELECT UPPER(SUBSTR(`filename`,1,1)) AS alpha, COUNT(`filename`) as num
-                    FROM files  WHERE 1 $filter
+                    FROM files  WHERE 1 $filter $filter_file_permission
                  GROUP BY UPPER(SUBSTR(`filename`,1,1)) ORDER BY UPPER(SUBSTR(`filename`,1,1)) ";
         
  
@@ -197,7 +224,7 @@ class Files {
     }
     
     
-    public function listFileByAlphabet($company, $year, $alphabet)
+    public function listFileByAlphabet($company, $year, $alphabet, $file_permission = null)
     {
         $array_bind = array();
         
@@ -221,7 +248,20 @@ class Files {
         }
         
         
-        $query = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, file_mark_id, file_year FROM files WHERE 1 $filter
+        $array_file_permission = json_decode($file_permission, true);
+    
+    
+        if(count($array_file_permission) >=1)
+        {
+            $file_in_string = join(", ", $array_file_permission);
+            
+            $user_file_mark_id_allowed = " OR file_mark_id IN ($file_in_string) ";
+        }
+
+        $filter_file_permission = " AND (file_mark_id IS NULL OR file_mark_id = '' $user_file_mark_id_allowed ) ";
+
+        
+        $query = "SELECT row_id, creadate, pages, filesize, moddate, row_id, filename, file_mark_id, file_year FROM files WHERE 1 $filter $filter_file_permission
                    ORDER BY `filename`";
         
  

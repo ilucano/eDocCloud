@@ -21,6 +21,8 @@ $year = $_GET['year'];
 $alphabet = $_GET['alphabet'];
 
 $companyCode = $objUsers->userCompany();
+$file_permission = $objUsers->getOwnDetails('file_permission');
+
 $company_res = $objCompanies->getCompany($companyCode);
 $company_name = $company_res['company_name'];
 		
@@ -31,7 +33,7 @@ switch ($action)
 {
 	case "listyear":
 		
-		$row = $objFiles->listCountByYears($companyCode);
+		$row = $objFiles->listCountByYears($companyCode, $file_permission);
 		
 		$list_result = '';
 		foreach($row as $list)
@@ -73,7 +75,7 @@ switch ($action)
 
 	case "listalphabet":
 		
-		$row = $objFiles->listCountByAlphabet($companyCode, $year);
+		$row = $objFiles->listCountByAlphabet($companyCode, $year, $file_permission);
 	    
 		
 		$list_result = '';
@@ -107,7 +109,7 @@ switch ($action)
 
 	case "listfile":
 		
-		$result = $objFiles->listFileByAlphabet($companyCode, $year, $alphabet);
+		$result = $objFiles->listFileByAlphabet($companyCode, $year, $alphabet, $file_permission);
 	    
 		
 		$list_result = '';

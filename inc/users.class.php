@@ -100,11 +100,19 @@ class Users {
         return $row;
     }
     
-    public function getOwnDetails()
+    public function getOwnDetails($field = null)
     {
         $username = $_SESSION['Vusername'];
         
-        return $this->getUserByUsername($username);
+        $user = $this->getUserByUsername($username);
+        
+        if($field != '') {
+            return $user[$field];
+        }
+        else {
+            return $user;
+        }
+        
      
     }
     
