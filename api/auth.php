@@ -1,32 +1,69 @@
 <?php
 
-   require_once('lib/nusoap.php'); // basic include.. must go at the top
-   
-   $SERVICE_NAMESPACE = "urn:Testing_Service"; // create a namespace to run under.
-   
-   $server = new soap_server(); // the soap object from the include above.
+session_start();
 
-   // this has many input parameters but we only need two: the service name and the namespace
-   $server->configureWSDL('Testing_Service', $SERVICE_NAMESPACE);
-   
-   // Register a method name with the service and make it publicly accessable.
-   $server->register('Say_Hello',// method name
-        array('name' => 'xsd:string'),// input parameter called name.. and it's a string.
-        array('return' => 'xsd:string'),// output - one string is returned called "return"
-        $SERVICE_NAMESPACE,// namespace
-        $SERVICE_NAMESPACE . '#hello',// soapaction
-        'rpc',// style.. remote procedure call
-        'encoded',// use of the call
-        'Sends a greeting with your name!'// documentation for people who hook into your service.
-    );
-    
-    // here is the method you registered.. it takes in a string and returns a string!
-    function Say_Hello($sName) 
-    {        
-      return 'Hello ' . $sName . '!  Hello world!';
-    }
-    
-    //This processes the request and returns a result.
-    $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
-    $server->service($HTTP_RAW_POST_DATA); 
+require_once '/var/www/html/config.php';
+require_once $arrIni['base'].'framework/nusoap/nusoap.php';
+//require_once $arrIni['base'].'lib/db/dbConn.php';
+require_once $arrIni['base'].'lib/db/db.php' ;
+
+//Perform client authentication
+
+//Unauthenticated clients are not allowed to access functionality
+function genToken($apikey, $company, $ip) {
+	$con = ConnectionFactory::getConnection();
+	$token = md5(uniqid(rand(), true).$apikey.$ip);
+	$fecha = date("Y-m-d H:i:s");
+	date_add($fecha, date_interval_create_from_date_string('2 days'));
+	//$fecha->add(new DateInterval('P1H'));
+	$qry = "INSERT INTO apitoken (token, datefrom, dateto, fk_company, ip_addr) VALUES ('".$token."',NOW(),'".$fecha."',".$company.",'".$ip."');";
+	
+	$res=mysql_query($qry) 
+		or die("-1");
+    return $token;
+	//} else {
+	//	return "-1";
+	
+}
+ 
+// Authentication Token
+// Logic of the web service
+function GetToken($username, $password, $apikey) {
+	//Can query database and any other complex operation
+	$con = ConnectionFactory::getConnection();
+	$qry = "SELECT * FROM apiauth WHERE username = '".$username."' AND password = '".$password."' AND apikey ='".$apikey."';";
+	$res = mysql_query($qry);
+	
+	//return $qry;
+	
+	if (mysql_num_rows($res)) {
+		while ($row = mysql_fetch_array($res)) {
+	//		if ($row['ip_addr']<>'') {
+				// The user needs IP Control
+				// ToDo: Not implemented
+				//return "capoche";
+	//		} else {
+				$varRet = genToken($row["apikey"], $row["fk_empresa"], $_SERVER['REMOTE_ADDR']);
+				return $varRet;
+	//		}
+		}
+	}
+	return "noentra";
+}
+ 
+	$server = new soap_server();
+	$server->configureWSDL("GetToken", "urn:authenticate");
+ 
+	//Register web service function so that clients can access
+	$server->register("GetToken",
+	array("username" => "xsd:string", "password" => "xsd:string", "apikey" => "xsd:string"),
+	array("return" => "xsd:string"),
+	"urn:authenticate",
+	"urn:authenticate#GetToken",
+	"rpc",
+	"encoded",
+	"Retrieve token for valid connections");
+ 
+	$POST_DATA = isset($GLOBALS['HTTP_RAW_POST_DATA'])? $GLOBALS['HTTP_RAW_POST_DATA'] : '';
+	$server->service($POST_DATA);
 ?>
