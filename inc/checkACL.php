@@ -22,6 +22,7 @@ if ($_SESSION['VisAdmin']=='X') {
 	$arrPerm['create'] = 'X';
 	$arrPerm['edit'] = 'X';
 	$arrPerm['delete'] = 'X';
+	$arrPerm['invoiced'] = 'X';
 	
 } elseif ($_SESSION['Vcadm']=='X') {
 	// Si es admin de empresa ve todo de la empresa

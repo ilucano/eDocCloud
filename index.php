@@ -42,8 +42,6 @@ if ((isset($_SESSION['Vusername']) && $_SESSION['Vusername']!="")) {
   </div>
    </div>  
   
-  	<p><br></p>
-  
   	<div name="theForm" class="row">
         	<form id="myForm" data-abide="ajax" action="login.php" method="post">
                 	<div class="large-3 columns">
@@ -84,7 +82,13 @@ if ((isset($_SESSION['Vusername']) && $_SESSION['Vusername']!="")) {
                     </div>
 			</form>
    	</div>
-   
+   <div class="row">
+    <div class="large-2 columns">&nbsp;</div>
+    <div class="large-8 columns">
+    <div data-alert="" class="alert-box warning radius">Contact Support: Phone: 305-741-5790 |  Email: Support@imagingxperts.com<a href="#" class="close">&times;</a>
+	</div>
+    <div class="large-2 columns">&nbsp;</div>
+   </div>
    
    	<script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/jquery.js"></script>
    	<script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/fastclick.js"></script>

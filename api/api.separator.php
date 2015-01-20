@@ -21,10 +21,10 @@ function validToken($token) {
 	if (mysql_num_rows($res)) {
 		while ($row = mysql_fetch_array($res)) {
 			$retVal = "0";
-			$fecha = date("Y-m-d H:i:s");
-			date_add($fecha, date_interval_create_from_date_string('2 hours'));
+			$fecha = date("Y-m-d H:i:s",strtotime('+2 hours'));
+			//date_add($fecha, date_interval_create_from_date_string('2 hours'));
 			$qry = "UPDATE apitoken SET dateto = '".$fecha."' WHERE token = '".$token."';";
-			return $qry;
+			//return $qry;
 			$res=mysql_query($qry) 
 				or die("-1");
 		}
@@ -34,7 +34,7 @@ function validToken($token) {
  
 // Authentication Token
 // Logic of the web service
-function GetBoxCompany($strBox, $token) {
+function GetSeparator($strBarcode, $strCompany, $token) {
 	//Can query database and any other complex operation
 	//return validToken($token);
 	
@@ -44,8 +44,8 @@ function GetBoxCompany($strBox, $token) {
 	
 	if ($isValid==0) {
 		$con = ConnectionFactory::getConnection();
-		//$barcode = substr($barcode,6);
-		$qry = "SELECT * FROM pickup WHERE fk_barcode = '201431".$strBox."'";
+	
+		$qry = "SELECT * FROM separators WHERE row_id = ".$strBarcode." AND fk_customer IN (0,".$strCompany.") ORDER BY fk_customer ASC";
 		$res = mysql_query($qry);
 		
 		if (mysql_num_rows($res)) {
@@ -56,7 +56,7 @@ function GetBoxCompany($strBox, $token) {
 					//return "capoche";
 		//		} else {
 					//$varRet = genToken($row["apikey"], $row["fk_empresa"], $_SERVER['REMOTE_ADDR']);
-					return $row["fk_company"];
+					return $row["texto"];
 		//		}
 			}
 		}
@@ -67,17 +67,17 @@ function GetBoxCompany($strBox, $token) {
 }
  
 	$server = new soap_server();
-	$server->configureWSDL("GetBoxCompany", "urn:pickup");
+	$server->configureWSDL("GetSeparator", "urn:separator");
  
 	//Register web service function so that clients can access
-	$server->register("GetBoxCompany",
-	array("strBox" => "xsd:string", "token" => "xsd:string"),
+	$server->register("GetSeparator",
+	array("strBarcode" => "xsd:string", "strCompany" => "xsd:string", "token" => "xsd:string"),
 	array("return" => "xsd:string"),
-	"urn:pickup",
-	"urn:pickup#GetBoxCompany",
+	"urn:separator",
+	"urn:separator#GetSeparator",
 	"rpc",
 	"encoded",
-	"Get Company for Box");
+	"Get Separator Name");
  
 	$POST_DATA = isset($GLOBALS['HTTP_RAW_POST_DATA'])? $GLOBALS['HTTP_RAW_POST_DATA'] : '';
 	$server->service($POST_DATA);

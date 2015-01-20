@@ -21,10 +21,10 @@ function validToken($token) {
 	if (mysql_num_rows($res)) {
 		while ($row = mysql_fetch_array($res)) {
 			$retVal = "0";
-			$fecha = date("Y-m-d H:i:s");
-			date_add($fecha, date_interval_create_from_date_string('2 hours'));
+			$fecha = date("Y-m-d H:i:s",strtotime('+2 hours'));
+			//date_add($fecha, date_interval_create_from_date_string('2 hours'));
 			$qry = "UPDATE apitoken SET dateto = '".$fecha."' WHERE token = '".$token."';";
-			return $qry;
+			//return $qry;
 			$res=mysql_query($qry) 
 				or die("-1");
 		}

@@ -78,7 +78,7 @@
 			if ($arrPerm['edit']=='X') { echo ' | <a href="#" data-type="edit" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Edit</a>'; }
 			if ($arrPerm['delete']=='X') { echo ' | <a href="#" data-type="delete" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Delete</a> '; }
 			if ($arrPerm['edit']=='X' && $row['fk_status']!=5) { echo ' | <a href="#" data-type="close" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Close</a> '; echo ' | <a href="#" data-type="sum" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Sum</a> '; }
-
+			echo ' | <a href="#" data-type="invoiced" data-page="'.$row['row_id'].'" data-reveal-id="buttons">Invoiced</a> ';
 			echo '</td>';
 			
 			echo "</tr></td>";

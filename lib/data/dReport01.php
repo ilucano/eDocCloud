@@ -20,7 +20,7 @@
 	//$qryFT = "SELECT T1.*, (T2.status) as status, (SELECT company_name FROM companies WHERE row_id = T4.fk_company) as empresa, (T4.row_id) boxid FROM workflow T1 INNER JOIN wf_status T2 ON T1.fk_status = T2.row_id INNER JOIN pickup T3 ON T1.wf_id = T3.fk_barcode LEFT JOIN objects T4 ON T3.fk_box = T4.row_id WHERE T1.fk_status NOT IN (1,16,17) ORDER BY T2.status DESC, T3.fk_barcode LIMIT 0,".($limit).";";
 	
 	
-	$qryRep = "SELECT T1.*, (T4.fk_company) as fk_company, (T2.status) as status, (COUNT(status)) as qty, (SUM(T4.qty)) as suma, (AVG(T5.ppc)) as precio, (SELECT company_name FROM companies WHERE row_id = T4.fk_company) as empresa FROM workflow T1 INNER JOIN wf_status T2 ON T1.fk_status = T2.row_id INNER JOIN pickup T3 ON T1.wf_id = T3.fk_barcode INNER JOIN objects T4 ON T3.fk_box = T4.row_id INNER JOIN objects T5 ON T4.fk_parent = T5.row_id  WHERE T4.fk_obj_type = 2 GROUP BY T2.status, T4.fk_company ORDER BY T1.fk_status ASC";
+	$qryRep = "SELECT T1.*, (T4.fk_company) as empresaid, (T2.status) as status, (COUNT(status)) as qty, (SUM(T4.qty)) as suma, (AVG(T5.ppc)) as precio, (SELECT company_name FROM companies WHERE row_id = T4.fk_company) as empresa FROM workflow T1 INNER JOIN wf_status T2 ON T1.fk_status = T2.row_id INNER JOIN pickup T3 ON T1.wf_id = T3.fk_barcode INNER JOIN objects T4 ON T3.fk_box = T4.row_id INNER JOIN objects T5 ON T4.fk_parent = T5.row_id  WHERE T4.fk_obj_type = 2 GROUP BY T2.status, T4.fk_company ORDER BY T1.fk_status ASC";
 	
 	mysql_query("SET NAMES UTF8");
 	$res = mysql_query($qryRep);
@@ -68,18 +68,22 @@
 			
 			if ($row['suma']>0) {
 				setlocale(LC_MONETARY, 'en_US');
+				$sTotal = $sTotal + ($row['suma'] * $row['precio']);
 				echo '<td width="20%">'.money_format('%i', ($row['suma'] * $row['precio']) ).'</td>';
 			} else {
 				echo '<td width="20%" class="subheader">';
-				$qryAvg = "SELECT *, (COUNT(*)) as cant, (SUM(qty)) as suma FROM objects WHERE fk_obj_type = 2 AND fk_status = 5 and fk_company = " . $row['fk_company'];
+				//$qryAvg = "SELECT *, (COUNT(*)) as cant, (SUM(qty)) as suma FROM objects WHERE fk_obj_type = 2 AND fk_status = 5 and fk_company = " . $row['empresaid'];
+				$qryAvg = "SELECT T1.*, (COUNT(*)) as cant, (SUM(T1.qty)) as suma, (AVG(T2.ppc)) as prec FROM objects T1 INNER JOIN objects T2 ON T2.row_id = T1.fk_parent WHERE T1.fk_obj_type = 2 AND T1.fk_status = 5 and T1.fk_company = ". $row['empresaid'];
+
 				//echo $qryAvg;
 				mysql_query("SET NAMES UTF8");
 				$resAvg = mysql_query($qryAvg);
-				if (mysql_num_rows($resAvg)) {
+				if (mysql_num_rows($resAvg)) {	
 					while ($rowAvg = mysql_fetch_array($resAvg)) {
 						setlocale(LC_MONETARY, 'en_US');
 						//echo money_format('%i', ($rowAvg['cant'] / $rowAvg['suma']) );
-						echo money_format('%i',((($rowAvg['suma'] / $rowAvg['cant']) * $row['precio']) * $row['qty']));
+						$sTotal = $sTotal + ((($rowAvg['suma'] / $rowAvg['cant']) * $rowAvg['prec']) * $row['qty']);
+						echo money_format('%i',((($rowAvg['suma'] / $rowAvg['cant']) * $rowAvg['prec']) * $row['qty'])) ;
 					}
 				}
 				echo '</td>';
@@ -102,6 +106,15 @@
 			//echo '</dd>';
 			$intCnt = $intCnt + 1;
 		}
+		// Counter
+		echo '<tr><td width="20%"  class="accordion"></td>';
+		echo '<td width="20%">TOTAL</td>';
+		setlocale(LC_MONETARY, 'en_US');
+		echo '<td width="20%">'.money_format('%i', $sTotal);
+		echo '</td>';
+		echo '<td width="40%"></td>';
+		echo '</tr>';
+		
 		echo "</tbody></table>";
 		//echo '</dl>';
 		

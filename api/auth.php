@@ -13,8 +13,8 @@ require_once $arrIni['base'].'lib/db/db.php' ;
 function genToken($apikey, $company, $ip) {
 	$con = ConnectionFactory::getConnection();
 	$token = md5(uniqid(rand(), true).$apikey.$ip);
-	$fecha = date("Y-m-d H:i:s");
-	date_add($fecha, date_interval_create_from_date_string('2 days'));
+	$fecha = date("Y-m-d H:i:s",strtotime('+2 hours'));
+	//$fecha = date_add($fecha, date_interval_create_from_date_string('2 hours'));
 	//$fecha->add(new DateInterval('P1H'));
 	$qry = "INSERT INTO apitoken (token, datefrom, dateto, fk_company, ip_addr) VALUES ('".$token."',NOW(),'".$fecha."',".$company.",'".$ip."');";
 	

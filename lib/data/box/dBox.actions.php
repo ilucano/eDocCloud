@@ -117,6 +117,20 @@
 				ConnectionFactory::close();
 
 				break;
+			case "invoiced":
+				//require_once $arrIni['base'].'lib/db/dbConn.php' ;
+				ConnectionFactory::getConnection();
+				
+				$qry = "UPDATE ".$table." SET invoiced = 'X' WHERE row_id = ".$id.";";
+				//echo $qry;
+				$res=mysql_query($qry)
+					or die("-1");
+				
+				echo "Record updated...";
+				
+				ConnectionFactory::close();
+
+				break;
 			}
 		//echo "OK";
 	}

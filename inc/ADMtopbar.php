@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+require_once '/var/www/html/config.php';
+require_once $arrIni['base'].'lib/db/db.php' ;
 
 $group_permission = GetUserPermission();
  
@@ -139,7 +143,37 @@ $group_permission = GetUserPermission();
     <!-- Left Nav Section -->
     <ul class="left">
       <li><a href="../logout.php">Logout</a></li>
-    </ul>
+    <?php 
+      if ($_SESSION['VisAdmin']=='X') {
+		  
+		$conE = ConnectionFactory::getConnection();
+	
+		$qryE = "SELECT * FROM companies WHERE creditlimit = 1;";
+		
+		// Inicio de la seleccion de Empresas
+		$strRet = '<label>Company<select name="fk_empresa">';
+		$resE = mysql_query($qryE);
+			
+		echo '<li class="has-dropdown">
+		<a href="#">Change Company</a>
+		<ul class="dropdown">';
+		  
+		if (mysql_num_rows($resE)) {
+			while ($rowE = mysql_fetch_array($resE)) {
+				echo '<li';
+				if ($_SESSION['CoCo']==$rowE['row_id']) { 
+					echo ' class="active"'; 
+				}
+				echo '>';
+				echo '<a href="changecompany.php?id='.$rowE['row_id'].'&url='.$_SERVER['PHP_SELF'].'">'.$rowE['company_name'].'</a></li>';
+			}
+		}
+		  
+		echo '</ul>
+		</li>';
+	  }
+?>
+	</ul>
   </section>
 </nav>
 </div>

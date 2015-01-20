@@ -10,7 +10,7 @@
 	
 	$pagAct =  $_GET['pagAct'] ;
 	$limit = 15;
-	$adj = 2
+	$adj = 10	
 	;
 	
 	if ($pagAct=="") { $pagAct=0; }
