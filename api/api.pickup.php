@@ -118,13 +118,57 @@ function GetBoxbyStatus($strStatus, $token) {
 		//return $oReturn;
 		if ($num_rows>0) {
 			while ($row = mysql_fetch_array($res)) {
-				$oReturn[$lCounter] = array('fk_order'=>$row['row_id'], 'barcode'=>$row['wf_id']);
+				$oReturn[$lCounter] = array('row_id'=>$row['row_id'], 'wf_id'=>$row['wf_id']);
+				$lCounter = $lCounter+1;
+			}
+		} else {
+			$oReturn[0] = array('row_id'=>'-1', 'wf_id'=>"No Results");
+		}
+		return $oReturn;
+	} else {
+		$oReturn[0] = array('row_id'=>'-1', 'wf_id'=>"Token Error");
+		return $oReturn;
+	}
+	
+}
+
+function GetPickupbyBcd($strBarcode, $token) {
+	//Can query database and any other complex operation
+	
+	$isValid = validToken($token);
+		
+	//return $oRet;
+	if ($isValid==0) {
+		$con = ConnectionFactory::getConnection();
+		//$barcode = substr($barcode,6);
+		$qry = "SELECT * FROM pickup WHERE fk_barcode = ".$strBarcode;
+		$res = mysql_query($qry);
+		
+		$num_rows = mysql_num_rows($res);
+    		
+		//make a generic array of the size of our result set.
+		$oReturn[$num_rows];
+		$lCounter = 0;
+		
+		/*
+		'row_id' => array('name'=>'row_id','type'=>'xsd:integer'),
+			'fk_user' => array('name'=>'fk_user','type'=>'xsd:integer'),
+			'fk_company' => array('name'=>'fk_company','type'=>'xsd:integer'),
+			'fk_order' => array('name'=>'fk_order','type'=>'xsd:integer'),
+			'fk_barcode' => array('name'=>'fk_barcode','type'=>'xsd:string'),
+			'qty' => array('name'=>'qty','type'=>'xsd:integer'),
+			'fk_box' => array('name'=>'fk_box','type'=>'xsd:integer')
+			*/
+		//return $oReturn;
+		if ($num_rows>0) {
+			while ($row = mysql_fetch_array($res)) {
+				$oReturn[$lCounter] = array('row_id'=>$row['row_id'], 'fk_user'=>$row['fk_user'], 'fk_company'=>$row['fk_company'], 'fk_order'=>$row['fk_order'], 'fk_barcode'=>$row['fk_barcode'], 'qty'=>$row['qty'], 'fk_box'=>$row['fk_box']);
 				$lCounter = $lCounter+1;
 			}
 		}
 		return $oReturn;
 	} else {
-		$oReturn[0] = array('fk_order'=>'-1', 'barcode'=>"Token Error");
+		$oReturn[0] = array('row_id'=>'-1', 'wf_id'=>"Token Error");
 		return $oReturn;
 	}
 	
@@ -143,7 +187,17 @@ function GetBoxbyStatus($strStatus, $token) {
         "Get all boxes on status."// documentation for people who hook into your service.
     );
 	
- // complex types are like 'struct' in C#.... it's a way to bind an object with different properties and variables together    
+	$server->register("GetPickupbyBcd",// method name
+        array("strBarcode" => "xsd:string", "token" => "xsd:string"),// input parameter - nothing!
+        array("return" => "tns:PickupArray"),// output - object of type MyTableArray.
+        "urn:pickupwsdl",
+       	"urn:pickupwsdl#GetPickupbyBcd",
+        "rpc",// style.. remote procedure call
+        false,// use of the call
+        "Get all boxes on status."// documentation for people who hook into your service.
+    );
+	
+ 	// complex types are like 'struct' in C#.... it's a way to bind an object with different properties and variables together    
 	$server->wsdl->addComplexType(
 		'BoxData', // the type's name
 		'complexType', // yes.. indeed it is a complex type.
@@ -151,9 +205,10 @@ function GetBoxbyStatus($strStatus, $token) {
 		'all', // compositor.. 
 		'',// no restriction
 		array(
-			'fk_order' => array('name'=>'fk_order','type'=>'xsd:string'),
-			'barcode' => array('name'=>'barcode','type'=>'xsd:string') //,
-			//'fk_box' => array('name'=>'fk_box','type'=>'xsd:string')
+			'row_id' => array('name'=>'row_id','type'=>'xsd:integer'),
+			'wf_id' => array('name'=>'wf_id','type'=>'xsd:string'),
+			'fk_status' => array('name'=>'fk_status','type'=>'xsd:integer')
+			
 		)// the elements of the structure.
 	);
     
@@ -169,9 +224,36 @@ function GetBoxbyStatus($strStatus, $token) {
 		'tns:BoxData'// what type of array is this?  Oh it's an array of mytable data
 	);
 	
- 
- 	//$server->configureWSDL("GetBoxCompany", "urn:pickup");
-	
+	// complex types are like 'struct' in C#.... it's a way to bind an object with different properties and variables together    
+	$server->wsdl->addComplexType(
+		'PickupData', // the type's name
+		'complexType', // yes.. indeed it is a complex type.
+		'struct', // php it's a structure. (only other option is array) 
+		'all', // compositor.. 
+		'',// no restriction
+		array(
+			'row_id' => array('name'=>'row_id','type'=>'xsd:integer'),
+			'fk_user' => array('name'=>'fk_user','type'=>'xsd:integer'),
+			'fk_company' => array('name'=>'fk_company','type'=>'xsd:integer'),
+			'fk_order' => array('name'=>'fk_order','type'=>'xsd:integer'),
+			'fk_barcode' => array('name'=>'fk_barcode','type'=>'xsd:string'),
+			'qty' => array('name'=>'qty','type'=>'xsd:integer'),
+			'fk_box' => array('name'=>'fk_box','type'=>'xsd:integer')
+			
+		)// the elements of the structure.
+	);
+    
+	// Here we need to make another complex type of our last complex type.. but now an array!
+	$server->wsdl->addComplexType(
+		'PickupArray',//glorious name
+		'complexType',// not a simpletype for sure!
+		'array',// oh we are an array now!
+		'',// bah. blank
+		'SOAP-ENC:Array',
+		array(),// our element is an array.
+		array(array('ref'=>'SOAP-ENC:arrayType','wsdl:arrayType'=>'tns:PickupData[]')),//the attributes of our array.
+		'tns:PickupData'// what type of array is this?  Oh it's an array of mytable data
+	);
 	
 	//Register web service function so that clients can access
 	$server->register("GetBoxCompany",
@@ -182,7 +264,6 @@ function GetBoxbyStatus($strStatus, $token) {
 	"rpc",
 	"encoded",
 	"Get Company for Box");
-	
 	
 	//$server->configureWSDL("ChangeStatus", "urn:pickup");
 	$server->register("ChangeStatus",

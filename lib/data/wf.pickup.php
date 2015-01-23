@@ -69,7 +69,7 @@ for ($i = 1; $i <= $qty; $i++) {
 				// Creo un WF por cada Barcode
 				
 				$qryWF = "INSERT INTO workflow (wf_id, fk_status, modify, created, modify_by, created_by) VALUES (";
-				$qryWF = $qryWF.$barc.",3,'".date("Y-m-d G:i:s")."','".date("Y-m-d G:i:s")."',".$_SESSION['Vid'].",".$_SESSION['Vid'].");";
+				$qryWF = $qryWF.$barc.",2,'".date("Y-m-d G:i:s")."','".date("Y-m-d G:i:s")."',".$_SESSION['Vid'].",".$_SESSION['Vid'].");";
 				$stmt = $con->prepare($qryWF);
 				$stmt->execute();
 				

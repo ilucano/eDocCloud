@@ -52,14 +52,14 @@ function GetToken($username, $password, $apikey) {
 }
  
 	$server = new soap_server();
-	$server->configureWSDL("GetToken", "urn:authenticate");
+	$server->configureWSDL("Authenticate", "urn:authenticate");
  
 	//Register web service function so that clients can access
 	$server->register("GetToken",
 	array("username" => "xsd:string", "password" => "xsd:string", "apikey" => "xsd:string"),
 	array("return" => "xsd:string"),
-	"urn:authenticate",
-	"urn:authenticate#GetToken",
+	"urn:authenticatewsdl",
+	"urn:authenticatewsdl#GetToken",
 	"rpc",
 	"encoded",
 	"Retrieve token for valid connections");
