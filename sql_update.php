@@ -1,3 +1,6 @@
+<?php
+exit("...");
+?>
 ALTER TABLE `groups`
 ADD `group_permission` mediumtext COLLATE 'latin1_swedish_ci' NULL,
 COMMENT='';
@@ -17,3 +20,24 @@ CREATE TABLE `activity_logs` (
   KEY `action` (`module`),
   KEY `create_date` (`create_date`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+###2014-12-07
+
+CREATE TABLE `file_marks` ( `id` int(11) unsigned NOT NULL AUTO_INCREMENT, `fk_empresa` smallint(4) unsigned NOT NULL, `label` varchar(250) DEFAULT NULL, `global` tinyint(1) NOT NULL DEFAULT '0', `create_date` datetime DEFAULT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `files`
+ADD `file_mark_id` mediumint unsigned NULL,
+COMMENT='';
+
+
+ALTER TABLE `files`
+ADD `file_year` smallint(4) unsigned NULL,
+COMMENT='';
+
+ALTER TABLE `files`
+ADD INDEX `file_year_fk_empresa` (`file_year`, `fk_empresa`);
+
+
+ALTER TABLE `users`
+ADD `file_permission` mediumtext NOT NULL COMMENT 'File mark ID allow in json format',
+COMMENT='';

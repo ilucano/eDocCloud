@@ -24,7 +24,7 @@ function GetAllOrders() {
 			if ($row['row_id']=="") {
 				echo "You don't have orders at this time";
 			} else {
-				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"order\" data-reveal-id=\"".$row['row_id']."\">".$row['code']." / ".$row['name']."</a></td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$row['status']."</td>";
+				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"order\" my-data-reveal-id=\"".$row['row_id']."\">".$row['code']." / ".$row['name']."</a></td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$row['status']."</td>";
 				echo "<td width=\"100\">".$row['qty']."</td><td width=\"100\">";
 				
 				setlocale(LC_MONETARY, 'en_US');
@@ -40,3 +40,4 @@ function GetAllOrders() {
 	ConnectionFactory::close();
 }
 ?>
+

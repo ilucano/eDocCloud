@@ -7955,3 +7955,9 @@ img.round-margin {
   margin-bottom: 20px; }
 
 /*# sourceMappingURL=docs.css.map */
+
+
+#permission_box li {
+list-style-type: none;
+}
+

@@ -10,6 +10,10 @@ $group_permission = GetUserPermission();
 //	die;
 //}
 
+require_once $arrIni['base'].'inc/users.class.php';
+
+$objUsers = new Users;
+
 ?>
 
 <div class="row">
@@ -22,17 +26,18 @@ $group_permission = GetUserPermission();
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
-
+    
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
+
 <?php 
-      if ($_SESSION['VisAdmin']=='X') {
+      
       echo '<li class=\"has-dropdown\"><a href="../main.php">Application</a><ul class=\"dropdown\">';
 	  // Cargo el Menu Admin
 	  
 	  echo '</ul></li>';
-	  }
+	  
 ?>
 	
 	<?php if( is_array($group_permission['workflow']) && count($group_permission['workflow']) > 0): ?>
@@ -123,6 +128,9 @@ $group_permission = GetUserPermission();
 			<?php if($group_permission['admin_menu']['file'] == 1 ): ?>
 				<li<?php if ($page=="file") { echo ' class="active"'; } ?>><a href="file.php">File</a></li>
 			<?php endif ?>
+	 
+			<li<?php if ($page=="filemarks") { echo ' class="active"'; } ?>><a href="filemarks.php">File Markers</a></li>
+	 
 			
 			<?php if($group_permission['admin_menu']['barcode'] == 1 ): ?>
 				<li<?php if ($page=="barcode") { echo ' class="active"'; } ?>><a href="barcode.php">Barcode</a></li>
@@ -137,6 +145,17 @@ $group_permission = GetUserPermission();
 			<li<?php if ($page=="chgpwd") { echo ' class="active"'; } ?>><a href="chgpwd.php">Change Password</a></li> -->
 		  </ul>
 		</li>
+		<?php endif ?>
+		
+				
+		<?php if($objUsers->isCompanyAdmin() == true) :?>
+		    <li class="has-dropdown"><a href="#">Company Admin</a>
+				<ul class="dropdown">
+					<li<?php if ($page=="myusers") { echo ' class="active"'; } ?>><a href="myusers.php">My Users</a></li>
+					<li<?php if ($page=="mygroups") { echo ' class="active"'; } ?>><a href="mygroups.php">My Groups</a></li>
+					<li<?php if ($page=="myfilemarks") { echo ' class="active"'; } ?>><a href="myfilemarks.php">My File Markers</a></li>
+				</ul>
+			</li>
 		<?php endif ?>
     </ul>
     

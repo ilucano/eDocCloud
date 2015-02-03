@@ -6,6 +6,8 @@ require_once '/var/www/html/config.php';
 require_once $arrIni['base'].'lib/db/db.php' ;
 require_once $arrIni['base'].'lib/db/dbConn.php' ;
 
+require_once $arrIni['base'].'inc/users.class.php';
+
 if (!(isset($_SESSION['Vusername']) && $_SESSION['Vusername'] != '')) {
 
 header ("Location: ../index.php");
@@ -41,70 +43,7 @@ if ($_SESSION['VisAdmin']=='X') {
 	$arrPerm['delete'] = '';
 }
 
-
 //modules permission
-
-
-$permissionList = array('application' 	=> array('label' => 'Application',
-											   'code' => array('main' => 'Main'),
-											   'script' => array('main' => '/main.php')
-											  ),
-						'workflow' 		=> array('label' => 'Workflow',
-												'code' => array('pickup' => 'Pickup',
-																'preparation' => 'Preparation',
-																'scan' => 'Scan',
-																'qa' => 'QA',
-																'ocr' => 'OCR'),
-												'script' => array('pickup' => '/admin/wf_pick.php',
-																'preparation' => '/admin/prep.php',
-																'scan' => '/admin/scan.php',
-																'qa' => '/admin/qa.php',
-																'ocr' => '/admin/ocr.php')
-										   ),
-						'reports' 		=> array('label' => 'Reports',
-												 'code' => array('all_boxes'  => 'All Boxes',
-																 'group_by_status' => 'Group By Status'),
-												 'script' => array('all_boxes'  => '/admin/inproc.php',
-																 'group_by_status' => '/admin/report01.php')
-												),
-						'admin_menu'	=> array('label' => 'Admin Menu',
-												 'code' => array('home' => 'Home',
-																 'company' => 'Company',
-																 'users' => 'Users',
-																 'groups' => 'Groups',
-																 'orders' => 'Orders',
-																 'pickup' => 'Pickup',
-																 'box'	=> 'Box',
-																 'chart' => 'Chart',
-																 'file' => 'File',
-																 'barcode' => 'Barcode',
-																 'audit'	=> 'Activity Logs'),
-												 'script' => array('home' => '/admin/main.php',
-																 'company' => '/admin/company.php',
-																 'users' => '/admin/users.php',
-																 'groups' => '/admin/groups.php',
-																 'orders' => '/admin/orders.php',
-																 'pickup' => '/admin/pickup.php',
-																 'box'	=> '/admin/box.php',
-																 'chart' => '/admin/chart.php',
-																 'file' => '/admin/file.php',
-																 'barcode' => '/admin/barcode.php',
-																 'audit'	=> '/admin/audit.php'),
-												 
-												 ),
-						'user_menu'		=> array('label' => 'User Menu',
-												 'code' => array('home' => 'Home',
-																 'orders' => 'Orders',
-																 'search' => 'Search',
-																 'change_password' => 'Change Password'),
-												  'script' => array('home' => '/main.php',
-																'orders' => '/orders.php',
-																'search' => '/search.php',
-																'change_password' => '/chgpwd.php')
-																										
-												 )
-						
-						);
 
 						
 
@@ -321,26 +260,29 @@ function ComboYesNo($vName,$vDesc,$vId,$vDis) {
 
 
 
-function ComboGroups($vName,$vId,$vDis) {
+function ComboGroups($vName,$vId,$vDis, $companyCode = null) {
 	
 	$strRet = "";
 	
 	$con = ConnectionFactory::getConnection();
 	
-	$qry = "SELECT * FROM groups ORDER by nombre";
+	if($companyCode)
+	{
+		$filter = " WHERE fk_empresa = '$companyCode' ";
+	}
 	
+	$qry = "SELECT * FROM groups $filter ORDER by nombre";
+	
+ 
 	// Inicio de la seleccion de Empresas
 	$strRet = '<label>User Role<select name="'.$vName.'" '.$vDis.'><option value=""></option>';
 	$res = mysql_query($qry);
-	
-	if ($_SESSION['VisAdmin']!='X') { $isDis = "disabled"; }
-	
+ 
 	if (mysql_num_rows($res)) {
+		
 		while ($row = mysql_fetch_array($res)) {
-			 
-			$vNewId = $vId;
-		 
-			if ($row['row_id']==$vNewId) {
+ 
+			if ($row['row_id']==$vId) {
 				$strRet = $strRet.'<option '.$isDis.' selected value="'.$row['row_id'].'">'.$row['nombre'].'</option>';
 			} else {
 				if ($isDis!="disabled") {

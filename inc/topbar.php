@@ -1,3 +1,10 @@
+<?php
+
+require_once $arrIni['base'].'inc/users.class.php';
+
+$objUsers = new Users;
+
+?>
 <div class="row">
 <div class="fixed"> 
 <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
@@ -13,8 +20,8 @@
     <!-- Right Nav Section -->
     <ul class="right">
 <?php 
-      if ($_SESSION['VisAdmin']=='X') {
-      echo '<li><a href="admin/main.php">Administration</a></li>';
+      if ($_SESSION['VisAdmin']=='X' || $objUsers->isCompanyAdmin() == true ) {
+		echo '<li><a href="admin/main.php">Administration</a></li>';
 	  }
 ?>      
       <li class="has-dropdown">
@@ -22,7 +29,8 @@
         <ul class="dropdown">
           <li<?php if ($page=="main") { echo ' class="active"'; } ?>><a href="main.php">Home</a></li>
           <li<?php if ($page=="orders") { echo ' class="active"'; } ?>><a href="orders.php">Orders</a></li>
-          <li<?php if ($page=="search") { echo ' class="active"'; } ?>><a href="search.php">Search</a></li> 
+          <li<?php if ($page=="search") { echo ' class="active"'; } ?>><a href="search.php">Search</a></li>
+		  <li<?php if ($page=="filebrowser") { echo ' class="active"'; } ?>><a href="filebrowser.php">File Browser</a></li> 
           <li<?php if ($page=="chgpwd") { echo ' class="active"'; } ?>><a href="chgpwd.php">Change Password</a></li> 
           <?php
 		  
@@ -35,6 +43,8 @@
 		  ?>
         </ul>
       </li>
+	  
+
     </ul>
 
     <!-- Left Nav Section -->

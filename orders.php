@@ -56,7 +56,7 @@ require $arrIni['base'].'inc/topbar.php';
             ?>
         </tbody>
     </table>
-    
+
     </div>
 	<div class="large-6 columns">
 		<div class="row" id="contajax">&nbsp;</div>
@@ -69,16 +69,18 @@ require $arrIni['base'].'inc/topbar.php';
 	<script src="<?php echo $arrIni['foundationurl']; ?>js/vendor/jquery.js"></script>
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.js"></script>
   	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.topbar.js"></script>
+	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.dropdown.js"></script>
+	<script src="<?php echo $arrIni['foundationurl']; ?>js/foundation/foundation.reveal.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/templates.js"></script>
     <script src="<?php echo $arrIni['foundationurl']; ?>js/all.js"></script>
   	<!-- Other JS plugins can be included here -->
 
   	<script>
     	$(document).foundation();
-		$(document).on("click", "a[data-reveal-id]", function() {
+		$(document).on("click", "a[my-data-reveal-id]", function() {
     		
 			
-			vId=$(this).attr('data-reveal-id');
+			vId=$(this).attr('my-data-reveal-id');
 			vType=$(this).attr('link-type');
 			vOrder=$(this).attr('link-order');
 			vBox=$(this).attr('link-box');
@@ -114,6 +116,7 @@ require $arrIni['base'].'inc/topbar.php';
 					if(html!="")
 					{
 						$("#contajax").html(html);
+						
 					}
 					else
 					{

@@ -4,13 +4,16 @@ require_once '/var/www/html/config.php';
 require_once $arrIni['base'].'inc/general.php';
 require_once $arrIni['base'].'lib/db/db.php';
 
+
 session_start();
 
 GetAllCharts($_GET['boxid'], $_GET['orderid']);
 
+
+
 function GetAllCharts($boxid, $orderid) {
 	
-	$antes = '<table><thead><tr><th><a href="#" link-type="order" data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="35%">Chart</th><th width="25%">Chart Date</th><th width="25%">Status</th><th width="15%">Pages</th></tr></thead><tbody>';
+	$antes = '<table><thead><tr><th><a href="#" link-type="order" my-data-reveal-id="'.$orderid.'">Order '.GetName($orderid).'</a> > Your Charts in Box '.GetName($boxid).'</th></tr></thead><tbody><tr><td><table><thead><tr><th width="20%">Chart</th><th width="15%">Chart Date</th><th width="20%">Status</th><th width="10%">Pages</th></tr></thead><tbody>';
 	$despues = '</tbody></table></tbody></table></td></tr>';
 	
 	$con = ConnectionFactory::getConnection();
@@ -38,7 +41,9 @@ function GetAllCharts($boxid, $orderid) {
 					$screen = $row['code'];
 				}
 				
-				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"chart\" link-order=\"".$orderid."\" link-box=\"".$boxid."\" data-reveal-id=\"".$row['row_id']."\">".$screen."</a></td><td width=\"90\">".$row['creation']."</td><td width=\"100\">".$row['status']."</td>";
+				echo "<tr><td width=\"120\"><a href=\"#\" link-type=\"chart\" link-order=\"".$orderid."\" link-box=\"".$boxid."\" my-data-reveal-id=\"".$row['row_id']."\">".$screen."</a></td>";
+			
+				echo "<td width=\"90\">".$row['creation']."</td><td width=\"100\">".$row['status']."</td>";
 				echo "<td width=\"100\">".$row['qty'];
 				//."</td><td width=\"100\">";
 				
@@ -49,7 +54,7 @@ function GetAllCharts($boxid, $orderid) {
 			}
 		}
 	} else {
-		//echo $antes;
+		//echo $antes; 
 		echo "<tr><td>";
 		echo "You don't have charts at this time</td></tr>";
 		//echo $despues;
@@ -57,6 +62,7 @@ function GetAllCharts($boxid, $orderid) {
 	echo $despues;
 	ConnectionFactory::close();
 }
+ 
 
 
 require_once $arrIni['base'].'inc/activity_logs.class.php';
