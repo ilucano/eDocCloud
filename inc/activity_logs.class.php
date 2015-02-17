@@ -77,7 +77,7 @@ class Activity_Logs {
         
     }
     
-    public function FilterLogDetails($_REQUEST, $module)
+    public function FilterLogDetails($_request, $module)
     {  
         $_request = $_REQUEST;
         
