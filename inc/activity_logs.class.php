@@ -78,15 +78,17 @@ class Activity_Logs {
     }
     
     public function FilterLogDetails($_REQUEST, $module)
-    {
+    {  
+        $_request = $_REQUEST;
+        
         $array_fields = array('action', 'id', 'wfid', 'status', 'fk_company', 'texto', 'ordid', 'boxid', 'orderid');
         
         $array_result = array();
         
         foreach($array_fields as $key)
         {
-            if($_REQUEST[$key]) {
-                $array_result[$key] = $_REQUEST[$key];
+            if($_request[$key]) {
+                $array_result[$key] = $_request[$key];
             }
             
         }
