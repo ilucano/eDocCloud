@@ -162,21 +162,21 @@ require $arrIni['base'].'inc/topbar.php';
 			vTexto=$("#texto").val();
 			vTextoN=$("#textoN").val();
 			vVar=$(this).attr('data-type');
-			
-			buscar(vId, vTexto, vTextoN, vVar);
+			vPag = $(this).attr('data-page');
+			buscar(vId, vTexto, vTextoN, vVar, vPag);
 			
 			
     	
   		} );
 		
-		function buscar(vId, vTexto, vTextoN, vVar) {
+		function buscar(vId, vTexto, vTextoN, vVar, vPag) {
 			if (vId=="buscar")
 			{
 				if (vVar=="fulltext") {
 					$.ajax({
 					   type: "GET",
 					   url: "lib/search/ftsearch.php",
-					   data: "texto="+vTexto,
+					   data: "texto="+vTexto+"&pagAct="+vPag,
 					   success: function(html){
 						if(html!="")
 						{
@@ -193,7 +193,7 @@ require $arrIni['base'].'inc/topbar.php';
 					   }
 					});
 				} else if (vVar=="pagina") {
-					vPag=$(this).attr('data-page');
+					//vPag=$(this).attr('data-page');
 					$.ajax({
 					   type: "GET",
 					   url: "lib/search/ftsearch.php",
@@ -214,7 +214,7 @@ require $arrIni['base'].'inc/topbar.php';
 					   }
 					});
 				}  else if (vVar=="paginaN") {
-					vPag=$(this).attr('data-page');
+					//vPag=$(this).attr('data-page');
 					$.ajax({
 					   type: "GET",
 					   url: "lib/search/ftsearchn.php",
@@ -238,7 +238,7 @@ require $arrIni['base'].'inc/topbar.php';
 					$.ajax({
 					   type: "GET",
 					   url: "lib/search/ftsearchn.php",
-					   data: "texto="+vTextoN,
+					   data: "texto="+vTextoN+"&pagAct="+vPag,
 					   success: function(html){
 						if(html!="")
 						{
