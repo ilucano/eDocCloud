@@ -58,15 +58,85 @@ function GetOrders($strCompany, $token) {
 		//return $oReturn;
 		if ($num_rows>0) {
 			while ($row = mysql_fetch_array($res)) {
-				$oReturn[$lCounter] = array('row_id'=>$row['row_id'], 'wf_id'=>$row['wf_id']);
+				$oReturn[$lCounter] = array('row_id'=>$row['row_id'], 'fk_obj_type'=>$row['fk_obj_type'], 'fk_company'=>$row['fk_company'], 'f_code'=>$row['f_code'], 'f_name'=>$row['f_name'], 'fk_parent'=>$row['fk_parent'], 'qty'=>$row['qty'], 'fk_status'=>$row['fk_status'], 'fk_status'=>$row['fk_status']);
 				$lCounter = $lCounter+1;
 			}
 		} else {
-			$oReturn[0] = array('row_id'=>'-1', 'wf_id'=>"No Results");
+			$oReturn[0] = array('row_id'=>'-1', 'f_name'=>"No Results");
 		}
 		return $oReturn;
 	} else {
-		$oReturn[0] = array('row_id'=>'-1', 'wf_id'=>"Token Error");
+		$oReturn[0] = array('row_id'=>'-1', 'f_name'=>"Token Error");
+		return $oReturn;
+	}
+	
+}
+
+function GetBoxes($strParent, $token) {
+	//Can query database and any other complex operation
+	
+	$isValid = validToken($token);
+	
+	if ($isValid==0) {
+		$con = ConnectionFactory::getConnection();
+		//$barcode = substr($barcode,6);
+		$qry = "SELECT * FROM objects WHERE fk_obj_type = 2 AND fk_parent = ".$strParent;
+		$res = mysql_query($qry);
+		
+		$num_rows = mysql_num_rows($res);
+    		
+		//make a generic array of the size of our result set.
+		$oReturn[$num_rows];
+		$lCounter = 0;
+		
+		//$oReturn[0] = array('fk_order'=>$qry, 'barcode'=>$num_rows);
+		//return $oReturn;
+		if ($num_rows>0) {
+			while ($row = mysql_fetch_array($res)) {
+				$oReturn[$lCounter] = array('row_id'=>$row['row_id'], 'fk_obj_type'=>$row['fk_obj_type'], 'fk_company'=>$row['fk_company'], 'f_code'=>$row['f_code'], 'f_name'=>$row['f_name'], 'fk_parent'=>$row['fk_parent'], 'qty'=>$row['qty'], 'fk_status'=>$row['fk_status'], 'fk_status'=>$row['fk_status']);
+				$lCounter = $lCounter+1;
+			}
+		} else {
+			$oReturn[0] = array('row_id'=>'-1', 'f_name'=>"No Results");
+		}
+		return $oReturn;
+	} else {
+		$oReturn[0] = array('row_id'=>'-1', 'f_name'=>"Token Error");
+		return $oReturn;
+	}
+	
+}
+
+function GetCharts($strParent, $token) {
+	//Can query database and any other complex operation
+	
+	$isValid = validToken($token);
+	
+	if ($isValid==0) {
+		$con = ConnectionFactory::getConnection();
+		//$barcode = substr($barcode,6);
+		$qry = "SELECT * FROM objects WHERE fk_obj_type = 3 AND fk_parent = ".$strParent." ORDER BY f_code ASC";
+		$res = mysql_query($qry);
+		
+		$num_rows = mysql_num_rows($res);
+    		
+		//make a generic array of the size of our result set.
+		$oReturn[$num_rows];
+		$lCounter = 0;
+		
+		//$oReturn[0] = array('fk_order'=>$qry, 'barcode'=>$num_rows);
+		//return $oReturn;
+		if ($num_rows>0) {
+			while ($row = mysql_fetch_array($res)) {
+				$oReturn[$lCounter] = array('row_id'=>$row['row_id'], 'fk_obj_type'=>$row['fk_obj_type'], 'fk_company'=>$row['fk_company'], 'f_code'=>$row['f_code'], 'f_name'=>$row['f_name'], 'fk_parent'=>$row['fk_parent'], 'qty'=>$row['qty'], 'fk_status'=>$row['fk_status'], 'fk_status'=>$row['fk_status']);
+				$lCounter = $lCounter+1;
+			}
+		} else {
+			$oReturn[0] = array('row_id'=>'-1', 'f_name'=>"No Results");
+		}
+		return $oReturn;
+	} else {
+		$oReturn[0] = array('row_id'=>'-1', 'f_name'=>"Token Error");
 		return $oReturn;
 	}
 	
@@ -78,9 +148,29 @@ function GetOrders($strCompany, $token) {
  
  	$server->register("GetOrders",// method name
         array("strCompany" => "xsd:string", "token" => "xsd:string"),// input parameter - nothing!
-        array("return" => "tns:BoxArray"),// output - object of type MyTableArray.
+        array("return" => "tns:ObjectArray"),// output - object of type MyTableArray.
         "urn:orderswsdl",
        	"urn:orderswsdl#GetOrders",
+        "rpc",// style.. remote procedure call
+        false,// use of the call
+        "Get orders for the specified company."// documentation for people who hook into your service.
+    );
+	
+	$server->register("GetBoxes",// method name
+        array("strParent" => "xsd:string", "token" => "xsd:string"),// input parameter - nothing!
+        array("return" => "tns:ObjectArray"),// output - object of type MyTableArray.
+        "urn:boxeswsdl",
+       	"urn:boxeswsdl#GetBoxes",
+        "rpc",// style.. remote procedure call
+        false,// use of the call
+        "Get orders for the specified company."// documentation for people who hook into your service.
+    );
+	
+	$server->register("GetCharts",// method name
+        array("strParent" => "xsd:string", "token" => "xsd:string"),// input parameter - nothing!
+        array("return" => "tns:ObjectArray"),// output - object of type MyTableArray.
+        "urn:boxeswsdl",
+       	"urn:boxeswsdl#GetCharts",
         "rpc",// style.. remote procedure call
         false,// use of the call
         "Get orders for the specified company."// documentation for people who hook into your service.
